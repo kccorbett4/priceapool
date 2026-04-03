@@ -834,7 +834,7 @@ export default function App({ initialState = "" }) {
         <button onClick={() => {
           if (!leadEmail.includes("@")) return;
           setLeadSubmitted(true);
-          fetch("https://script.google.com/a/macros/podium.com/s/AKfycbyDxK9zPjjWz2yjcejTIUk4UmM1xQS2FstApuBPATKpSFJcVWejTVGVYleg8VDGX4lYZw/exec", {
+          fetch("https://script.google.com/macros/s/AKfycbzPpHWMgtvWn9ZxV-URWZw4OTLYA7t97FkWHLYsULdIZGU0xuGYHzgQVDCSnRxch0RE/exec", {
             method: "POST",
             mode: "no-cors",
             headers: { "Content-Type": "application/json" },
