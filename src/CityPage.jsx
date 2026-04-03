@@ -160,9 +160,18 @@ export default function CityPage() {
   if (!city) return <Navigate to="/pool-cost-by-state" replace />;
 
   const totalMult = city.stateLaborMult * city.metroMult;
-  const gunite = Math.max(48000, Math.round(500 * 82 * totalMult / 1000) * 1000);
-  const fiber  = Math.max(35000, Math.round(500 * 60 * totalMult / 1000) * 1000);
-  const vinyl  = Math.max(25000, Math.round(500 * 35 * totalMult / 1000) * 1000);
+  // All-in estimate for a standard 500 sqft pool (avg depth 4.75ft, standard soil)
+  const _sqft = 500, _avgD = 4.75, _cuYd = (_sqft * _avgD) / 27, _lab = totalMult;
+  const _permits = 1500, _frostC = city.frost ? 2400 : 0, _cont = 0.08;
+  const gShell = Math.max(48000, _sqft * 82 * _lab);
+  const gSub = gShell + _cuYd * 35 * _lab + (7000 + _sqft * 3.5) * _lab + (3500 + _sqft * 1.0) * _lab + (_sqft * 1.4) * 8 * _lab + _permits + _frostC;
+  const gunite = Math.round((gSub * (1 + _cont)) / 1000) * 1000;
+  const fShell = Math.max(35000, _sqft * 60 * _lab);
+  const fSub = fShell + _cuYd * 35 * _lab + (7000 + _sqft * 3.5) * _lab + (3500 + _sqft * 1.0) * _lab + _permits + _frostC;
+  const fiber = Math.round((fSub * (1 + _cont)) / 1000) * 1000;
+  const vShell = Math.max(25000, _sqft * 35 * _lab);
+  const vSub = vShell + _cuYd * 35 * _lab + (7000 + _sqft * 3.5) * _lab + (3500 + _sqft * 1.0) * _lab + _permits + _frostC;
+  const vinyl = Math.round((vSub * (1 + _cont)) / 1000) * 1000;
 
   useEffect(() => {
     document.title = `Pool Cost in ${city.name} (2026) — Free Calculator | PriceAPool`;

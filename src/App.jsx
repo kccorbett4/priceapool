@@ -555,10 +555,10 @@ export default function App({ initialState = "", hideNav = false }) {
   const plumb = (7000 + sqft * 3.5) * lab;
   const elec = (3500 + sqft * 1.0) * lab;
 
-  /* #2: Interior finish — now labor adjusted, uses slope-aware wall sqft */
+  /* #2: Interior finish — gunite only; fiberglass/vinyl gel coat is included in shell */
   const finishRate = FINISH_OPTIONS[finishType]?.rate || 8;
   const totalFinishSqft = floorSqft + wallSqft;
-  const inter = totalFinishSqft * finishRate * lab;
+  const inter = poolType === "gunite" ? totalFinishSqft * finishRate * lab : 0;
 
   const permits = sd.permit || 1500;
   const frostC = sd.frost ? 2400 : 0;
@@ -748,7 +748,7 @@ export default function App({ initialState = "", hideNav = false }) {
     ...(soilTot > 0 ? [{ l: "⚠️ Soil Engineering", v: soilTot, c: T.danger, h: true }] : []),
     { l: "Plumbing & Equipment", v: plumb, c: "#059669" },
     { l: "Electrical", v: elec, c: "#7c3aed" },
-    { l: `${FINISH_OPTIONS[finishType]?.label || "Interior"} (${Math.round(totalFinishSqft)} sqft)`, v: inter, c: "#db2777" },
+    ...(poolType === "gunite" ? [{ l: `${FINISH_OPTIONS[finishType]?.label || "Interior"} (${Math.round(totalFinishSqft)} sqft)`, v: inter, c: "#db2777" }] : []),
     ...(hasSpa ? [{ l: `Spa (${SPA_SIZES[spaSize].label})`, v: spaCost, c: T.warn }] : []),
     ...(poolCoverCost > 0 ? [{ l: "🛡️ Auto Safety Cover — Pool", v: poolCoverCost, c: "#059669" }] : []),
     ...(spaAC > 0 ? [{ l: "🛡️ Auto Safety Cover — Spa", v: spaAC, c: "#059669" }] : []),
@@ -770,7 +770,19 @@ export default function App({ initialState = "", hideNav = false }) {
     <div style={{ textAlign: "center", padding: "28px 16px", background: T.card, border: `2px solid ${T.accent}`, borderRadius: 14, marginBottom: 16, boxShadow: "0 4px 20px rgba(2,132,199,0.08)" }}>
       <div style={{ fontSize: 11, textTransform: "uppercase", letterSpacing: 3, color: T.textDim, fontWeight: 600 }}>Estimated Build Cost</div>
       <div style={{ fontSize: "clamp(34px,8vw,52px)", fontWeight: 900, color: T.accent, margin: "4px 0", fontVariantNumeric: "tabular-nums" }}>{fmt(animTotal)}</div>
-      <div style={{ fontSize: 10, color: T.textDim, marginBottom: 10 }}>{fmt(total / sqft)}/sqft · {td.label}{hasSpa ? " + Spa" : ""}{metro.label ? ` · ${metro.label}` : ""}</div>
+      <div style={{ fontSize: 10, color: T.textDim }}>{fmt(total / sqft)}/sqft · {td.label}{hasSpa ? " + Spa" : ""}{metro.label ? ` · ${metro.label}` : ""}</div>
+      <div style={{ margin: "10px auto 10px", maxWidth: 320 }}>
+        <div style={{ fontSize: 10, color: T.textDim, marginBottom: 5 }}>Typical contractor quote range</div>
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <span style={{ fontSize: 13, fontWeight: 700, color: T.textMid, whiteSpace: "nowrap" }}>{fmt(total * 0.87)}</span>
+          <div style={{ flex: 1, height: 6, borderRadius: 3, background: T.bg2, position: "relative" }}>
+            <div style={{ position: "absolute", left: "0%", right: "0%", top: 0, bottom: 0, borderRadius: 3, background: `linear-gradient(90deg, ${T.accentLight}, ${T.accent}33)` }} />
+            <div style={{ position: "absolute", left: "50%", transform: "translateX(-50%)", top: -3, width: 12, height: 12, borderRadius: "50%", background: T.accent, border: "2px solid #fff", boxShadow: "0 1px 4px rgba(0,0,0,0.15)" }} />
+          </div>
+          <span style={{ fontSize: 13, fontWeight: 700, color: T.textMid, whiteSpace: "nowrap" }}>{fmt(total * 1.18)}</span>
+        </div>
+        <div style={{ fontSize: 9, color: T.textDim, marginTop: 4 }}>Based on competitive vs. premium contractor bids for this build</div>
+      </div>
       <div style={{ display: "inline-flex", alignItems: "center", gap: 8, flexWrap: "wrap", justifyContent: "center" }}>
         <select value={st} onChange={e => setSt(e.target.value)} style={{ padding: "7px 28px 7px 12px", borderRadius: 8, border: `1px solid ${T.border}`, background: T.cardAlt, color: T.text, fontSize: 13, fontWeight: 600, appearance: "none", backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%2394a3b8'/%3E%3C/svg%3E")`, backgroundRepeat: "no-repeat", backgroundPosition: "right 10px center", cursor: "pointer", outline: "none" }}>
           {Object.entries(STATES).map(([code, s]) => <option key={code} value={code}>{s.name}</option>)}

@@ -82,10 +82,40 @@ const STATE_DATA = {
 const fmt = n => "$" + Math.round(n).toLocaleString();
 
 function getStateCosts(d) {
-  const sqft = 500; // average pool
-  const gunite = Math.max(48000, sqft * 82 * d.labor);
-  const fiber  = Math.max(35000, sqft * 60 * d.labor);
-  const vinyl  = Math.max(25000, sqft * 35 * d.labor);
+  // All-in estimate for a standard 500 sqft pool (16x32, avg depth 4.75ft, standard soil)
+  const sqft = 500;
+  const avgD = 4.75;
+  const cuYd = (sqft * avgD) / 27;
+  const lab = d.labor;
+  const permits = d.permit || 1500;
+  const frostC = d.frost ? 2400 : 0;
+  const cont = 0.08;
+
+  // Gunite: shell + excav + plumb + elec + interior finish + permits + frost + contingency
+  const gShell = Math.max(48000, sqft * 82 * lab);
+  const gExcav = cuYd * 35 * lab;
+  const gPlumb = (7000 + sqft * 3.5) * lab;
+  const gElec  = (3500 + sqft * 1.0) * lab;
+  const gInter = (sqft * 1.4) * 8 * lab; // ~700 sqft finish at $8/sqft
+  const gSub   = gShell + gExcav + gPlumb + gElec + gInter + permits + frostC;
+  const gunite = Math.round((gSub * (1 + cont)) / 1000) * 1000;
+
+  // Fiberglass: shell + excav + plumb + elec + permits + frost + contingency (no interior finish)
+  const fShell = Math.max(35000, sqft * 60 * lab);
+  const fExcav = cuYd * 35 * lab;
+  const fPlumb = (7000 + sqft * 3.5) * lab;
+  const fElec  = (3500 + sqft * 1.0) * lab;
+  const fSub   = fShell + fExcav + fPlumb + fElec + permits + frostC;
+  const fiber  = Math.round((fSub * (1 + cont)) / 1000) * 1000;
+
+  // Vinyl: shell + excav + plumb + elec + permits + frost + contingency (no interior finish)
+  const vShell = Math.max(25000, sqft * 35 * lab);
+  const vExcav = cuYd * 35 * lab;
+  const vPlumb = (7000 + sqft * 3.5) * lab;
+  const vElec  = (3500 + sqft * 1.0) * lab;
+  const vSub   = vShell + vExcav + vPlumb + vElec + permits + frostC;
+  const vinyl  = Math.round((vSub * (1 + cont)) / 1000) * 1000;
+
   return { gunite, fiber, vinyl };
 }
 

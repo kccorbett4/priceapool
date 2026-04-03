@@ -62,12 +62,25 @@ const STATES = [
   { name: "West Virginia", slug: "west-virginia", labor: 0.82, permit: 1000, frost: true },
   { name: "Wisconsin", slug: "wisconsin", labor: 0.95, permit: 1400, frost: true },
   { name: "Wyoming", slug: "wyoming", labor: 1.00, permit: 1400, frost: true },
-].map(s => ({
-  ...s,
-  gunite: Math.max(48000, Math.round(500 * 82 * s.labor / 1000) * 1000),
-  fiber:  Math.max(35000, Math.round(500 * 60 * s.labor / 1000) * 1000),
-  vinyl:  Math.max(25000, Math.round(500 * 35 * s.labor / 1000) * 1000),
-})).sort((a, b) => a.gunite - b.gunite);
+].map(s => {
+  // All-in estimate for a standard 500 sqft pool (avg depth 4.75ft, standard soil)
+  const sqft = 500, avgD = 4.75, cuYd = (sqft * avgD) / 27, lab = s.labor;
+  const permits = s.permit || 1500, frostC = s.frost ? 2400 : 0, cont = 0.08;
+
+  const gShell = Math.max(48000, sqft * 82 * lab);
+  const gSub = gShell + cuYd * 35 * lab + (7000 + sqft * 3.5) * lab + (3500 + sqft * 1.0) * lab + (sqft * 1.4) * 8 * lab + permits + frostC;
+  const gunite = Math.round((gSub * (1 + cont)) / 1000) * 1000;
+
+  const fShell = Math.max(35000, sqft * 60 * lab);
+  const fSub = fShell + cuYd * 35 * lab + (7000 + sqft * 3.5) * lab + (3500 + sqft * 1.0) * lab + permits + frostC;
+  const fiber = Math.round((fSub * (1 + cont)) / 1000) * 1000;
+
+  const vShell = Math.max(25000, sqft * 35 * lab);
+  const vSub = vShell + cuYd * 35 * lab + (7000 + sqft * 3.5) * lab + (3500 + sqft * 1.0) * lab + permits + frostC;
+  const vinyl = Math.round((vSub * (1 + cont)) / 1000) * 1000;
+
+  return { ...s, gunite, fiber, vinyl };
+}).sort((a, b) => a.gunite - b.gunite);
 
 export default function HubPage() {
   useEffect(() => {
