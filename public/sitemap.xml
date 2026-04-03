@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Homepage -->
   <url><loc>https://priceapool.com/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
+
+  <!-- Blog / Guide Pages -->
+  <url><loc>https://priceapool.com/blog/fiberglass-vs-gunite-vs-vinyl</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://priceapool.com/blog/inground-pool-cost-guide</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://priceapool.com/blog/how-long-to-build-a-pool</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://priceapool.com/blog/pool-financing-guide</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://priceapool.com/blog/pool-cost-by-size</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://priceapool.com/blog/pool-permits-and-regulations</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://priceapool.com/blog/gunite-pool-guide</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://priceapool.com/blog/fiberglass-pool-guide</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://priceapool.com/blog/vinyl-liner-pool-guide</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://priceapool.com/blog/does-a-pool-add-home-value</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- State Pages -->
   <url><loc>https://priceapool.com/alabama</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://priceapool.com/alaska</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://priceapool.com/arizona</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
