@@ -174,7 +174,7 @@ function ShapeIcon({ shape, active }) {
     <svg viewBox="0 0 32 20" style={{ width: 36, height: 22, display: "block", flexShrink: 0 }}>
       {shape === "rectangle" && <rect x="1.5" y="1.5" width="29" height="17" rx="2.5" fill={fill} stroke={col} strokeWidth="1.8" />}
       {shape === "lshape" && <path d="M1.5,1.5 L19,1.5 L19,10.5 L30.5,10.5 L30.5,18.5 L1.5,18.5 Z" fill={fill} stroke={col} strokeWidth="1.8" strokeLinejoin="round" />}
-      {shape === "kidney" && <path d="M2,10 C2,3.5 8,1 16,1.5 C24,2 30,4.5 30,10 C30,16 24,19 16,18.5 C11,18 9,14.5 10,11.5 C11,9 10,5.5 5,5.5 C3,5.5 2,7 2,10 Z" fill={fill} stroke={col} strokeWidth="1.8" />}
+      {shape === "kidney" && <path d="M2,10 C2,3 10,0.5 16,1 C22,0.5 30,3 30,10 C30,17 25,20 20,19.5 C18,19.3 17,17 17,15 C17,13 15,13 15,15 C15,17 14,19.3 12,19.5 C7,20 2,17 2,10 Z" fill={fill} stroke={col} strokeWidth="1.8" />}
       {shape === "roman" && <path d="M10,1.5 L22,1.5 A9,9 0 0 1 22,18.5 L10,18.5 A9,9 0 0 1 10,1.5 Z" fill={fill} stroke={col} strokeWidth="1.8" />}
     </svg>
   );
@@ -232,7 +232,7 @@ function PoolDiagram({ length, width, shallowDepth, deepDepth, hasSpa, spaSize, 
       case 'lshape':
         return `M ${rx},${ry} L ${rx+rW*0.58},${ry} L ${rx+rW*0.58},${ry+rH*0.48} L ${rx+rW},${ry+rH*0.48} L ${rx+rW},${ry+rH} L ${rx},${ry+rH} Z`;
       case 'kidney':
-        return `M ${rx},${ry+rH/2} C ${rx},${ry+rH*0.05} ${rx+rW*0.3},${ry} ${rx+rW/2},${ry+rH*0.03} C ${rx+rW*0.72},${ry} ${rx+rW},${ry+rH*0.08} ${rx+rW},${ry+rH/2} C ${rx+rW},${ry+rH*0.92} ${rx+rW*0.68},${ry+rH} ${rx+rW/2},${ry+rH} C ${rx+rW*0.34},${ry+rH} ${rx+rW*0.27},${ry+rH*0.73} ${rx+rW*0.28},${ry+rH*0.57} C ${rx+rW*0.29},${ry+rH*0.42} ${rx+rW*0.18},${ry+rH*0.38} ${rx+rW*0.07},${ry+rH*0.38} C ${rx},${ry+rH*0.38} ${rx},${ry+rH/2} ${rx},${ry+rH/2} Z`;
+        return `M ${rx},${ry+rH*0.5} C ${rx},${ry+rH*0.08} ${rx+rW*0.35},${ry} ${rx+rW*0.5},${ry} C ${rx+rW*0.65},${ry} ${rx+rW},${ry+rH*0.08} ${rx+rW},${ry+rH*0.5} C ${rx+rW},${ry+rH*0.9} ${rx+rW*0.75},${ry+rH} ${rx+rW*0.62},${ry+rH} C ${rx+rW*0.54},${ry+rH} ${rx+rW*0.52},${ry+rH*0.72} ${rx+rW*0.52},${ry+rH*0.63} C ${rx+rW*0.52},${ry+rH*0.54} ${rx+rW*0.48},${ry+rH*0.54} ${rx+rW*0.48},${ry+rH*0.63} C ${rx+rW*0.48},${ry+rH*0.72} ${rx+rW*0.46},${ry+rH} ${rx+rW*0.38},${ry+rH} C ${rx+rW*0.25},${ry+rH} ${rx},${ry+rH*0.9} ${rx},${ry+rH*0.5} Z`;
       case 'roman': {
         const r = Math.min(rH / 2, rW / 4);
         return `M ${rx+r},${ry} L ${rx+rW-r},${ry} A ${r},${r} 0 0 1 ${rx+rW-r},${ry+rH} L ${rx+r},${ry+rH} A ${r},${r} 0 0 1 ${rx+r},${ry} Z`;
@@ -654,20 +654,20 @@ export default function App({ initialState = "", hideNav = false }) {
     <Card>
       <Ttl>Soil Conditions</Ttl>
       <Dsc>The #1 hidden cost driver — changes excavation, structural engineering, and drainage scope.</Dsc>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(220px,1fr))", gap: 8 }}>
-        {Object.entries(SOIL_TYPES).filter(([, s]) => !s.isUnknown).map(([k, s]) => <Opt key={k} sel={soil === k} onClick={() => setSoil(k)}>
-          <div style={{ fontSize: 13, fontWeight: 700, color: T.text }}>{s.label}</div>
-          <div style={{ fontSize: 10, color: T.textMid, marginTop: 2, lineHeight: 1.4 }}>{s.desc}</div>
-          {soil === k && s.eng > 0 && <div style={{ marginTop: 4, fontSize: 10, color: T.danger, fontWeight: 700 }}>+{fmt(s.eng + s.struct + s.drain)} engineering surcharge</div>}
-        </Opt>)}
-      </div>
-      <div onClick={() => setSoil("unknown")} style={{ marginTop: 10, padding: "13px 16px", borderRadius: 10, border: soil === "unknown" ? `2px solid ${T.warn}` : `2px dashed ${T.warnBorder}`, background: soil === "unknown" ? T.warnBg : "#fffdf7", cursor: "pointer", display: "flex", alignItems: "center", gap: 12, transition: "all .15s" }}>
+      <div onClick={() => setSoil("unknown")} style={{ marginBottom: 10, padding: "13px 16px", borderRadius: 10, border: soil === "unknown" ? `2px solid ${T.warn}` : `2px dashed ${T.warnBorder}`, background: soil === "unknown" ? T.warnBg : "#fffdf7", cursor: "pointer", display: "flex", alignItems: "center", gap: 12, transition: "all .15s" }}>
         <div style={{ width: 34, height: 34, borderRadius: 8, background: T.warnBg, border: `1px solid ${T.warnBorder}`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 17, flexShrink: 0 }}>🤷</div>
         <div style={{ flex: 1 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: soil === "unknown" ? T.warn : T.text }}>I'm Not Sure About My Soil</div>
           <div style={{ fontSize: 10, color: T.textMid, marginTop: 1, lineHeight: 1.4 }}>We'll apply a blended average ({fmt(7000)} engineering buffer). A geotech report can refine this.</div>
         </div>
         {soil === "unknown" && <div style={{ width: 18, height: 18, borderRadius: 4, background: T.warn, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 800, color: "#fff", flexShrink: 0 }}>✓</div>}
+      </div>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(220px,1fr))", gap: 8 }}>
+        {Object.entries(SOIL_TYPES).filter(([, s]) => !s.isUnknown).map(([k, s]) => <Opt key={k} sel={soil === k} onClick={() => setSoil(k)}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: T.text }}>{s.label}</div>
+          <div style={{ fontSize: 10, color: T.textMid, marginTop: 2, lineHeight: 1.4 }}>{s.desc}</div>
+          {soil === k && s.eng > 0 && <div style={{ marginTop: 4, fontSize: 10, color: T.danger, fontWeight: 700 }}>+{fmt(s.eng + s.struct + s.drain)} engineering surcharge</div>}
+        </Opt>)}
       </div>
       {soil && SOIL_TYPES[soil].eng > 0 && <div style={{ background: soil === "unknown" ? T.warnBg : T.dangerBg, border: `1px solid ${soil === "unknown" ? T.warnBorder : T.dangerBorder}`, borderRadius: 10, padding: "11px 14px", marginTop: 10, fontSize: 11, lineHeight: 1.5, color: soil === "unknown" ? T.warn : T.danger }}>
         <strong>{soil === "unknown" ? "💡 Recommendation:" : "⚠️ Note:"}</strong> {SOIL_TYPES[soil].notes}
@@ -690,12 +690,12 @@ export default function App({ initialState = "", hideNav = false }) {
 
       {/* #4: Pool shape selector */}
       <div style={{ fontSize: 12, fontWeight: 600, color: T.textMid, marginBottom: 8 }}>Pool Shape</div>
-      <div style={{ display: "flex", gap: 6, marginBottom: 18, flexWrap: "wrap" }}>
-        {Object.entries(POOL_SHAPES).map(([k, sh]) => <div key={k} onClick={() => setShape(k)} style={{ padding: "8px 14px", borderRadius: 8, border: shape === k ? `2px solid ${T.accent}` : `2px solid ${T.borderLight}`, background: shape === k ? T.accentLight : T.cardAlt, cursor: "pointer", display: "flex", alignItems: "center", gap: 8, transition: "all .15s" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 6, marginBottom: 18 }}>
+        {Object.entries(POOL_SHAPES).map(([k, sh]) => <div key={k} onClick={() => setShape(k)} style={{ padding: "8px 10px", borderRadius: 8, border: shape === k ? `2px solid ${T.accent}` : `2px solid ${T.borderLight}`, background: shape === k ? T.accentLight : T.cardAlt, cursor: "pointer", display: "flex", flexDirection: "column", alignItems: "center", gap: 6, transition: "all .15s" }}>
           <ShapeIcon shape={k} active={shape === k} />
-          <div>
-            <div style={{ fontSize: 12, fontWeight: 700, color: shape === k ? T.accent : T.text }}>{sh.label}</div>
-            {sh.factor < 1.0 && <div style={{ fontSize: 9, color: T.textDim }}>~{Math.round(sh.factor * 100)}% vol vs rectangle</div>}
+          <div style={{ textAlign: "center" }}>
+            <div style={{ fontSize: 11, fontWeight: 700, color: shape === k ? T.accent : T.text }}>{sh.label}</div>
+            {sh.factor < 1.0 && <div style={{ fontSize: 9, color: T.textDim }}>~{Math.round(sh.factor * 100)}% vol</div>}
           </div>
         </div>)}
       </div>
