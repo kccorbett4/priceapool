@@ -750,7 +750,7 @@ export default function App({ initialState = "", hideNav = false }) {
           <span style={{ fontSize: 15 }}>{f.icon}</span>
           <div style={{ flex: 1 }}>
             <div style={{ fontSize: 11, fontWeight: 600, color: T.text }}>{f.label}{f.id === "autocover" && hasSpa ? " + Spa Cover" : ""}</div>
-            <div style={{ fontSize: 10, color: features[f.id] ? T.accent : T.textDim, fontWeight: 600 }}>{f.id === "autocover" && hasSpa ? fmt(f.cost + 7500) : fmt(f.cost)}{f.laborIntensive ? " · labor adjusted" : ""}</div>
+            <div style={{ fontSize: 10, color: features[f.id] ? T.accent : T.textDim, fontWeight: 600 }}>{f.id === "autocover" && hasSpa ? fmt(f.cost + 7500) : fmt(f.cost)}</div>
           </div>
         </Chip>)}
       </div>
@@ -894,8 +894,25 @@ export default function App({ initialState = "", hideNav = false }) {
             body: JSON.stringify({
               email: leadEmail,
               state: STATES[st]?.name || st,
+              zip: zip || "—",
+              metro: metro.label || "—",
               poolType: td?.label || poolType,
-              estimatedCost: fmt(total),
+              shape: POOL_SHAPES[shape]?.label || shape,
+              length: cL,
+              width: cW,
+              sqft,
+              shallowDepth,
+              deepDepth: cDeep,
+              soil: SOIL_TYPES[soil]?.label || soil,
+              spa: SPA_SIZES[spaSize]?.label || "None",
+              finish: poolType === "gunite" ? (FINISH_OPTIONS[finishType]?.label || finishType) : "—",
+              deck: DECK_OPTIONS[deckType]?.label || "None",
+              deckSqft: deckType !== "none" ? deckSqft : 0,
+              features: Object.entries(features).filter(([,v]) => v).map(([k]) => FEATURES.find(f => f.id === k)?.label || k).join(", ") || "None",
+              estimateLow: fmt(total * 0.87),
+              estimate: fmt(total),
+              estimateHigh: fmt(total * 1.18),
+              perSqft: fmt(total / sqft),
             }),
           }).catch(() => {});
         }} style={{ padding: "11px 22px", borderRadius: 9, border: "none", fontWeight: 700, fontSize: 13, background: `linear-gradient(135deg,${T.accent},${T.accentDark})`, color: "#fff", cursor: "pointer", boxShadow: "0 2px 8px rgba(2,132,199,0.2)", whiteSpace: "nowrap" }}>Get Free Quotes →</button>
