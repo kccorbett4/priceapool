@@ -721,14 +721,14 @@ export default function App({ initialState = "", hideNav = false }) {
         {w.icon} <strong>Heads up:</strong> {w.text}
       </div>)}
     </Card>
-    <Card><Ttl>Interior Finish</Ttl><Dsc>Covers pool floor and walls ({Math.round(totalFinishSqft)} total sqft — slope-adjusted). PebbleTec is the most popular premium upgrade.</Dsc>
+    {poolType === "gunite" && <Card><Ttl>Interior Finish</Ttl><Dsc>Covers pool floor and walls ({Math.round(totalFinishSqft)} total sqft — slope-adjusted). PebbleTec is the most popular premium upgrade.</Dsc>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(165px,1fr))", gap: 8 }}>
         {Object.entries(FINISH_OPTIONS).map(([k, f]) => <Opt key={k} sel={finishType === k} onClick={() => setFinishType(k)}>
           <div style={{ fontSize: 12, fontWeight: 700, color: T.text }}>{f.label}</div>
           <div style={{ fontSize: 10, color: T.accent, fontWeight: 700, marginTop: 2 }}>{fmt(f.rate)}/sqft · {fmt(Math.round(totalFinishSqft * f.rate * lab))} total</div>
         </Opt>)}
       </div>
-    </Card>
+    </Card>}
     <Card><Ttl>Pool Decking</Ttl><Dsc>Concrete is budget-friendly and durable. Premium pavers at 2–3× the cost.</Dsc>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(150px,1fr))", gap: 8, marginBottom: 12 }}>
         {Object.entries(DECK_OPTIONS).map(([k, d]) => <Opt key={k} sel={deckType === k} onClick={() => setDeckType(k)}>
