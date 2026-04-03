@@ -903,6 +903,92 @@ const ARTICLES = {
 
 };
 
+/* ─── Per-article metadata: dates, read time, FAQs ─── */
+const ARTICLE_META = {
+  "fiberglass-vs-gunite-vs-vinyl": {
+    date: "January 15, 2026", iso: "2026-01-15", readTime: "12 min read",
+    faqs: [
+      { q: "Which pool type is cheapest to maintain?", a: "Fiberglass pools are the cheapest to maintain long-term, using 50–70% fewer chemicals than gunite ($400–$800/year vs $700–$1,400/year) and requiring no resurfacing for 25+ years. Vinyl liner pools fall in the middle — lower chemicals than gunite but liner replacement every 7–10 years adds $3,500–$7,500 each time." },
+      { q: "Which inground pool lasts the longest?", a: "Gunite (concrete) pools have the longest structural lifespan at 50+ years — the shell essentially lasts forever, though the interior finish needs resurfacing every 10–15 years. Fiberglass shells also last 25–30+ years with no resurfacing. Vinyl liner pools have a long-lasting frame (25+ years) but the liner needs replacement every 7–10 years." },
+      { q: "Is fiberglass or gunite better for cold climates?", a: "Fiberglass is generally better for cold climates because the flexible shell handles freeze-thaw ground movement better than rigid concrete. Concrete pools can develop cracks when soil expands and contracts with freezing. That said, both types are widely built in cold states — proper installation and winterization matter more than pool type." },
+      { q: "What is the most popular pool type in America?", a: "Gunite (concrete) pools are the most common overall, historically accounting for about 50% of inground pools. However, fiberglass is the fastest-growing type, gaining market share rapidly due to lower maintenance and faster installation. In some Sun Belt markets, fiberglass now outsells gunite." },
+    ]
+  },
+  "inground-pool-cost-guide": {
+    date: "January 10, 2026", iso: "2026-01-10", readTime: "14 min read",
+    faqs: [
+      { q: "What is the average cost of an inground pool in 2026?", a: "The average inground pool in 2026 costs $35,000–$100,000 before decking, features, and landscaping. A gunite pool averages $48,000–$120,000+, fiberglass $35,000–$85,000, and vinyl liner $25,000–$65,000. The total project cost including decking, spa, and landscaping typically runs $65,000–$150,000." },
+      { q: "What is not included in a standard pool quote?", a: "Most pool quotes exclude: decking ($5,000–$22,000), landscaping and retaining walls, pool fence or barrier (required by code, $2,000–$5,000), gas line for heater, electrical panel upgrades, permit fees (often itemized separately), and any soil remediation if site conditions are problematic." },
+      { q: "How can I get the best price on a pool?", a: "Get 3–5 competitive bids, build in fall or winter (October–February) when contractors offer 5–15% off-season discounts, choose fiberglass or vinyl over gunite, skip the attached spa (a portable spa costs $5,000–$12,000 vs $15,000–$44,000 for an attached spa), and avoid change orders once construction starts." },
+      { q: "Does pool cost vary by state?", a: "Yes, significantly. Labor costs vary from 76% of the national average (Mississippi) to 155% (Hawaii). A pool that costs $75,000 in Alabama might cost $120,000 in California or $140,000 in Hawaii. State permit costs also vary from $900 to $3,200. Use the PriceAPool calculator for a state-adjusted estimate." },
+    ]
+  },
+  "how-long-to-build-a-pool": {
+    date: "January 12, 2026", iso: "2026-01-12", readTime: "8 min read",
+    faqs: [
+      { q: "How long does it take to build an inground pool?", a: "From contract to swimming: gunite pools take 12–22 weeks, fiberglass 6–14 weeks, vinyl liner 8–16 weeks. The biggest variable is permit processing — some counties take 2–3 weeks, others 8–12 weeks. Spring/summer builds take longer than fall/winter builds due to contractor demand." },
+      { q: "What time of year is fastest to start a pool project?", a: "Fall (September–November) is the best time to start. Contractors have more availability, permit offices process faster, and you'll often get 5–15% off. A pool started in October can realistically be swim-ready by March or April." },
+      { q: "What causes pool construction delays?", a: "The most common causes: permit processing backlogs (especially FL, TX, CA, AZ), contractor scheduling, rain stopping excavation or concrete work, failed inspections requiring rework, change orders after work starts, unexpected soil or groundwater, and equipment supply delays." },
+    ]
+  },
+  "pool-financing-guide": {
+    date: "January 18, 2026", iso: "2026-01-18", readTime: "10 min read",
+    faqs: [
+      { q: "What is the best way to finance a pool?", a: "For homeowners with 20%+ home equity, a HELOC or home equity loan is typically best — rates are 7–9% vs 10–24% for unsecured loans, and interest may be tax-deductible. For homeowners without equity, pool-specific lenders like Lyon Financial or HFS Financial offer loans with 5–20 year terms." },
+      { q: "What credit score is needed for a pool loan?", a: "For a HELOC or home equity loan, most lenders require 680+, with the best rates at 740+. Pool-specific unsecured lenders typically require 640+. Every 20–40 credit score points can lower your rate by 0.5–1.5%, saving thousands over the life of the loan." },
+      { q: "Is pool loan interest tax deductible?", a: "Interest on a HELOC or home equity loan used to build a pool may be tax-deductible as home mortgage interest, since a pool is generally a 'substantial improvement.' Unsecured personal pool loans are not deductible. Consult a tax professional — rules changed with the 2017 Tax Cuts and Jobs Act." },
+    ]
+  },
+  "pool-cost-by-size": {
+    date: "January 20, 2026", iso: "2026-01-20", readTime: "9 min read",
+    faqs: [
+      { q: "What is the most common pool size?", a: "The 16×32 foot pool (512 sq ft) is by far the most popular size in the US. It fits most suburban backyards comfortably, accommodates a family of 4–6, and hits the sweet spot between cost and usability. Most fiberglass pool manufacturers' best-selling models are in this 500–550 sq ft range." },
+      { q: "How much does a small inground pool cost?", a: "A small inground pool (12×24, about 288 sq ft) costs $25,000–$55,000 depending on type: vinyl liner pools start around $25,000, fiberglass around $32,000, and gunite around $35,000. Small pools cost 30–40% less to install and about 50% less to heat and maintain than large pools." },
+      { q: "Is a bigger pool worth the extra cost?", a: "Usually yes, if you have the yard space. The incremental cost per square foot decreases as pools get larger. Most homeowners who build small pools wish they had gone larger. If you're debating between two sizes, go one size up — you'll almost never regret having more pool." },
+    ]
+  },
+  "pool-permits-and-regulations": {
+    date: "January 22, 2026", iso: "2026-01-22", readTime: "10 min read",
+    faqs: [
+      { q: "Can you build a pool without a permit?", a: "No — building a pool without a permit is illegal in virtually every US jurisdiction. Consequences include fines of $500–$10,000+ per day, forced removal of the pool, inability to sell your home, and insurance that won't cover incidents at the unpermitted pool. Always have your licensed contractor pull permits." },
+      { q: "What fence is required around a swimming pool?", a: "Most US states require a minimum 48-inch fence with a self-closing, self-latching gate that opens away from the pool. Gaps must be smaller than 4 inches. Some jurisdictions allow the house wall to serve as one barrier if door alarms are installed. Requirements vary — confirm with your local building department." },
+      { q: "How much do pool permits cost?", a: "Pool permits typically cost $800–$3,500 depending on state and county. Southern states like Alabama and Texas tend to be lower ($800–$1,500). Northeastern and Pacific states like New York and California are higher ($2,000–$3,500+). Permit fees are usually separate from the contractor's quote." },
+    ]
+  },
+  "gunite-pool-guide": {
+    date: "January 25, 2026", iso: "2026-01-25", readTime: "11 min read",
+    faqs: [
+      { q: "How long does a gunite pool last?", a: "A gunite pool's structural shell lasts 50+ years — essentially indefinitely with proper care. The interior plaster or finish needs resurfacing every 10–15 years at $10,000–$20,000. PebbleTec and quartz finishes last 15–25 years between resurfacings. A properly maintained gunite pool can outlast the home itself." },
+      { q: "How often does a gunite pool need to be resurfaced?", a: "Standard white plaster needs resurfacing every 8–12 years. Quartz aggregate lasts 12–18 years. PebbleTec/pebble finishes last 20–30 years. Resurfacing costs $10,000–$20,000 for a standard 500 sq ft pool. Signs it's time: rough texture, stubborn staining, or visible surface deterioration." },
+      { q: "Why is gunite more expensive than fiberglass or vinyl?", a: "Gunite is entirely custom-built on-site by multiple skilled trades over 8–14 weeks. The rebar framework, gunite spray, plumbing, electrical, tile, coping, and plaster finish are all separate phases. Fiberglass pools arrive pre-built and install in days. You're paying for unlimited customization and a 50+ year structure." },
+    ]
+  },
+  "fiberglass-pool-guide": {
+    date: "January 28, 2026", iso: "2026-01-28", readTime: "11 min read",
+    faqs: [
+      { q: "How long do fiberglass pools last?", a: "A fiberglass pool shell typically lasts 25–30+ years. The gel coat surface lasts 15–25 years before significant fading or chalking. Unlike concrete, fiberglass does not require resurfacing — the gel coat can be refinished for $5,000–$15,000, far less than a gunite resurfacing. With quality installation, a fiberglass pool is a 30-year asset." },
+      { q: "What is the maximum size of a fiberglass pool?", a: "Most fiberglass pools max out at 16 feet wide (some manufacturers offer 18 ft models) and 40–45 feet long. Depth is fixed by the mold, typically 5.5–6.5 feet. If you need a pool wider than 16 feet, longer than 45 feet, or deeper than 7 feet, you'll need gunite or vinyl — fiberglass cannot accommodate these dimensions." },
+      { q: "Do fiberglass pools crack?", a: "Fiberglass pools can develop spider cracks (gel coat crazing) over time, but structural cracks are rare. The flexible shell handles soil movement better than rigid concrete. Most spider cracks are cosmetic and repairable. The biggest risk is improper backfill during installation — always verify your installer follows the manufacturer's installation guidelines." },
+    ]
+  },
+  "vinyl-liner-pool-guide": {
+    date: "February 1, 2026", iso: "2026-02-01", readTime: "10 min read",
+    faqs: [
+      { q: "How often does a vinyl pool liner need to be replaced?", a: "Vinyl pool liners typically last 7–10 years. With excellent water chemistry and UV protection (a cover), some liners last 12–15 years. Signs it's time to replace: fading, brittleness, visible tears, wrinkles that won't smooth out, or unexplained water loss. Replacement costs $3,500–$7,500 installed." },
+      { q: "Can you patch a vinyl pool liner?", a: "Yes — small tears and punctures can be patched underwater using a vinyl patch kit ($15–$40 at pool supply stores). Patches are effective for holes up to 2–3 inches. Larger tears, shrinkage, or widespread deterioration require full liner replacement. A patched liner is structurally sound but the patch will be visible." },
+      { q: "Are vinyl pools cheaper to maintain than gunite?", a: "Vinyl pools use somewhat fewer chemicals than gunite (smooth surface reduces algae), but more than fiberglass. Annual chemical costs: vinyl $500–$900, gunite $700–$1,400, fiberglass $400–$800. The main ongoing cost unique to vinyl is liner replacement every 7–10 years ($3,500–$7,500), which must be factored into long-term budgeting." },
+    ]
+  },
+  "does-a-pool-add-home-value": {
+    date: "February 5, 2026", iso: "2026-02-05", readTime: "9 min read",
+    faqs: [
+      { q: "How much does a pool increase home value?", a: "A pool typically increases home value by 50–70% of its installation cost in warm-climate states. A $75,000 pool might add $40,000–$52,000 to a home's appraised value in Florida, Arizona, or Texas. In cold-climate states, the return is lower — sometimes 20–40% of cost, and occasionally near zero in rural or lower-priced markets." },
+      { q: "Does a pool hurt home resale in cold states?", a: "A pool can be neutral to slightly negative in cold-climate states like Minnesota, Wisconsin, or upstate New York, where the swimming season is only 3–4 months. Buyers may factor in winterization costs and liability rather than viewing the pool as a luxury. In high-end suburban markets, well-maintained pools are generally still a positive even in cold states." },
+      { q: "Is a pool worth the investment?", a: "Financially, pools rarely break even — the typical 15-year cost of ownership significantly exceeds the home value added. However, the non-financial return — enjoyment, family time, exercise, and lifestyle — can make a pool very worthwhile for families who use it regularly. The question is whether the lifestyle value is worth approximately $5,000–$10,000/year in net cost." },
+    ]
+  },
+};
+
 const BLOG_SLUGS = Object.keys(ARTICLES);
 
 export default function BlogPage() {
@@ -910,6 +996,7 @@ export default function BlogPage() {
   const article = ARTICLES[slug];
 
   if (!article) return <Navigate to="/" replace />;
+  const meta = ARTICLE_META[slug] || {};
 
   useEffect(() => {
     document.title = `${article.title} | PriceAPool`;
@@ -924,31 +1011,38 @@ export default function BlogPage() {
     let canonical = document.querySelector('link[rel="canonical"]');
     if (canonical) canonical.setAttribute('href', `https://priceapool.com/blog/${slug}`);
 
-    const schema = {
+    const articleSchema = {
       "@context": "https://schema.org",
       "@type": "Article",
       "headline": article.title,
       "description": article.description,
       "url": `https://priceapool.com/blog/${slug}`,
+      "datePublished": meta.iso || "2026-01-01",
+      "dateModified": meta.iso || "2026-01-01",
+      "author": { "@type": "Organization", "name": "PriceAPool Editorial Team", "url": "https://priceapool.com" },
       "publisher": { "@type": "Organization", "name": "PriceAPool.com", "url": "https://priceapool.com" },
-      "dateModified": "2026-01-01",
     };
     let schemaTag = document.getElementById('article-schema');
-    if (!schemaTag) {
-      schemaTag = document.createElement('script');
-      schemaTag.id = 'article-schema';
-      schemaTag.type = 'application/ld+json';
-      document.head.appendChild(schemaTag);
+    if (!schemaTag) { schemaTag = document.createElement('script'); schemaTag.id = 'article-schema'; schemaTag.type = 'application/ld+json'; document.head.appendChild(schemaTag); }
+    schemaTag.textContent = JSON.stringify(articleSchema);
+
+    if (meta.faqs?.length) {
+      const faqSchema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": meta.faqs.map(f => ({ "@type": "Question", "name": f.q, "acceptedAnswer": { "@type": "Answer", "text": f.a } }))
+      };
+      let faqTag = document.getElementById('article-faq-schema');
+      if (!faqTag) { faqTag = document.createElement('script'); faqTag.id = 'article-faq-schema'; faqTag.type = 'application/ld+json'; document.head.appendChild(faqTag); }
+      faqTag.textContent = JSON.stringify(faqSchema);
     }
-    schemaTag.textContent = JSON.stringify(schema);
 
     return () => {
       document.title = 'Pool Cost Calculator 2026 — How Much Does a Pool Cost in Your State?';
       if (canonical) canonical.setAttribute('href', 'https://priceapool.com/');
-      const tag = document.getElementById('article-schema');
-      if (tag) tag.remove();
+      ['article-schema', 'article-faq-schema'].forEach(id => { const t = document.getElementById(id); if (t) t.remove(); });
     };
-  }, [slug, article]);
+  }, [slug, article, meta]);
 
   const wrap = { fontFamily: "'Instrument Sans','DM Sans',system-ui,sans-serif", color: T.text, background: T.bg, minHeight: "100vh" };
   const inner = { maxWidth: 720, margin: "0 auto", padding: "0 16px 60px" };
@@ -968,7 +1062,12 @@ export default function BlogPage() {
         {/* ARTICLE HEADER */}
         <div style={{ padding: "36px 0 24px" }}>
           <div style={{ fontSize: 11, fontWeight: 700, color: T.accent, textTransform: "uppercase", letterSpacing: 2, marginBottom: 10 }}>Pool Guide · 2026</div>
-          <h1 style={{ fontSize: "clamp(22px,4.5vw,34px)", fontWeight: 800, color: T.text, lineHeight: 1.2, letterSpacing: "-.5px", marginBottom: 16 }}>{article.title}</h1>
+          <h1 style={{ fontSize: "clamp(22px,4.5vw,34px)", fontWeight: 800, color: T.text, lineHeight: 1.2, letterSpacing: "-.5px", marginBottom: 14 }}>{article.title}</h1>
+          <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 14, flexWrap: "wrap" }}>
+            <span style={{ fontSize: 12, color: T.textDim }}>By <strong style={{ color: T.textMid }}>PriceAPool Editorial Team</strong></span>
+            {meta.date && <span style={{ fontSize: 12, color: T.textDim }}>Updated {meta.date}</span>}
+            {meta.readTime && <span style={{ fontSize: 12, color: T.textDim }}>{meta.readTime}</span>}
+          </div>
           <p style={{ fontSize: 15, color: T.textMid, lineHeight: 1.7 }}>{article.description}</p>
         </div>
 
@@ -982,6 +1081,19 @@ export default function BlogPage() {
         <div style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: 14, padding: "28px 28px", boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}>
           {article.content()}
         </div>
+
+        {/* FAQ SECTION */}
+        {meta.faqs?.length > 0 && (
+          <div style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: 14, padding: "22px 28px", marginTop: 16, boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}>
+            <div style={{ fontSize: 17, fontWeight: 800, color: T.text, marginBottom: 18 }}>Frequently Asked Questions</div>
+            {meta.faqs.map((faq, i) => (
+              <div key={i} style={{ borderTop: i === 0 ? "none" : `1px solid ${T.border}`, paddingTop: i === 0 ? 0 : 16, marginTop: i === 0 ? 0 : 16 }}>
+                <div style={{ fontSize: 14, fontWeight: 700, color: T.text, marginBottom: 6 }}>{faq.q}</div>
+                <div style={{ fontSize: 13, color: T.textMid, lineHeight: 1.75 }}>{faq.a}</div>
+              </div>
+            ))}
+          </div>
+        )}
 
         <RelatedPosts current={slug} />
 
