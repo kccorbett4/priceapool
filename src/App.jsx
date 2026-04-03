@@ -831,7 +831,21 @@ export default function App({ initialState = "" }) {
       <div style={{ fontSize: 11, color: T.textMid, lineHeight: 1.6, marginBottom: 12 }}>We'll match you with top-rated contractors in your area who build {td.label.toLowerCase()} pools. No obligation, no spam.</div>
       {!leadSubmitted ? <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
         <input value={leadEmail} onChange={e => setLeadEmail(e.target.value)} placeholder="your@email.com" type="email" style={{ flex: "1 1 200px", padding: "11px 14px", borderRadius: 9, border: `1px solid ${T.border}`, background: T.card, color: T.text, fontSize: 14, outline: "none", boxSizing: "border-box" }} />
-        <button onClick={() => { if (leadEmail.includes("@")) setLeadSubmitted(true); }} style={{ padding: "11px 22px", borderRadius: 9, border: "none", fontWeight: 700, fontSize: 13, background: `linear-gradient(135deg,${T.accent},${T.accentDark})`, color: "#fff", cursor: "pointer", boxShadow: "0 2px 8px rgba(2,132,199,0.2)", whiteSpace: "nowrap" }}>Get Free Quotes →</button>
+        <button onClick={() => {
+          if (!leadEmail.includes("@")) return;
+          setLeadSubmitted(true);
+          fetch("https://script.google.com/a/macros/podium.com/s/AKfycbyDxK9zPjjWz2yjcejTIUk4UmM1xQS2FstApuBPATKpSFJcVWejTVGVYleg8VDGX4lYZw/exec", {
+            method: "POST",
+            mode: "no-cors",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              email: leadEmail,
+              state: STATES[st]?.name || st,
+              poolType: td?.label || poolType,
+              estimatedCost: fmt(total),
+            }),
+          }).catch(() => {});
+        }} style={{ padding: "11px 22px", borderRadius: 9, border: "none", fontWeight: 700, fontSize: 13, background: `linear-gradient(135deg,${T.accent},${T.accentDark})`, color: "#fff", cursor: "pointer", boxShadow: "0 2px 8px rgba(2,132,199,0.2)", whiteSpace: "nowrap" }}>Get Free Quotes →</button>
       </div> : <div style={{ padding: "12px 16px", background: T.successBg, border: `1px solid ${T.successBorder}`, borderRadius: 9, fontSize: 13, fontWeight: 700, color: T.success }}>✓ We'll be in touch within 24 hours with quotes from {STATES[st]?.name} builders.</div>}
     </Card>
 
