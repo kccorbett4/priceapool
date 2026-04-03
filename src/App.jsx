@@ -107,10 +107,10 @@ const DECK_OPTIONS = {
 
 /* #4: Pool shapes with volume factor */
 const POOL_SHAPES = {
-  rectangle: { label: "Rectangle", factor: 1.0, icon: "▬" },
-  lshape: { label: "L-Shape", factor: 0.88, icon: "⌐" },
-  kidney: { label: "Kidney / Freeform", factor: 0.85, icon: "◗" },
-  roman: { label: "Roman / Grecian", factor: 0.93, icon: "⬭" },
+  rectangle: { label: "Rectangle", factor: 1.0 },
+  lshape: { label: "L-Shape", factor: 0.88 },
+  kidney: { label: "Kidney / Freeform", factor: 0.85 },
+  roman: { label: "Roman / Grecian", factor: 0.93 },
 };
 
 const fmt = n => "$" + Math.round(n).toLocaleString();
@@ -167,6 +167,19 @@ function Slider({ label, val, setter, min, max, stp = 1, warn, suffix = "ft" }) 
 }
 
 /* ── Pool Diagram ── */
+function ShapeIcon({ shape, active }) {
+  const col = active ? T.accent : T.textMid;
+  const fill = active ? T.accentLight : "transparent";
+  return (
+    <svg viewBox="0 0 32 20" style={{ width: 36, height: 22, display: "block", flexShrink: 0 }}>
+      {shape === "rectangle" && <rect x="1.5" y="1.5" width="29" height="17" rx="2.5" fill={fill} stroke={col} strokeWidth="1.8" />}
+      {shape === "lshape" && <path d="M1.5,1.5 L19,1.5 L19,10.5 L30.5,10.5 L30.5,18.5 L1.5,18.5 Z" fill={fill} stroke={col} strokeWidth="1.8" strokeLinejoin="round" />}
+      {shape === "kidney" && <path d="M2,10 C2,3.5 8,1 16,1.5 C24,2 30,4.5 30,10 C30,16 24,19 16,18.5 C11,18 9,14.5 10,11.5 C11,9 10,5.5 5,5.5 C3,5.5 2,7 2,10 Z" fill={fill} stroke={col} strokeWidth="1.8" />}
+      {shape === "roman" && <path d="M10,1.5 L22,1.5 A9,9 0 0 1 22,18.5 L10,18.5 A9,9 0 0 1 10,1.5 Z" fill={fill} stroke={col} strokeWidth="1.8" />}
+    </svg>
+  );
+}
+
 function PoolDiagram({ length, width, shallowDepth, deepDepth, hasSpa, spaSize, poolType, shape }) {
   const td = POOL_TYPES[poolType];
   const warn = length > td.maxL || width > td.maxW || deepDepth > td.maxDepth;
@@ -214,9 +227,20 @@ function PoolDiagram({ length, width, shallowDepth, deepDepth, hasSpa, spaSize, 
   const totalW = planBoxW + profBoxW + 10;
 
   /* Pool plan shape path */
-  const poolPlanPath = shape === "kidney"
-    ? `M ${rx + pR} ${ry} L ${rx + rW - pR} ${ry} Q ${rx + rW} ${ry} ${rx + rW} ${ry + pR} Q ${rx + rW - rW * 0.08} ${ry + rH * 0.5} ${rx + rW} ${ry + rH - pR} Q ${rx + rW} ${ry + rH} ${rx + rW - pR} ${ry + rH} L ${rx + pR} ${ry + rH} Q ${rx} ${ry + rH} ${rx} ${ry + rH - pR} Q ${rx + rW * 0.08} ${ry + rH * 0.5} ${rx} ${ry + pR} Q ${rx} ${ry} ${rx + pR} ${ry} Z`
-    : null;
+  const poolPlanPath = (() => {
+    switch (shape) {
+      case 'lshape':
+        return `M ${rx},${ry} L ${rx+rW*0.58},${ry} L ${rx+rW*0.58},${ry+rH*0.48} L ${rx+rW},${ry+rH*0.48} L ${rx+rW},${ry+rH} L ${rx},${ry+rH} Z`;
+      case 'kidney':
+        return `M ${rx},${ry+rH/2} C ${rx},${ry+rH*0.05} ${rx+rW*0.3},${ry} ${rx+rW/2},${ry+rH*0.03} C ${rx+rW*0.72},${ry} ${rx+rW},${ry+rH*0.08} ${rx+rW},${ry+rH/2} C ${rx+rW},${ry+rH*0.92} ${rx+rW*0.68},${ry+rH} ${rx+rW/2},${ry+rH} C ${rx+rW*0.34},${ry+rH} ${rx+rW*0.27},${ry+rH*0.73} ${rx+rW*0.28},${ry+rH*0.57} C ${rx+rW*0.29},${ry+rH*0.42} ${rx+rW*0.18},${ry+rH*0.38} ${rx+rW*0.07},${ry+rH*0.38} C ${rx},${ry+rH*0.38} ${rx},${ry+rH/2} ${rx},${ry+rH/2} Z`;
+      case 'roman': {
+        const r = Math.min(rH / 2, rW / 4);
+        return `M ${rx+r},${ry} L ${rx+rW-r},${ry} A ${r},${r} 0 0 1 ${rx+rW-r},${ry+rH} L ${rx+r},${ry+rH} A ${r},${r} 0 0 1 ${rx+r},${ry} Z`;
+      }
+      default:
+        return null; // rectangle uses <rect>
+    }
+  })();
 
   return (
     <svg viewBox={`0 0 ${totalW} ${Math.max(planBoxH, profBoxH)}`} style={{ width: "100%", maxWidth: totalW, display: "block", margin: "0 auto" }}>
@@ -667,8 +691,8 @@ export default function App({ initialState = "", hideNav = false }) {
       {/* #4: Pool shape selector */}
       <div style={{ fontSize: 12, fontWeight: 600, color: T.textMid, marginBottom: 8 }}>Pool Shape</div>
       <div style={{ display: "flex", gap: 6, marginBottom: 18, flexWrap: "wrap" }}>
-        {Object.entries(POOL_SHAPES).map(([k, sh]) => <div key={k} onClick={() => setShape(k)} style={{ padding: "8px 14px", borderRadius: 8, border: shape === k ? `2px solid ${T.accent}` : `2px solid ${T.borderLight}`, background: shape === k ? T.accentLight : T.cardAlt, cursor: "pointer", display: "flex", alignItems: "center", gap: 6, transition: "all .15s" }}>
-          <span style={{ fontSize: 15 }}>{sh.icon}</span>
+        {Object.entries(POOL_SHAPES).map(([k, sh]) => <div key={k} onClick={() => setShape(k)} style={{ padding: "8px 14px", borderRadius: 8, border: shape === k ? `2px solid ${T.accent}` : `2px solid ${T.borderLight}`, background: shape === k ? T.accentLight : T.cardAlt, cursor: "pointer", display: "flex", alignItems: "center", gap: 8, transition: "all .15s" }}>
+          <ShapeIcon shape={k} active={shape === k} />
           <div>
             <div style={{ fontSize: 12, fontWeight: 700, color: shape === k ? T.accent : T.text }}>{sh.label}</div>
             {sh.factor < 1.0 && <div style={{ fontSize: 9, color: T.textDim }}>~{Math.round(sh.factor * 100)}% vol vs rectangle</div>}
