@@ -531,6 +531,21 @@ export default function App({ initialState = "", hideNav = false }) {
   /* Scroll to top on step change */
   useEffect(() => { window.scrollTo({ top: 0, behavior: "smooth" }); }, [step]);
 
+  /* GA4 funnel tracking */
+  useEffect(() => {
+    if (typeof window.gtag !== "function") return;
+    if (step === 1) window.gtag("event", "calculator_step1_complete", { state: st, soil });
+    if (step === 2) window.gtag("event", "calculator_step2_complete", { pool_type: poolType, length, width });
+    if (step === 3) window.gtag("event", "calculator_complete", {
+      pool_type: poolType,
+      state: st,
+      estimate: Math.round(total),
+      sqft,
+      has_spa: hasSpa,
+      soil,
+    });
+  }, [step]); // eslint-disable-line react-hooks/exhaustive-deps
+
   /* #7: State change detection on results page */
   useEffect(() => {
     if (step === 3 && prevState.current && prevState.current !== st) {
@@ -871,6 +886,7 @@ export default function App({ initialState = "", hideNav = false }) {
         <button onClick={() => {
           if (!leadEmail.includes("@")) return;
           setLeadSubmitted(true);
+          if (typeof window.gtag === "function") window.gtag("event", "lead_submitted", { state: st, pool_type: poolType, estimate: Math.round(total) });
           fetch("https://script.google.com/macros/s/AKfycbzPpHWMgtvWn9ZxV-URWZw4OTLYA7t97FkWHLYsULdIZGU0xuGYHzgQVDCSnRxch0RE/exec", {
             method: "POST",
             mode: "no-cors",
