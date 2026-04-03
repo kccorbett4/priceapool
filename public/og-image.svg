@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f5f0eb"/>
+  <rect width="1200" height="630" fill="url(#grad)"/>
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e0f2fe;stop-opacity:0.6"/>
+      <stop offset="100%" style="stop-color:#f5f0eb;stop-opacity:0"/>
+    </linearGradient>
+  </defs>
+  <!-- Pool icon circle -->
+  <rect x="80" y="220" width="90" height="90" rx="20" fill="#0284c7"/>
+  <text x="125" y="278" font-size="52" text-anchor="middle" font-family="system-ui">🏊</text>
+  <!-- Brand -->
+  <text x="80" y="170" font-family="system-ui, sans-serif" font-size="52" font-weight="800" fill="#1e293b" letter-spacing="-2">PriceAPool.com</text>
+  <!-- Headline -->
+  <text x="80" y="370" font-family="system-ui, sans-serif" font-size="58" font-weight="800" fill="#1e293b" letter-spacing="-2">How Much Does a</text>
+  <text x="80" y="440" font-family="system-ui, sans-serif" font-size="58" font-weight="800" fill="#1e293b" letter-spacing="-2">Pool Cost in 2026?</text>
+  <!-- Subtext -->
+  <text x="80" y="510" font-family="system-ui, sans-serif" font-size="28" fill="#475569">Free calculator · All 50 states · Gunite, Fiberglass &amp; Vinyl</text>
+  <!-- Accent bar -->
+  <rect x="80" y="560" width="200" height="6" rx="3" fill="#0284c7"/>
+</svg>

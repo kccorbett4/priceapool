@@ -293,7 +293,7 @@ export default function StatePage() {
         </div>
       </div>
 
-      <App initialState={code} />
+      <App initialState={code} hideNav={true} />
 
       {/* FAQ */}
       <div style={inner}>

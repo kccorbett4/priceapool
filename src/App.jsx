@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import { Link } from "react-router-dom";
 
 /* ═══════════════ DATA ═══════════════ */
 const STATES = {
@@ -462,7 +463,7 @@ function ShareButton({ total, poolType, st, sqft, hasSpa, spaSize }) {
 }
 
 /* ═══════════════ MAIN ═══════════════ */
-export default function App({ initialState = "" }) {
+export default function App({ initialState = "", hideNav = false }) {
   const [step, setStep] = useState(0);
   const [st, setSt] = useState(initialState);
   const [zip, setZip] = useState("");          /* #20 */
@@ -875,12 +876,16 @@ export default function App({ initialState = "" }) {
       @media print{.no-print{display:none!important}body{background:#fff!important}}
     `}</style>
     {/* NAV */}
-    <nav className="no-print" style={{ position: "sticky", top: 0, zIndex: 100, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 16px", height: 52, background: "rgba(245,240,235,0.92)", backdropFilter: "blur(12px)", borderBottom: `1px solid ${T.border}` }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+    {!hideNav && <nav className="no-print" style={{ position: "sticky", top: 0, zIndex: 100, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 16px", height: 52, background: "rgba(245,240,235,0.92)", backdropFilter: "blur(12px)", borderBottom: `1px solid ${T.border}` }}>
+      <Link to="/" style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none" }}>
         <div style={{ width: 30, height: 30, borderRadius: 7, background: `linear-gradient(135deg,${T.accent},${T.accentDark})`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14, color: "#fff" }}>🏊</div>
         <span style={{ fontSize: 15, fontWeight: 800, color: T.text, letterSpacing: "-.5px" }}>PriceAPool<span style={{ color: T.accent }}>.com</span></span>
+      </Link>
+      <div style={{ display: "flex", gap: 16, alignItems: "center" }}>
+        <Link to="/blog/fiberglass-vs-gunite-vs-vinyl" style={{ fontSize: 12, color: T.textMid, textDecoration: "none", fontWeight: 600 }}>Pool Guides</Link>
+        <Link to="/blog/inground-pool-cost-guide" style={{ fontSize: 12, color: T.textMid, textDecoration: "none", fontWeight: 600 }}>Cost Guide</Link>
       </div>
-    </nav>
+    </nav>}
     {step < 3 && <div style={{ textAlign: "center", padding: "32px 20px 6px" }}>
       <h1 style={{ fontSize: "clamp(22px,4.5vw,34px)", fontWeight: 800, color: T.text, letterSpacing: "-.5px" }}>How Much Does a Pool Cost in <span style={{ color: T.accent }}>2026</span>?</h1>
       <p style={{ fontSize: 13, color: T.textMid, marginTop: 6, maxWidth: 520, marginLeft: "auto", marginRight: "auto" }}>Accurate estimate in under 2 minutes — adjusted for your state, soil, and build.</p>
@@ -901,10 +906,68 @@ export default function App({ initialState = "" }) {
       </div>}
       {step === 3 && <div style={{ textAlign: "center", margin: "14px 0" }}><Btn pri={false} onClick={() => setStep(0)}>← Start Over</Btn></div>}
     </div>
-    <footer style={{ marginTop: 40, padding: 24, borderTop: `1px solid ${T.border}`, textAlign: "center", background: T.bg2 }}>
-      <div style={{ fontSize: 10, color: T.textDim, lineHeight: 1.8, maxWidth: 600, margin: "0 auto" }}>
-        Estimates based on 2026 national averages adjusted for state, metro area, soil, and scope. Actual costs vary by contractor, site, and materials. Always get 3+ written bids.<br />
-        <span style={{ color: T.border }}>© 2026 PriceAPool.com · Privacy · Terms · Contact</span>
+    <footer style={{ marginTop: 40, borderTop: `1px solid ${T.border}`, background: T.bg2 }}>
+      <div style={{ maxWidth: 720, margin: "0 auto", padding: "32px 16px 24px" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(160px,1fr))", gap: 28, marginBottom: 28 }}>
+          <div>
+            <div style={{ fontSize: 12, fontWeight: 700, color: T.text, marginBottom: 10, textTransform: "uppercase", letterSpacing: 1 }}>Pool Guides</div>
+            {[
+              { to: "/blog/fiberglass-vs-gunite-vs-vinyl", label: "Fiberglass vs Gunite vs Vinyl" },
+              { to: "/blog/inground-pool-cost-guide", label: "Pool Cost Guide 2026" },
+              { to: "/blog/pool-cost-by-size", label: "Pool Cost by Size" },
+              { to: "/blog/how-long-to-build-a-pool", label: "How Long to Build a Pool" },
+              { to: "/blog/pool-financing-guide", label: "Pool Financing Guide" },
+            ].map(({ to, label }) => (
+              <div key={to} style={{ marginBottom: 6 }}><Link to={to} style={{ fontSize: 12, color: T.textMid, textDecoration: "none" }}>{label}</Link></div>
+            ))}
+          </div>
+          <div>
+            <div style={{ fontSize: 12, fontWeight: 700, color: T.text, marginBottom: 10, textTransform: "uppercase", letterSpacing: 1 }}>Pool Types</div>
+            {[
+              { to: "/blog/gunite-pool-guide", label: "Gunite Pool Guide" },
+              { to: "/blog/fiberglass-pool-guide", label: "Fiberglass Pool Guide" },
+              { to: "/blog/vinyl-liner-pool-guide", label: "Vinyl Liner Pool Guide" },
+              { to: "/blog/pool-permits-and-regulations", label: "Pool Permits Guide" },
+              { to: "/blog/does-a-pool-add-home-value", label: "Pool ROI & Home Value" },
+            ].map(({ to, label }) => (
+              <div key={to} style={{ marginBottom: 6 }}><Link to={to} style={{ fontSize: 12, color: T.textMid, textDecoration: "none" }}>{label}</Link></div>
+            ))}
+          </div>
+          <div>
+            <div style={{ fontSize: 12, fontWeight: 700, color: T.text, marginBottom: 10, textTransform: "uppercase", letterSpacing: 1 }}>Popular States</div>
+            {[
+              { to: "/florida", label: "Pool Cost in Florida" },
+              { to: "/texas", label: "Pool Cost in Texas" },
+              { to: "/california", label: "Pool Cost in California" },
+              { to: "/arizona", label: "Pool Cost in Arizona" },
+              { to: "/georgia", label: "Pool Cost in Georgia" },
+              { to: "/north-carolina", label: "Pool Cost in North Carolina" },
+              { to: "/tennessee", label: "Pool Cost in Tennessee" },
+              { to: "/colorado", label: "Pool Cost in Colorado" },
+            ].map(({ to, label }) => (
+              <div key={to} style={{ marginBottom: 6 }}><Link to={to} style={{ fontSize: 12, color: T.textMid, textDecoration: "none" }}>{label}</Link></div>
+            ))}
+          </div>
+          <div>
+            <div style={{ fontSize: 12, fontWeight: 700, color: T.text, marginBottom: 10, textTransform: "uppercase", letterSpacing: 1 }}>More States</div>
+            {[
+              { to: "/new-york", label: "Pool Cost in New York" },
+              { to: "/pennsylvania", label: "Pool Cost in Pennsylvania" },
+              { to: "/ohio", label: "Pool Cost in Ohio" },
+              { to: "/illinois", label: "Pool Cost in Illinois" },
+              { to: "/washington", label: "Pool Cost in Washington" },
+              { to: "/nevada", label: "Pool Cost in Nevada" },
+              { to: "/new-jersey", label: "Pool Cost in New Jersey" },
+              { to: "/virginia", label: "Pool Cost in Virginia" },
+            ].map(({ to, label }) => (
+              <div key={to} style={{ marginBottom: 6 }}><Link to={to} style={{ fontSize: 12, color: T.textMid, textDecoration: "none" }}>{label}</Link></div>
+            ))}
+          </div>
+        </div>
+        <div style={{ borderTop: `1px solid ${T.border}`, paddingTop: 16, fontSize: 10, color: T.textDim, lineHeight: 1.8, textAlign: "center" }}>
+          Estimates based on 2026 national averages adjusted for state, metro area, soil, and scope. Actual costs vary by contractor, site, and materials. Always get 3+ written bids.<br />
+          © 2026 PriceAPool.com
+        </div>
       </div>
     </footer>
   </div>;
