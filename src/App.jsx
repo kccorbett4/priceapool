@@ -492,7 +492,7 @@ export default function App({ initialState = "", hideNav = false }) {
   const [step, setStep] = useState(0);
   const [st, setSt] = useState(initialState);
   const [zip, setZip] = useState("");          /* #20 */
-  const [soil, setSoil] = useState("");
+  const [soil, setSoil] = useState("unknown");
   const [poolType, setPoolType] = useState("gunite");
   const [shape, setShape] = useState("rectangle"); /* #4 */
   const [length, setLength] = useState(32);
@@ -535,7 +535,7 @@ export default function App({ initialState = "", hideNav = false }) {
   /* GA4 funnel tracking */
   useEffect(() => {
     if (typeof window.gtag !== "function") return;
-    if (step === 1) window.gtag("event", "calculator_step1_complete", { state: st, soil });
+    if (step === 1) window.gtag("event", "calculator_step1_complete", { state: st });
     if (step === 2) window.gtag("event", "calculator_step2_complete", { pool_type: poolType, length, width });
     if (step === 3) window.gtag("event", "calculator_complete", {
       pool_type: poolType,
@@ -629,7 +629,7 @@ export default function App({ initialState = "", hideNav = false }) {
   useEffect(() => { const s = prevTotal.current, e = total, d = 500, t0 = performance.now(); let r; const t = n => { const p = Math.min((n - t0) / d, 1); setAnimTotal(s + (e - s) * (1 - Math.pow(1 - p, 3))); if (p < 1) r = requestAnimationFrame(t); else prevTotal.current = e; }; r = requestAnimationFrame(t); return () => cancelAnimationFrame(r); }, [total]);
 
   const toggleFeat = id => setFeatures(f => ({ ...f, [id]: !f[id] }));
-  const canNext = step === 0 ? (!!st && !!soil) : true;
+  const canNext = step === 0 ? !!st : true;
   const filteredStates = Object.entries(STATES).filter(([c, s]) => !ddSearch || s.name.toLowerCase().includes(ddSearch.toLowerCase()) || c.toLowerCase().includes(ddSearch.toLowerCase()));
   const featureConflicts = getFeatureConflicts(features, cDeep); /* #10 */
 
@@ -666,28 +666,6 @@ export default function App({ initialState = "", hideNav = false }) {
 
       {st && !zip && <div style={{ marginTop: 10, fontSize: 12, color: T.textMid }}>{STATES[st].frost ? "❄️ Frost protection required in your state" : "☀️ No frost-line concerns in your state"}</div>}
       {st && zip && !metro.label && <div style={{ marginTop: 10, fontSize: 12, color: T.textMid }}>{STATES[st].frost ? "❄️ Frost protection required in your state" : "☀️ No frost-line concerns in your state"} · State-average labor rate applied</div>}
-    </Card>
-    <Card>
-      <Ttl>Soil Conditions</Ttl>
-      <Dsc>The #1 hidden cost driver — changes excavation, structural engineering, and drainage scope.</Dsc>
-      <div onClick={() => setSoil("unknown")} style={{ marginBottom: 10, padding: "13px 16px", borderRadius: 10, border: soil === "unknown" ? `2px solid ${T.warn}` : `2px dashed ${T.warnBorder}`, background: soil === "unknown" ? T.warnBg : "#fffdf7", cursor: "pointer", display: "flex", alignItems: "center", gap: 12, transition: "all .15s" }}>
-        <div style={{ width: 34, height: 34, borderRadius: 8, background: T.warnBg, border: `1px solid ${T.warnBorder}`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 17, flexShrink: 0 }}>🤷</div>
-        <div style={{ flex: 1 }}>
-          <div style={{ fontSize: 13, fontWeight: 700, color: soil === "unknown" ? T.warn : T.text }}>I'm Not Sure About My Soil</div>
-          <div style={{ fontSize: 10, color: T.textMid, marginTop: 1, lineHeight: 1.4 }}>We'll apply a blended average ({fmt(7000)} engineering buffer). A geotech report can refine this.</div>
-        </div>
-        {soil === "unknown" && <div style={{ width: 18, height: 18, borderRadius: 4, background: T.warn, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 800, color: "#fff", flexShrink: 0 }}>✓</div>}
-      </div>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(220px,1fr))", gap: 8 }}>
-        {Object.entries(SOIL_TYPES).filter(([, s]) => !s.isUnknown).map(([k, s]) => <Opt key={k} sel={soil === k} onClick={() => setSoil(k)}>
-          <div style={{ fontSize: 13, fontWeight: 700, color: T.text }}>{s.label}</div>
-          <div style={{ fontSize: 10, color: T.textMid, marginTop: 2, lineHeight: 1.4 }}>{s.desc}</div>
-          {soil === k && s.eng > 0 && <div style={{ marginTop: 4, fontSize: 10, color: T.danger, fontWeight: 700 }}>+{fmt(s.eng + s.struct + s.drain)} engineering surcharge</div>}
-        </Opt>)}
-      </div>
-      {soil && SOIL_TYPES[soil].eng > 0 && <div style={{ background: soil === "unknown" ? T.warnBg : T.dangerBg, border: `1px solid ${soil === "unknown" ? T.warnBorder : T.dangerBorder}`, borderRadius: 10, padding: "11px 14px", marginTop: 10, fontSize: 11, lineHeight: 1.5, color: soil === "unknown" ? T.warn : T.danger }}>
-        <strong>{soil === "unknown" ? "💡 Recommendation:" : "⚠️ Note:"}</strong> {SOIL_TYPES[soil].notes}
-      </div>}
     </Card>
   </>;
 
@@ -785,7 +763,7 @@ export default function App({ initialState = "", hideNav = false }) {
     { l: `${td.label} Shell (${sqft} sqft)`, v: shell, c: T.accent },
     { l: `Excavation (${Math.round(cuYd)} cu yd)`, v: excav, c: T.warn },
     ...(depthEng > 0 ? [{ l: `⚠️ Deep End Engineering (${cDeep}ft)`, v: depthEng, c: T.danger, h: true }] : []),
-    ...(soilTot > 0 ? [{ l: "⚠️ Soil Engineering", v: soilTot, c: T.danger, h: true }] : []),
+    ...(soilTot > 0 ? [{ l: "Soil Engineering*", v: soilTot, c: T.warn, h: false }] : []),
     { l: "Plumbing & Equipment", v: plumb, c: "#059669" },
     { l: "Electrical", v: elec, c: "#7c3aed" },
     ...(poolType === "gunite" ? [{ l: `${FINISH_OPTIONS[finishType]?.label || "Interior"} (${Math.round(totalFinishSqft)} sqft)`, v: inter, c: "#db2777" }] : []),
@@ -822,13 +800,14 @@ export default function App({ initialState = "", hideNav = false }) {
           <span style={{ fontSize: 13, fontWeight: 700, color: T.textMid, whiteSpace: "nowrap" }}>{fmt(total * 1.18)}</span>
         </div>
         <div style={{ fontSize: 9, color: T.textDim, marginTop: 4 }}>Based on competitive vs. premium contractor bids for this build</div>
+        <div style={{ fontSize: 9, color: T.warn, marginTop: 6 }}>* Soil conditions vary by site and can affect your final cost. A geotech report ($2K-$3K) provides the most accurate assessment.</div>
       </div>
       <div style={{ display: "inline-flex", alignItems: "center", gap: 8, flexWrap: "wrap", justifyContent: "center" }}>
         <select value={st} onChange={e => setSt(e.target.value)} style={{ padding: "7px 28px 7px 12px", borderRadius: 8, border: `1px solid ${T.border}`, background: T.cardAlt, color: T.text, fontSize: 13, fontWeight: 600, appearance: "none", backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%2394a3b8'/%3E%3C/svg%3E")`, backgroundRepeat: "no-repeat", backgroundPosition: "right 10px center", cursor: "pointer", outline: "none" }}>
           {Object.entries(STATES).map(([code, s]) => <option key={code} value={code}>{s.name}</option>)}
         </select>
         {STATES[st]?.frost && <span style={{ fontSize: 10, color: T.textDim }}>❄️ Frost state</span>}
-        {contRate > baseContRate && <span style={{ fontSize: 10, color: T.warn, fontWeight: 600 }}>⚠️ {Math.round(contRate * 100)}% contingency ({SOIL_TYPES[soil]?.label})</span>}
+        {contRate > baseContRate && <span style={{ fontSize: 10, color: T.warn, fontWeight: 600 }}>⚠️ {Math.round(contRate * 100)}% contingency</span>}
       </div>
     </div>
 
@@ -839,7 +818,7 @@ export default function App({ initialState = "", hideNav = false }) {
     <Card>
       <div style={{ fontSize: 13, fontWeight: 700, color: T.text, marginBottom: 10 }}>Quick Summary</div>
       <div style={{ fontSize: 12, color: T.textMid, lineHeight: 2 }}>
-        {[["Pool Shell", shell], ["Excavation", excav], ...(depthEng > 0 ? [["Deep End Eng.", depthEng]] : []), ...(soilTot > 0 ? [["Soil Engineering", soilTot]] : []), ["Plumbing & Equip.", plumb], ["Electrical", elec], [FINISH_OPTIONS[finishType]?.label || "Finish", inter], ...(hasSpa ? [["Spa", spaCost]] : []), ...(poolCoverCost > 0 ? [["Pool Cover", poolCoverCost]] : []), ...(spaAC > 0 ? [["Spa Cover", spaAC]] : []), ...(featCost > 0 ? [["Features", featCost]] : []), ...(deckCost > 0 ? [["Decking", deckCost]] : []), ["Permits", permits], ...(frostC > 0 ? [["Frost", frostC]] : []), [`Contingency (${Math.round(contRate * 100)}%)`, cont]].map(([l, v]) => <div key={l} style={{ display: "flex", justifyContent: "space-between" }}><span>{l}</span><strong style={{ color: T.text }}>{fmt(v)}</strong></div>)}
+        {[["Pool Shell", shell], ["Excavation", excav], ...(depthEng > 0 ? [["Deep End Eng.", depthEng]] : []), ...(soilTot > 0 ? [["Soil Engineering*", soilTot]] : []), ["Plumbing & Equip.", plumb], ["Electrical", elec], [FINISH_OPTIONS[finishType]?.label || "Finish", inter], ...(hasSpa ? [["Spa", spaCost]] : []), ...(poolCoverCost > 0 ? [["Pool Cover", poolCoverCost]] : []), ...(spaAC > 0 ? [["Spa Cover", spaAC]] : []), ...(featCost > 0 ? [["Features", featCost]] : []), ...(deckCost > 0 ? [["Decking", deckCost]] : []), ["Permits", permits], ...(frostC > 0 ? [["Frost", frostC]] : []), [`Contingency (${Math.round(contRate * 100)}%)`, cont]].map(([l, v]) => <div key={l} style={{ display: "flex", justifyContent: "space-between" }}><span>{l}</span><strong style={{ color: T.text }}>{fmt(v)}</strong></div>)}
         <div style={{ borderTop: `1px solid ${T.borderLight}`, marginTop: 6, paddingTop: 6, display: "flex", justifyContent: "space-between" }}><span style={{ fontWeight: 700, color: T.text }}>Total</span><strong style={{ color: T.accent, fontSize: 15 }}>{fmt(total)}</strong></div>
       </div>
     </Card>
@@ -857,17 +836,6 @@ export default function App({ initialState = "", hideNav = false }) {
       </div>)}
     </Card>
 
-    {/* Soil detail */}
-    {soilTot > 0 && <Card style={{ borderColor: soil === "unknown" ? T.warnBorder : T.dangerBorder }}>
-      <div style={{ fontSize: 14, fontWeight: 700, color: soil === "unknown" ? T.warn : T.danger, marginBottom: 4 }}>⚠️ Soil Impact: +{fmt(soilTot)}</div>
-      <div style={{ fontSize: 11, color: T.textMid, lineHeight: 1.5, marginBottom: 8 }}><strong style={{ color: T.text }}>{SOIL_TYPES[soil]?.label}</strong> — {SOIL_TYPES[soil]?.notes}</div>
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 6 }}>
-        {[["Geotech", soilEng], ["Structural", soilStruc], ["Drainage", soilDrain]].map(([l, v]) => <div key={l} style={{ background: soil === "unknown" ? T.warnBg : T.dangerBg, borderRadius: 8, padding: 8, textAlign: "center" }}>
-          <div style={{ fontSize: 9, color: T.textDim }}>{l}</div>
-          <div style={{ fontSize: 14, fontWeight: 800, color: soil === "unknown" ? T.warn : T.danger }}>{fmt(v)}</div>
-        </div>)}
-      </div>
-    </Card>}
 
     {/* Savings */}
     <Card style={{ borderColor: T.successBorder }}><div style={{ fontSize: 16, fontWeight: 700, color: T.success, marginBottom: 2 }}>💰 Top 3 Ways to Save</div><Dsc>Personalized to your build. Green buttons apply instantly.</Dsc><SavingsTips poolType={poolType} features={features} soil={soil} spaSize={spaSize} deckType={deckType} deckSqft={deckSqft} frost={frostC} length={cL} width={cW} deepDepth={cDeep} shallowDepth={shallowDepth} onApply={handleApply} /></Card>
@@ -928,7 +896,7 @@ export default function App({ initialState = "", hideNav = false }) {
   </div>;
 
   const steps = [renderStep0, renderStep1, renderStep2, renderResults];
-  const stepNames = ["Location & Soil", "Pool Size & Spa", "Features", "Your Estimate"];
+  const stepNames = ["Location", "Pool Size & Spa", "Features", "Your Estimate"];
 
   return <div style={{ minHeight: "100vh", background: `linear-gradient(180deg,${T.bg} 0%,${T.bg2} 50%,#e8e0d8 100%)`, fontFamily: "'Instrument Sans','DM Sans',system-ui,sans-serif", color: T.text }}>
     {!hideNav && <Helmet>
