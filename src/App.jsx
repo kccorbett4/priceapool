@@ -901,10 +901,10 @@ export default function App({ initialState = "", hideNav = false }) {
   return <div style={{ minHeight: "100vh", background: `linear-gradient(180deg,${T.bg} 0%,${T.bg2} 50%,#e8e0d8 100%)`, fontFamily: "'Instrument Sans','DM Sans',system-ui,sans-serif", color: T.text }}>
     {!hideNav && <Helmet>
       <title>Pool Cost Calculator 2026 — How Much Does a Pool Cost in Your State?</title>
-      <meta name="description" content="Free pool cost calculator for 2026. Get an instant estimate for gunite, fiberglass, or vinyl pools — adjusted for your state, soil conditions, and build specs. Accurate pricing in under 2 minutes." />
+      <meta name="description" content="Free pool cost calculator for 2026. Get an instant estimate for gunite, fiberglass, or vinyl pools — adjusted for your state and build specs. Accurate pricing in under 2 minutes." />
       <link rel="canonical" href="https://priceapool.com/" />
       <meta property="og:title" content="Pool Cost Calculator 2026 — How Much Does a Pool Cost?" />
-      <meta property="og:description" content="Free instant pool cost estimate adjusted for your state, soil, and build. Gunite, fiberglass, and vinyl pricing in under 2 minutes." />
+      <meta property="og:description" content="Free instant pool cost estimate adjusted for your state and build. Gunite, fiberglass, and vinyl pricing in under 2 minutes." />
       <meta property="og:url" content="https://priceapool.com/" />
     </Helmet>}
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -934,7 +934,7 @@ export default function App({ initialState = "", hideNav = false }) {
     </nav>}
     {step < 3 && <div style={{ textAlign: "center", padding: "32px 20px 6px" }}>
       <h1 style={{ fontSize: "clamp(22px,4.5vw,34px)", fontWeight: 800, color: T.text, letterSpacing: "-.5px" }}>How Much Does a Pool Cost in <span style={{ color: T.accent }}>2026</span>?</h1>
-      <p style={{ fontSize: 13, color: T.textMid, marginTop: 6, maxWidth: 520, marginLeft: "auto", marginRight: "auto" }}>Accurate estimate in under 2 minutes — adjusted for your state, soil, and build.</p>
+      <p style={{ fontSize: 13, color: T.textMid, marginTop: 6, maxWidth: 520, marginLeft: "auto", marginRight: "auto" }}>Accurate estimate in under 2 minutes — adjusted for your state and build.</p>
     </div>}
     <div style={{ maxWidth: 720, margin: "0 auto", padding: "0 16px" }}>
       <div style={{ display: "flex", justifyContent: "center", gap: 4, margin: "16px 0 20px" }}>
@@ -1011,7 +1011,7 @@ export default function App({ initialState = "", hideNav = false }) {
           </div>
         </div>
         <div style={{ borderTop: `1px solid ${T.border}`, paddingTop: 16, fontSize: 10, color: T.textDim, lineHeight: 1.8, textAlign: "center" }}>
-          Estimates based on 2026 national averages adjusted for state, metro area, soil, and scope. Actual costs vary by contractor, site, and materials. Always get 3+ written bids.<br />
+          Estimates based on 2026 national averages adjusted for state, metro area, and scope. Actual costs vary by contractor, site, soil conditions, and materials. Always get 3+ written bids.<br />
           © 2026 PriceAPool.com
         </div>
       </div>
