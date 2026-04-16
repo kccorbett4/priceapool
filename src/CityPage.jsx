@@ -1,5 +1,5 @@
 import { useParams, Navigate, Link } from 'react-router-dom'
-import { useEffect } from 'react'
+import { Helmet } from 'react-helmet-async'
 import App from './App.jsx'
 
 const T = {
@@ -173,33 +173,14 @@ export default function CityPage() {
   const vSub = vShell + _cuYd * 35 * _lab + (7000 + _sqft * 3.5) * _lab + (3500 + _sqft * 1.0) * _lab + _permits + _frostC;
   const vinyl = Math.round((vSub * (1 + _cont)) / 1000) * 1000;
 
-  useEffect(() => {
-    document.title = `Pool Cost in ${city.name} (2026) — Free Calculator | PriceAPool`;
-    const setMeta = (attr, key, val) => { let el = document.querySelector(`meta[${attr}="${key}"]`); if (el) el.setAttribute('content', val); };
-    setMeta('name', 'description', `How much does a pool cost in ${city.name} in 2026? Gunite pools average ${fmt(gunite)}, fiberglass ${fmt(fiber)}, vinyl ${fmt(vinyl)}. Free calculator with ${city.name}-specific pricing.`);
-    setMeta('property', 'og:title', `Pool Cost in ${city.name} (2026) — Free Calculator`);
-    setMeta('property', 'og:url', `https://priceapool.com/city/${citySlug}`);
-    let canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) canonical.setAttribute('href', `https://priceapool.com/city/${citySlug}`);
-
-    const schema = {
-      "@context": "https://schema.org", "@type": "FAQPage",
-      "mainEntity": [
-        { "@type": "Question", "name": `How much does an inground pool cost in ${city.name}?`, "acceptedAnswer": { "@type": "Answer", "text": `In ${city.name}, a gunite pool averages ${fmt(gunite)}, fiberglass ${fmt(fiber)}, and vinyl liner ${fmt(vinyl)} for a standard 500 sq ft pool. Costs vary based on size, soil conditions, features, and specific contractor.` } },
-        { "@type": "Question", "name": `What is the swim season in ${city.name}?`, "acceptedAnswer": { "@type": "Answer", "text": `${city.name} has a pool season of approximately ${city.season}. ${city.frost ? `Annual winterization and opening costs approximately $400–$700.` : `No winterization is required in most years.`}` } },
-        { "@type": "Question", "name": `How long does pool permitting take in ${city.name}?`, "acceptedAnswer": { "@type": "Answer", "text": `Pool permit costs in ${city.name} typically run ${city.permit}. ${city.facts[0]}` } },
-      ]
-    };
-    let schemaTag = document.getElementById('city-schema');
-    if (!schemaTag) { schemaTag = document.createElement('script'); schemaTag.id = 'city-schema'; schemaTag.type = 'application/ld+json'; document.head.appendChild(schemaTag); }
-    schemaTag.textContent = JSON.stringify(schema);
-
-    return () => {
-      document.title = 'Pool Cost Calculator 2026 — How Much Does a Pool Cost in Your State?';
-      if (canonical) canonical.setAttribute('href', 'https://priceapool.com/');
-      const t = document.getElementById('city-schema'); if (t) t.remove();
-    };
-  }, [citySlug, city, gunite, fiber, vinyl]);
+  const citySchema = {
+    "@context": "https://schema.org", "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": `How much does an inground pool cost in ${city.name}?`, "acceptedAnswer": { "@type": "Answer", "text": `In ${city.name}, a gunite pool averages ${fmt(gunite)}, fiberglass ${fmt(fiber)}, and vinyl liner ${fmt(vinyl)} for a standard 500 sq ft pool. Costs vary based on size, soil conditions, features, and specific contractor.` } },
+      { "@type": "Question", "name": `What is the swim season in ${city.name}?`, "acceptedAnswer": { "@type": "Answer", "text": `${city.name} has a pool season of approximately ${city.season}. ${city.frost ? `Annual winterization and opening costs approximately $400–$700.` : `No winterization is required in most years.`}` } },
+      { "@type": "Question", "name": `How long does pool permitting take in ${city.name}?`, "acceptedAnswer": { "@type": "Answer", "text": `Pool permit costs in ${city.name} typically run ${city.permit}. ${city.facts[0]}` } },
+    ]
+  };
 
   const wrap = { fontFamily: "'Instrument Sans','DM Sans',system-ui,sans-serif", color: T.text, background: T.bg, minHeight: "100vh" };
   const inner = { maxWidth: 720, margin: "0 auto", padding: "0 16px" };
@@ -207,6 +188,14 @@ export default function CityPage() {
 
   return (
     <div style={wrap}>
+      <Helmet>
+        <title>{`Pool Cost in ${city.name} (2026) — Free Calculator | PriceAPool`}</title>
+        <meta name="description" content={`How much does a pool cost in ${city.name} in 2026? Gunite pools average ${fmt(gunite)}, fiberglass ${fmt(fiber)}, vinyl ${fmt(vinyl)}. Free calculator with ${city.name}-specific pricing.`} />
+        <link rel="canonical" href={`https://priceapool.com/city/${citySlug}`} />
+        <meta property="og:title" content={`Pool Cost in ${city.name} (2026) — Free Calculator`} />
+        <meta property="og:url" content={`https://priceapool.com/city/${citySlug}`} />
+        <script type="application/ld+json">{JSON.stringify(citySchema)}</script>
+      </Helmet>
       <nav style={{ position: "sticky", top: 0, zIndex: 100, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 16px", height: 52, background: "rgba(245,240,235,0.92)", backdropFilter: "blur(12px)", borderBottom: `1px solid ${T.border}` }}>
         <Link to="/" style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none" }}>
           <div style={{ width: 30, height: 30, borderRadius: 7, background: `linear-gradient(135deg,${T.accent},${T.accentDark})`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14, color: "#fff" }}>🏊</div>

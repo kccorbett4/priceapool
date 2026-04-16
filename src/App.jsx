@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 /* ═══════════════ DATA ═══════════════ */
 const STATES = {
@@ -930,6 +931,14 @@ export default function App({ initialState = "", hideNav = false }) {
   const stepNames = ["Location & Soil", "Pool Size & Spa", "Features", "Your Estimate"];
 
   return <div style={{ minHeight: "100vh", background: `linear-gradient(180deg,${T.bg} 0%,${T.bg2} 50%,#e8e0d8 100%)`, fontFamily: "'Instrument Sans','DM Sans',system-ui,sans-serif", color: T.text }}>
+    {!hideNav && <Helmet>
+      <title>Pool Cost Calculator 2026 — How Much Does a Pool Cost in Your State?</title>
+      <meta name="description" content="Free pool cost calculator for 2026. Get an instant estimate for gunite, fiberglass, or vinyl pools — adjusted for your state, soil conditions, and build specs. Accurate pricing in under 2 minutes." />
+      <link rel="canonical" href="https://priceapool.com/" />
+      <meta property="og:title" content="Pool Cost Calculator 2026 — How Much Does a Pool Cost?" />
+      <meta property="og:description" content="Free instant pool cost estimate adjusted for your state, soil, and build. Gunite, fiberglass, and vinyl pricing in under 2 minutes." />
+      <meta property="og:url" content="https://priceapool.com/" />
+    </Helmet>}
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <style>{`
       .pool-slider{-webkit-appearance:none;appearance:none;width:100%;height:44px;background:transparent;outline:none;cursor:pointer;margin:0;padding:0;touch-action:pan-x;-webkit-tap-highlight-color:transparent}

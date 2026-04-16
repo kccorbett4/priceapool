@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { useEffect } from 'react'
+import { Helmet } from 'react-helmet-async'
 
 const T = {
   bg: "#f5f0eb", bg2: "#ede7e0", card: "#ffffff",
@@ -38,33 +38,16 @@ function FactBox({ number, fact }) {
 }
 
 export default function DataPage() {
-  useEffect(() => {
-    document.title = "Pool Cost Statistics & Data 2026 | PriceAPool Research";
-    const setMeta = (attr, key, val) => { let el = document.querySelector(`meta[${attr}="${key}"]`); if (el) el.setAttribute('content', val); };
-    setMeta('name', 'description', 'Comprehensive pool cost statistics and data for 2026: national averages, cost by pool type, cost by state, maintenance costs, ROI data, and 25 key facts about inground pool pricing.');
-    setMeta('property', 'og:title', 'Pool Cost Statistics & Data 2026 — PriceAPool Research');
-    let canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) canonical.setAttribute('href', 'https://priceapool.com/pool-cost-data');
-
-    const schema = {
-      "@context": "https://schema.org", "@type": "Dataset",
-      "name": "Inground Pool Cost Data 2026",
-      "description": "Comprehensive dataset of inground pool costs across the United States in 2026, including averages by pool type, state, size, and feature.",
-      "url": "https://priceapool.com/pool-cost-data",
-      "creator": { "@type": "Organization", "name": "PriceAPool.com" },
-      "dateModified": "2026-01-01",
-      "spatialCoverage": "United States",
-      "temporalCoverage": "2026",
-    };
-    let schemaTag = document.getElementById('data-schema');
-    if (!schemaTag) { schemaTag = document.createElement('script'); schemaTag.id = 'data-schema'; schemaTag.type = 'application/ld+json'; document.head.appendChild(schemaTag); }
-    schemaTag.textContent = JSON.stringify(schema);
-    return () => {
-      document.title = 'Pool Cost Calculator 2026 — How Much Does a Pool Cost in Your State?';
-      if (canonical) canonical.setAttribute('href', 'https://priceapool.com/');
-      const t = document.getElementById('data-schema'); if (t) t.remove();
-    };
-  }, []);
+  const dataSchema = {
+    "@context": "https://schema.org", "@type": "Dataset",
+    "name": "Inground Pool Cost Data 2026",
+    "description": "Comprehensive dataset of inground pool costs across the United States in 2026, including averages by pool type, state, size, and feature.",
+    "url": "https://priceapool.com/pool-cost-data",
+    "creator": { "@type": "Organization", "name": "PriceAPool.com" },
+    "dateModified": "2026-01-01",
+    "spatialCoverage": "United States",
+    "temporalCoverage": "2026",
+  };
 
   const wrap = { fontFamily: "'Instrument Sans','DM Sans',system-ui,sans-serif", color: T.text, background: T.bg, minHeight: "100vh" };
   const inner = { maxWidth: 800, margin: "0 auto", padding: "0 16px 60px" };
@@ -72,6 +55,14 @@ export default function DataPage() {
 
   return (
     <div style={wrap}>
+      <Helmet>
+        <title>Pool Cost Statistics &amp; Data 2026 | PriceAPool Research</title>
+        <meta name="description" content="Comprehensive pool cost statistics and data for 2026: national averages, cost by pool type, cost by state, maintenance costs, ROI data, and 25 key facts about inground pool pricing." />
+        <link rel="canonical" href="https://priceapool.com/pool-cost-data" />
+        <meta property="og:title" content="Pool Cost Statistics & Data 2026 — PriceAPool Research" />
+        <meta property="og:url" content="https://priceapool.com/pool-cost-data" />
+        <script type="application/ld+json">{JSON.stringify(dataSchema)}</script>
+      </Helmet>
       <nav style={{ position: "sticky", top: 0, zIndex: 100, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 16px", height: 52, background: "rgba(245,240,235,0.92)", backdropFilter: "blur(12px)", borderBottom: `1px solid ${T.border}` }}>
         <Link to="/" style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none" }}>
           <div style={{ width: 30, height: 30, borderRadius: 7, background: `linear-gradient(135deg,${T.accent},${T.accentDark})`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14, color: "#fff" }}>🏊</div>

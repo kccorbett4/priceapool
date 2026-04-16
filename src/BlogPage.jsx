@@ -1,5 +1,5 @@
 import { useParams, Navigate, Link } from 'react-router-dom'
-import { useEffect } from 'react'
+import { Helmet } from 'react-helmet-async'
 
 const T = {
   bg: "#f5f0eb", bg2: "#ede7e0", card: "#ffffff",
@@ -998,57 +998,38 @@ export default function BlogPage() {
   if (!article) return <Navigate to="/" replace />;
   const meta = ARTICLE_META[slug] || {};
 
-  useEffect(() => {
-    document.title = `${article.title} | PriceAPool`;
-    const setMeta = (attr, key, content) => {
-      let el = document.querySelector(`meta[${attr}="${key}"]`);
-      if (el) el.setAttribute('content', content);
-    };
-    setMeta('name', 'description', article.description);
-    setMeta('property', 'og:title', article.title);
-    setMeta('property', 'og:description', article.description);
-    setMeta('property', 'og:url', `https://priceapool.com/blog/${slug}`);
-    let canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) canonical.setAttribute('href', `https://priceapool.com/blog/${slug}`);
-
-    const articleSchema = {
-      "@context": "https://schema.org",
-      "@type": "Article",
-      "headline": article.title,
-      "description": article.description,
-      "url": `https://priceapool.com/blog/${slug}`,
-      "datePublished": meta.iso || "2026-01-01",
-      "dateModified": meta.iso || "2026-01-01",
-      "author": { "@type": "Organization", "name": "PriceAPool Editorial Team", "url": "https://priceapool.com" },
-      "publisher": { "@type": "Organization", "name": "PriceAPool.com", "url": "https://priceapool.com" },
-    };
-    let schemaTag = document.getElementById('article-schema');
-    if (!schemaTag) { schemaTag = document.createElement('script'); schemaTag.id = 'article-schema'; schemaTag.type = 'application/ld+json'; document.head.appendChild(schemaTag); }
-    schemaTag.textContent = JSON.stringify(articleSchema);
-
-    if (meta.faqs?.length) {
-      const faqSchema = {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": meta.faqs.map(f => ({ "@type": "Question", "name": f.q, "acceptedAnswer": { "@type": "Answer", "text": f.a } }))
-      };
-      let faqTag = document.getElementById('article-faq-schema');
-      if (!faqTag) { faqTag = document.createElement('script'); faqTag.id = 'article-faq-schema'; faqTag.type = 'application/ld+json'; document.head.appendChild(faqTag); }
-      faqTag.textContent = JSON.stringify(faqSchema);
-    }
-
-    return () => {
-      document.title = 'Pool Cost Calculator 2026 — How Much Does a Pool Cost in Your State?';
-      if (canonical) canonical.setAttribute('href', 'https://priceapool.com/');
-      ['article-schema', 'article-faq-schema'].forEach(id => { const t = document.getElementById(id); if (t) t.remove(); });
-    };
-  }, [slug, article, meta]);
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": article.title,
+    "description": article.description,
+    "url": `https://priceapool.com/blog/${slug}`,
+    "datePublished": meta.iso || "2026-01-01",
+    "dateModified": meta.iso || "2026-01-01",
+    "author": { "@type": "Organization", "name": "PriceAPool Editorial Team", "url": "https://priceapool.com" },
+    "publisher": { "@type": "Organization", "name": "PriceAPool.com", "url": "https://priceapool.com" },
+  };
+  const faqSchema = meta.faqs?.length ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": meta.faqs.map(f => ({ "@type": "Question", "name": f.q, "acceptedAnswer": { "@type": "Answer", "text": f.a } }))
+  } : null;
 
   const wrap = { fontFamily: "'Instrument Sans','DM Sans',system-ui,sans-serif", color: T.text, background: T.bg, minHeight: "100vh" };
   const inner = { maxWidth: 720, margin: "0 auto", padding: "0 16px 60px" };
 
   return (
     <div style={wrap}>
+      <Helmet>
+        <title>{`${article.title} | PriceAPool`}</title>
+        <meta name="description" content={article.description} />
+        <link rel="canonical" href={`https://priceapool.com/blog/${slug}`} />
+        <meta property="og:title" content={article.title} />
+        <meta property="og:description" content={article.description} />
+        <meta property="og:url" content={`https://priceapool.com/blog/${slug}`} />
+        <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>
+        {faqSchema && <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>}
+      </Helmet>
       {/* NAV */}
       <nav style={{ position: "sticky", top: 0, zIndex: 100, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 16px", height: 52, background: "rgba(245,240,235,0.92)", backdropFilter: "blur(12px)", borderBottom: `1px solid ${T.border}` }}>
         <Link to="/" style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none" }}>

@@ -1,24 +1,22 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import App from './App.jsx'
-import StatePage from './StatePage.jsx'
-import BlogPage from './BlogPage.jsx'
-import HubPage from './HubPage.jsx'
-import CityPage from './CityPage.jsx'
-import DataPage from './DataPage.jsx'
+import { BrowserRouter } from 'react-router-dom'
+import { HelmetProvider } from 'react-helmet-async'
+import AppRoutes from './AppRoutes.jsx'
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+const root = document.getElementById('root')
+const app = (
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/blog/:slug" element={<BlogPage />} />
-        <Route path="/pool-cost-by-state" element={<HubPage />} />
-        <Route path="/pool-cost-data" element={<DataPage />} />
-        <Route path="/city/:citySlug" element={<CityPage />} />
-        <Route path="/:stateSlug" element={<StatePage />} />
-      </Routes>
-    </BrowserRouter>
+    <HelmetProvider>
+      <BrowserRouter>
+        <AppRoutes />
+      </BrowserRouter>
+    </HelmetProvider>
   </React.StrictMode>
 )
+
+if (root.hasChildNodes()) {
+  ReactDOM.hydrateRoot(root, app)
+} else {
+  ReactDOM.createRoot(root).render(app)
+}

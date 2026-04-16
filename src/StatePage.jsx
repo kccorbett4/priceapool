@@ -1,5 +1,5 @@
 import { useParams, Navigate, Link } from 'react-router-dom'
-import { useEffect } from 'react'
+import { Helmet } from 'react-helmet-async'
 import App from './App.jsx'
 
 const T = {
@@ -149,70 +149,36 @@ export default function StatePage() {
   const d = STATE_DATA[code];
   const costs = getStateCosts(d);
 
-  useEffect(() => {
-    document.title = `How Much Does a Pool Cost in ${d.name} (2026)? | PriceAPool`;
-
-    const setMeta = (attr, key, content) => {
-      let el = document.querySelector(`meta[${attr}="${key}"]`);
-      if (el) el.setAttribute('content', content);
-    };
-    setMeta('name', 'description',
-      `2026 pool cost in ${d.name}: gunite pools average ${fmt(costs.gunite)}, fiberglass ${fmt(costs.fiber)}, vinyl ${fmt(costs.vinyl)}. Free calculator adjusted for ${d.name} labor rates, permits, and climate.`
-    );
-    setMeta('property', 'og:title', `Pool Cost in ${d.name} (2026) — Free Calculator`);
-    setMeta('property', 'og:description', `How much does a pool cost in ${d.name}? Get a free instant estimate adjusted for local labor and permit costs.`);
-    setMeta('property', 'og:url', `https://priceapool.com/${stateSlug}`);
-
-    let canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) canonical.setAttribute('href', `https://priceapool.com/${stateSlug}`);
-
-    // State-specific structured data
-    const schema = {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": `How much does an inground pool cost in ${d.name}?`,
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": `In ${d.name}, a gunite pool averages ${fmt(costs.gunite)}, fiberglass averages ${fmt(costs.fiber)}, and vinyl liner pools average ${fmt(costs.vinyl)} for a standard 500 sq ft pool. Prices vary by size, features, soil conditions, and local contractor.`
-          }
-        },
-        {
-          "@type": "Question",
-          "name": `Do you need a permit to build a pool in ${d.name}?`,
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": permitSentence(d)
-          }
-        },
-        {
-          "@type": "Question",
-          "name": `What is the cheapest pool to build in ${d.name}?`,
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": `Vinyl liner pools are the most affordable option in ${d.name}, starting around ${fmt(costs.vinyl)}. Fiberglass pools offer a mid-range option at around ${fmt(costs.fiber)}, while gunite pools are the most customizable and start at ${fmt(costs.gunite)}.`
-          }
-        },
-      ]
-    };
-    let schemaTag = document.getElementById('state-schema');
-    if (!schemaTag) {
-      schemaTag = document.createElement('script');
-      schemaTag.id = 'state-schema';
-      schemaTag.type = 'application/ld+json';
-      document.head.appendChild(schemaTag);
-    }
-    schemaTag.textContent = JSON.stringify(schema);
-
-    return () => {
-      document.title = 'Pool Cost Calculator 2026 — How Much Does a Pool Cost in Your State?';
-      if (canonical) canonical.setAttribute('href', 'https://priceapool.com/');
-      const tag = document.getElementById('state-schema');
-      if (tag) tag.remove();
-    };
-  }, [d, stateSlug, costs]);
+  const stateSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": `How much does an inground pool cost in ${d.name}?`,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": `In ${d.name}, a gunite pool averages ${fmt(costs.gunite)}, fiberglass averages ${fmt(costs.fiber)}, and vinyl liner pools average ${fmt(costs.vinyl)} for a standard 500 sq ft pool. Prices vary by size, features, soil conditions, and local contractor.`
+        }
+      },
+      {
+        "@type": "Question",
+        "name": `Do you need a permit to build a pool in ${d.name}?`,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": permitSentence(d)
+        }
+      },
+      {
+        "@type": "Question",
+        "name": `What is the cheapest pool to build in ${d.name}?`,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": `Vinyl liner pools are the most affordable option in ${d.name}, starting around ${fmt(costs.vinyl)}. Fiberglass pools offer a mid-range option at around ${fmt(costs.fiber)}, while gunite pools are the most customizable and start at ${fmt(costs.gunite)}.`
+        }
+      },
+    ]
+  };
 
   const wrap = { fontFamily: "'Instrument Sans','DM Sans',system-ui,sans-serif", color: T.text, background: T.bg, minHeight: "100vh" };
   const card = { background: T.card, border: `1px solid ${T.border}`, borderRadius: 14, padding: 22, marginBottom: 16, boxShadow: "0 1px 3px rgba(0,0,0,0.04)" };
@@ -220,6 +186,15 @@ export default function StatePage() {
 
   return (
     <div style={wrap}>
+      <Helmet>
+        <title>{`How Much Does a Pool Cost in ${d.name} (2026)? | PriceAPool`}</title>
+        <meta name="description" content={`2026 pool cost in ${d.name}: gunite pools average ${fmt(costs.gunite)}, fiberglass ${fmt(costs.fiber)}, vinyl ${fmt(costs.vinyl)}. Free calculator adjusted for ${d.name} labor rates, permits, and climate.`} />
+        <link rel="canonical" href={`https://priceapool.com/${stateSlug}`} />
+        <meta property="og:title" content={`Pool Cost in ${d.name} (2026) — Free Calculator`} />
+        <meta property="og:description" content={`How much does a pool cost in ${d.name}? Get a free instant estimate adjusted for local labor and permit costs.`} />
+        <meta property="og:url" content={`https://priceapool.com/${stateSlug}`} />
+        <script type="application/ld+json">{JSON.stringify(stateSchema)}</script>
+      </Helmet>
       {/* NAV */}
       <nav style={{ position: "sticky", top: 0, zIndex: 100, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 16px", height: 52, background: "rgba(245,240,235,0.92)", backdropFilter: "blur(12px)", borderBottom: `1px solid ${T.border}` }}>
         <Link to="/" style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none" }}>

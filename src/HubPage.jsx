@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { useEffect } from 'react'
+import { Helmet } from 'react-helmet-async'
 
 const T = {
   bg: "#f5f0eb", bg2: "#ede7e0", card: "#ffffff",
@@ -83,32 +83,14 @@ const STATES = [
 }).sort((a, b) => a.gunite - b.gunite);
 
 export default function HubPage() {
-  useEffect(() => {
-    document.title = "Pool Cost by State 2026 — All 50 States Compared | PriceAPool";
-    const setMeta = (attr, key, val) => { let el = document.querySelector(`meta[${attr}="${key}"]`); if (el) el.setAttribute('content', val); };
-    setMeta('name', 'description', 'Compare inground pool costs across all 50 states in 2026. See average gunite, fiberglass, and vinyl pool prices for every state — adjusted for local labor rates and permit costs.');
-    setMeta('property', 'og:title', 'Pool Cost by State 2026 — All 50 States Compared');
-    let canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) canonical.setAttribute('href', 'https://priceapool.com/pool-cost-by-state');
-
-    const schema = {
-      "@context": "https://schema.org", "@type": "FAQPage",
-      "mainEntity": [
-        { "@type": "Question", "name": "Which state has the cheapest pool costs?", "acceptedAnswer": { "@type": "Answer", "text": "Mississippi, Arkansas, and Louisiana have the lowest pool construction costs in the US, with labor rates 20–25% below the national average. A standard gunite pool in Mississippi averages around $48,000–$65,000 vs $90,000–$140,000 in Hawaii or California." } },
-        { "@type": "Question", "name": "Which state has the most expensive pool costs?", "acceptedAnswer": { "@type": "Answer", "text": "Hawaii has the most expensive pool costs — labor rates are 55% above the national average and permit costs are among the highest in the nation. California, New York, Massachusetts, and New Jersey also have significantly above-average pool costs." } },
-        { "@type": "Question", "name": "How much cheaper are pools in southern states?", "acceptedAnswer": { "@type": "Answer", "text": "Pools in the South (Alabama, Mississippi, Arkansas, Tennessee, Georgia) typically cost 25–40% less than in high-cost states like California, New York, or Hawaii. Lower labor costs are the primary driver, along with lower permit fees." } },
-      ]
-    };
-    let schemaTag = document.getElementById('hub-schema');
-    if (!schemaTag) { schemaTag = document.createElement('script'); schemaTag.id = 'hub-schema'; schemaTag.type = 'application/ld+json'; document.head.appendChild(schemaTag); }
-    schemaTag.textContent = JSON.stringify(schema);
-
-    return () => {
-      document.title = 'Pool Cost Calculator 2026 — How Much Does a Pool Cost in Your State?';
-      if (canonical) canonical.setAttribute('href', 'https://priceapool.com/');
-      const t = document.getElementById('hub-schema'); if (t) t.remove();
-    };
-  }, []);
+  const hubSchema = {
+    "@context": "https://schema.org", "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Which state has the cheapest pool costs?", "acceptedAnswer": { "@type": "Answer", "text": "Mississippi, Arkansas, and Louisiana have the lowest pool construction costs in the US, with labor rates 20–25% below the national average. A standard gunite pool in Mississippi averages around $48,000–$65,000 vs $90,000–$140,000 in Hawaii or California." } },
+      { "@type": "Question", "name": "Which state has the most expensive pool costs?", "acceptedAnswer": { "@type": "Answer", "text": "Hawaii has the most expensive pool costs — labor rates are 55% above the national average and permit costs are among the highest in the nation. California, New York, Massachusetts, and New Jersey also have significantly above-average pool costs." } },
+      { "@type": "Question", "name": "How much cheaper are pools in southern states?", "acceptedAnswer": { "@type": "Answer", "text": "Pools in the South (Alabama, Mississippi, Arkansas, Tennessee, Georgia) typically cost 25–40% less than in high-cost states like California, New York, or Hawaii. Lower labor costs are the primary driver, along with lower permit fees." } },
+    ]
+  };
 
   const wrap = { fontFamily: "'Instrument Sans','DM Sans',system-ui,sans-serif", color: T.text, background: T.bg, minHeight: "100vh" };
   const inner = { maxWidth: 860, margin: "0 auto", padding: "0 16px 60px" };
@@ -119,6 +101,14 @@ export default function HubPage() {
 
   return (
     <div style={wrap}>
+      <Helmet>
+        <title>Pool Cost by State 2026 — All 50 States Compared | PriceAPool</title>
+        <meta name="description" content="Compare inground pool costs across all 50 states in 2026. See average gunite, fiberglass, and vinyl pool prices for every state — adjusted for local labor rates and permit costs." />
+        <link rel="canonical" href="https://priceapool.com/pool-cost-by-state" />
+        <meta property="og:title" content="Pool Cost by State 2026 — All 50 States Compared" />
+        <meta property="og:url" content="https://priceapool.com/pool-cost-by-state" />
+        <script type="application/ld+json">{JSON.stringify(hubSchema)}</script>
+      </Helmet>
       <nav style={{ position: "sticky", top: 0, zIndex: 100, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 16px", height: 52, background: "rgba(245,240,235,0.92)", backdropFilter: "blur(12px)", borderBottom: `1px solid ${T.border}` }}>
         <Link to="/" style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none" }}>
           <div style={{ width: 30, height: 30, borderRadius: 7, background: `linear-gradient(135deg,${T.accent},${T.accentDark})`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14, color: "#fff" }}>🏊</div>
