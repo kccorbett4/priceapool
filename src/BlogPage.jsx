@@ -46,11 +46,35 @@ function Table({ headers, rows }) {
 }
 function Callout({ icon, title, children, color }) {
   const bg = color === "warn" ? T.warnBg : T.accentLight;
-  const border = color === "warn" ? "#fde68a" : "#bae6fd";
+  const border = color === "warn" ? "#fde68a" : T.accent + "33";
   return (
     <div style={{ background: bg, border: `1px solid ${border}`, borderRadius: 12, padding: "16px 18px", marginBottom: 20 }}>
       <div style={{ fontSize: 13, fontWeight: 700, color: T.text, marginBottom: 6 }}>{icon} {title}</div>
       <div style={{ fontSize: 13, color: T.textMid, lineHeight: 1.7 }}>{children}</div>
+    </div>
+  );
+}
+function Figure({ src, alt, caption }) {
+  return (
+    <figure style={{ margin: "20px 0 24px" }}>
+      <div style={{ borderRadius: 14, overflow: "hidden", aspectRatio: "16 / 9", background: T.bg2, boxShadow: "0 1px 2px rgba(10,10,10,0.06), 0 12px 32px -12px rgba(10,10,10,0.18)" }}>
+        <img src={src} alt={alt} loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+      </div>
+      {caption && <figcaption style={{ fontSize: 12, color: T.textDim, marginTop: 8, fontStyle: "italic", textAlign: "center" }}>{caption}</figcaption>}
+    </figure>
+  );
+}
+function ProConGrid({ pros, cons }) {
+  const col = (heading, items, accent, bg, border) => (
+    <div style={{ flex: 1, minWidth: 240, background: bg, border: `1px solid ${border}`, borderRadius: 12, padding: "16px 18px" }}>
+      <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: accent, marginBottom: 10 }}>{heading}</div>
+      <ul style={{ margin: 0, paddingLeft: 18 }}>{items.map((it, i) => <li key={i} style={{ fontSize: 14, color: T.textMid, lineHeight: 1.65, marginBottom: 6 }}>{it}</li>)}</ul>
+    </div>
+  );
+  return (
+    <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 20 }}>
+      {col("Pros", pros, T.success, T.successBg, T.successBorder)}
+      {col("Cons", cons, "#991B1B", "#FDF2F2", "#F4CCCC")}
     </div>
   );
 }
@@ -84,119 +108,248 @@ function RelatedPosts({ current }) {
 const ARTICLES = {
 
   "fiberglass-vs-gunite-vs-vinyl": {
-    title: "Fiberglass vs Gunite vs Vinyl Pools: Which Is Right for You? (2026)",
-    description: "Complete comparison of fiberglass, gunite, and vinyl liner pools — cost, durability, maintenance, installation time, and resale value. Make the right choice for your budget and lifestyle.",
+    title: "Fiberglass vs Gunite vs Vinyl Pools: The Definitive 2026 Comparison",
+    description: "An exhaustive, research-backed comparison of fiberglass, gunite/shotcrete, and vinyl liner pools — real 2026 pricing, material science, failure modes, saltwater compatibility, warranty reality, and a decision framework that tells you exactly which is right for your site, climate, and budget.",
     content: () => (
       <>
-        <P>Choosing between a fiberglass, gunite (concrete), and vinyl liner pool is the single most important decision you'll make in the pool-buying process. It affects your upfront cost, long-term maintenance, how long the pool lasts, and even your home's resale value. This guide breaks down every dimension so you can make a confident choice.</P>
+        <P>Picking a pool type is the single highest-leverage decision in a pool project. It locks in <em>everything downstream</em>: how long the build takes, what it costs to own for the next decade, what shapes you can dream up, whether saltwater is a good idea, and how the pool ages in your soil and climate. Most guides online compare these three pool types at a surface level. This one goes deep — drawing on industry association data, manufacturer spec sheets, and the real failure patterns contractors see on warranty calls.</P>
 
-        <H2>Quick Comparison: At a Glance</H2>
+        <P>By the end you'll know not just <em>what</em> each type is, but <em>why</em> each one fails, <em>when</em> it's the wrong choice, and <em>how</em> to pressure-test a builder's bid.</P>
+
+        <Callout icon="📌" title="The 10-second answer">
+          <strong>Gunite</strong> is the right choice when shape and size customization matter more than money. <strong>Fiberglass</strong> is the right choice when you want the pool installed fast, chemical costs kept low, and plan to run a saltwater system. <strong>Vinyl</strong> is the right choice when the upfront budget is tight and you're comfortable replacing a liner every 8–10 years. Everything below is the detail behind that one-liner.
+        </Callout>
+
+        <H2>The 30,000-Foot Comparison</H2>
         <Table
           headers={["Factor", "Gunite / Shotcrete", "Fiberglass", "Vinyl Liner"]}
           rows={[
-            ["Average cost (500 sq ft)", "$48,000–$120,000+", "$35,000–$85,000", "$25,000–$65,000"],
-            ["Installation time", "8–14 weeks", "3–6 weeks", "4–8 weeks"],
-            ["Lifespan", "50+ years", "25–30 years", "Shell 25+ yrs; liner 7–10 yrs"],
-            ["Shapes & sizes", "Fully custom", "Pre-molded (limited)", "Custom with liner"],
-            ["Resurfacing needed?", "Every 10–15 years", "Rarely", "Liner every 7–10 years"],
-            ["Algae resistance", "Low (porous surface)", "Excellent", "Moderate"],
-            ["DIY-friendly?", "No", "Partially", "More than gunite"],
-            ["Best for", "Custom builds, large pools", "Fast install, low maintenance", "Budget buyers"],
+            ["Typical 2026 install (16×32)", "$60,000–$125,000", "$50,000–$85,000", "$40,000–$70,000"],
+            ["High-end ceiling", "$200,000–$400,000+", "$110,000–$140,000", "$80,000–$100,000"],
+            ["Install timeline (contract → swim)", "12–22 weeks", "6–12 weeks", "8–14 weeks"],
+            ["Structural shell life", "50–100+ years", "25–50+ years", "Walls 20–35 yrs"],
+            ["Interior finish life", "Plaster 7–12 yrs; pebble 15–25", "Gel coat 15–25 yrs", "Liner 6–12 yrs"],
+            ["Shape & depth customization", "Unlimited", "Pick from catalog", "Mostly rectangular; custom liner possible"],
+            ["Surface porosity / algae risk", "Porous — highest chemical demand", "Non-porous — lowest demand", "Non-porous — low demand"],
+            ["Saltwater compatibility", "OK with pebble; accelerated erosion with plaster", "Ideal", "OK with polymer walls; corrodes steel walls"],
+            ["Cold-climate performance", "Vulnerable to freeze-thaw cracking", "Excellent — flexible shell", "Good — liner absorbs flex"],
+            ["US market share (new builds)", "~55–60%", "~20–23%", "~18–22%"],
+            ["Share trend", "Declining slowly", "Growing fastest", "Stable to declining"],
+            ["Warranty baseline", "1–10 yrs structural; 1 yr plaster", "Lifetime shell; 7–15 yrs gel coat", "Walls 25+ yrs prorated; liner 20–30 prorated"],
           ]}
         />
+        <P style={{ fontSize: 13, color: T.textDim, fontStyle: "italic", marginTop: -8 }}>Figures synthesized from HomeGuide, Angi, Fixr, Pool &amp; Spa News State of the Industry reports, NPC technical bulletins, and published manufacturer spec sheets (Latham, Thursday Pools, River Pools, Leisure Pools). Pricing is directional — verify with at least three local bids before budgeting.</P>
 
-        <H2>Gunite / Shotcrete Pools</H2>
-        <P>Gunite (also called shotcrete) pools are built by spraying a concrete mixture over a rebar framework. They are the most customizable pool type — you can build virtually any shape, size, or depth. This is what you see at luxury homes, resorts, and community pools.</P>
-        <H3>Pros of Gunite Pools</H3>
+        <H2>Gunite &amp; Shotcrete Pools — the Customizable Standard</H2>
+        <Figure src="/pool-gunite.jpg" alt="Custom gunite pool with infinity edge, raised spa, and PebbleTec finish" caption="A gunite pool with integrated spa, tile band, and pebble finish — the configuration gunite does uniquely well." />
+        <P>Gunite pools are not pre-built. A crew excavates the hole, shapes the soil with rebar, sprays concrete pneumatically over the rebar cage, cures it for 28 days, then applies tile, coping, and an interior plaster finish. The shell is concrete, rigid, and effectively permanent — you rebuild the <em>surface</em> periodically, not the structure.</P>
+        <H3>Gunite vs shotcrete — what's the difference?</H3>
+        <P>The names are often used interchangeably, but they're not the same material. <strong>Gunite</strong> is a dry-mix process: dry cement and aggregate travel through a hose, and water is added at the nozzle. <strong>Shotcrete</strong> is wet-mix: the concrete is batched with water at a plant and pumped. Wet-mix shotcrete produces more consistent density, fewer voids, and less rebound waste. The National Plasterers Council (NPC) has published several technical papers since 2022 favoring wet-mix for pool shells. Most top-tier builders have switched. If a bid specifies "gunite" as a quality signal, that's actually the older method — ask what mix they use and why.</P>
+        <H3>What you actually get</H3>
         <Ul items={[
-          "Fully custom shape, size, and depth — no limits on design",
-          "Most durable surface — concrete shell lasts 50+ years",
-          "Can integrate spas, tanning ledges, grottos, and water features seamlessly",
-          "Highest perceived home value addition",
-          "Can be resurfaced and remodeled without replacing the shell",
+          "A 6–12 inch concrete shell over a grid of steel rebar, set on a compacted base.",
+          "Any shape the designer draws — kidney, freeform, L, true rectangle, vanishing edge, beach entry, tanning ledge, integrated spa, swim-up bar.",
+          "Any depth — 8+ feet for a real diving well is trivially possible, unlike the other two types.",
+          "An interior finish applied as the last step: marcite plaster (cheapest, 7–12 year life), quartz aggregate like Diamond Brite (10–15 years), or pebble finish like PebbleTec or PebbleSheen (15–25 years).",
         ]} />
-        <H3>Cons of Gunite Pools</H3>
-        <Ul items={[
-          "Most expensive upfront — $48,000 to $120,000+ for a typical pool",
-          "Longest construction time (8–14 weeks, often longer)",
-          "Porous surface requires more chemicals to prevent algae",
-          "Rough surface can be hard on feet and swimwear",
-          "Requires resurfacing every 10–15 years ($10,000–$20,000)",
-          "Cracks are possible with soil movement in clay or expansive soil conditions",
-        ]} />
-        <Callout icon="💡" title="Best For">
-          Homeowners who want a completely custom pool, plan to stay in their home long-term, and have a budget of $60,000+. Gunite is the gold standard for backyard resort builds.
+        <H3>Pros &amp; cons — gunite</H3>
+        <ProConGrid
+          pros={[
+            "Unlimited design freedom — any shape, depth, or feature",
+            "Structural shell lasts the life of the home (50–100+ years)",
+            "Highest perceived resale value in luxury and Sun Belt markets",
+            "Integrated spas, grottos, vanishing edges, and beach entries are natural fits",
+            "Can be fully remodeled (retiled, replastered, reshaped) without removing the shell",
+          ]}
+          cons={[
+            "Most expensive upfront — typically 20–40% above comparable fiberglass",
+            "Longest construction window, with the most weather and trade dependencies",
+            "Porous interior finish = highest chemical demand ($800–$1,200/yr)",
+            "Plaster etches under saltwater; pebble finish is the safer saltwater pairing",
+            "Vulnerable to cracks in expansive (clay) soil and freeze-thaw climates",
+            "Interior finish requires resurfacing every 10–20 years ($10,000–$20,000)",
+            "Warranty is only as strong as the contractor — no factory backing on the shell itself",
+          ]}
+        />
+        <H3>How gunite actually fails</H3>
+        <P>The serious failures are almost always structural cracks from soil movement — expansive clay in Dallas or Austin, or freeze-thaw cycling in the Northeast. A crack that leaks is expensive to diagnose (dye testing, pressure testing) and can require partial excavation to repair. Less serious but more common: plaster etching and mottling from chemistry neglect, rebar corrosion "pop-offs" (rust stains blooming through the finish), and calcium scaling at the tile line from high pH water.</P>
+        <Callout icon="✅" title="Gunite is the right choice when">
+          You want a specific custom shape; you need a real diving well or integrated spa; you're in a stable-soil warm climate (Florida, Arizona, Gulf Coast, Southern California); you plan to stay in the home 10+ years; and your total budget is $80,000 or more.
+        </Callout>
+        <Callout icon="⚠️" title="Gunite is the wrong choice when" color="warn">
+          You want the pool swim-ready in a summer; you're building in expansive clay or a freeze-thaw state without a builder who's mastered those conditions; you prioritize low maintenance; or you're buying the cheapest pool and "upgrading later" (you can't meaningfully upgrade the shell material later).
         </Callout>
 
-        <H2>Fiberglass Pools</H2>
-        <P>Fiberglass pools are manufactured as a single pre-formed shell at a factory, then shipped to your home and lowered into the excavated hole by crane. The process is dramatically faster than gunite — and the smooth gel coat surface means much lower maintenance over time.</P>
-        <H3>Pros of Fiberglass Pools</H3>
-        <Ul items={[
-          "Fastest installation — 3–6 weeks from excavation to swim-ready",
-          "Smooth, non-porous surface resists algae far better than concrete",
-          "Lower chemical use saves $500–$1,000/year vs. gunite",
-          "No resurfacing needed — gel coat typically lasts 25+ years",
-          "Flexible shell slightly resistant to ground movement (good for clay soils)",
-          "Can be heated faster than concrete pools",
-        ]} />
-        <H3>Cons of Fiberglass Pools</H3>
-        <Ul items={[
-          "Limited shapes and sizes — you choose from manufacturer's catalog",
-          "Maximum width typically 16 feet (some manufacturers go to 18 ft)",
-          "Cannot customize depth — what you see is what you get",
-          "Delivery is tricky — shell must have access for a crane and large truck",
-          "Gel coat can fade or develop spider cracks over time",
-          "More expensive than vinyl, cheaper than gunite for most sizes",
-        ]} />
-        <Callout icon="💡" title="Best For">
-          Homeowners who want the pool installed fast, value low maintenance, and are happy with standard sizing. Fiberglass is the fastest-growing pool type in the U.S. for a reason — it hits the sweet spot of cost, speed, and ease.
+        <H2>Fiberglass Pools — the Fastest-Growing Segment</H2>
+        <Figure src="/pool-fiberglass.jpg" alt="Fiberglass pool shell being lowered into excavated hole by crane" caption="The defining moment of a fiberglass install: a one-piece factory-made shell dropped into the hole. Hole-to-swim can be as short as three weeks." />
+        <P>A fiberglass pool arrives on a truck as a single pre-formed shell. A crane lowers it into the hole, the installer plumbs it, backfills with gravel, pours a concrete collar, and you're looking at water within days. This is the opposite engineering philosophy from gunite: <em>factory controlled, site-assembled</em> instead of <em>site-built from scratch</em>.</P>
+        <H3>What the shell actually is</H3>
+        <P>Most fiberglass shells are built up in layers inside a female mold at a factory: a gel coat (the finished interior surface you see), a vinyl ester resin barrier layer, several chopped fiberglass layers, woven fiberglass reinforcement, and sometimes a ceramic or aluminum silicate core in newer "composite" models. Wall thickness ranges from roughly 3/8" to 3/4". The result is a <em>flexible</em> shell — it can deform about 2% without cracking, which is why it tolerates the soil movement and freeze-thaw that punish gunite.</P>
+        <H3>The 16-foot wall</H3>
+        <P>You'll see "18-foot wide fiberglass pools" in some marketing. Be skeptical. The US DOT highway transport limit without an oversize permit is 16 feet wide, and realistically the shell has to travel from a manufacturing plant (Virginia, Indiana, Texas are the big three) to your home. A handful of manufacturers will ship 16.5-foot shells with permits, but anything beyond that is either a split-mold design (two pieces bonded on site) or exaggeration. If you need 18+ feet of width, fiberglass is not the right category — look at gunite.</P>
+        <P>Length tops out around 40–44 feet. Depth is fixed by the mold, typically 5.5–6.5 feet with a gradual slope. There is no such thing as a custom-shaped one-piece fiberglass pool.</P>
+        <H3>Pros &amp; cons — fiberglass</H3>
+        <ProConGrid
+          pros={[
+            "Dramatically faster — a well-permitted install can be swimming in 3 weeks",
+            "Non-porous gel coat resists algae; chemical costs ~30–40% below gunite",
+            "No resurfacing cycle for 15–25 years (then a re-gel refinish is optional)",
+            "Flexible shell outperforms gunite in freeze-thaw and expansive soil",
+            "Ideal pairing with saltwater chlorination — no surface degradation",
+            "Heats faster than concrete; energy bills modestly lower",
+            "Factory-backed structural warranties (often lifetime) from the shell maker",
+          ]}
+          cons={[
+            "Limited to the manufacturer's catalog of molds — no true custom shape",
+            "Hard cap around 16 feet of width and 40–44 feet of length",
+            "Delivery requires crane access and a clear path for a wide-load trailer",
+            "Gel coat can fade, chalk, or develop spider cracks at stress points",
+            "Shell float risk if drained improperly in high-groundwater conditions",
+            "Fewer qualified installers in some regional markets",
+            "Not ideal for deep diving wells (>8 ft) — the mold geometry fights you",
+          ]}
+        />
+        <H3>How fiberglass actually fails</H3>
+        <P>The most common cosmetic issue is osmotic blistering ("gel coat pox") — tiny raised bumps from moisture migration through the gel coat. It is usually aesthetic and usually warranty-covered. Spider cracks at the radius points of steps and skimmer cutouts are common and generally cosmetic. The rare serious failure is <em>shell float</em>: if a fiberglass pool is drained without relieving hydrostatic pressure, groundwater can push the empty shell upward out of the ground. Any qualified installer installs a hydrostatic relief valve precisely to prevent this — the failure is almost always an installer error, not a product defect.</P>
+        <H3>Ceramic-composite shells — worth the premium?</H3>
+        <P>Since roughly 2019, several manufacturers (Thursday Pools "Geopremier," Leisure "Aqua Armor," River Pools "T40 Composite") have introduced multi-layer shells that add a ceramic or aluminum silicate core for extra rigidity and osmosis resistance. Marketing claims "lifetime gel coat" and "osmosis-proof." The engineering is real — but independent long-term data does not yet exist for these products. If your builder offers one and the price premium is modest (5–10%), it is a reasonable hedge. Don't pay a 30% premium for a claim that can't yet be independently verified.</P>
+        <Callout icon="✅" title="Fiberglass is the right choice when">
+          You want the pool built fast; you hate pool maintenance and want the lowest possible chemical bill; you're running (or planning) a saltwater system; you're in a clay or freeze-thaw soil region; you're happy with a standard 14×28, 16×32, or 16×40 footprint; and you have clear truck and crane access to the back yard.
+        </Callout>
+        <Callout icon="⚠️" title="Fiberglass is the wrong choice when" color="warn">
+          You want a specific custom shape; you need more than 16 feet of width or a real diving well; the backyard is landlocked by fencing, power lines, or tight lot lines; or you want a vanishing edge, grotto, or complex water-feature integration.
         </Callout>
 
-        <H2>Vinyl Liner Pools</H2>
-        <P>Vinyl liner pools use a steel, polymer, or aluminum frame (the "walls") fitted with a custom-cut vinyl liner that holds the water. They are the most affordable inground option and are very common in colder climates and the Midwest.</P>
-        <H3>Pros of Vinyl Liner Pools</H3>
-        <Ul items={[
-          "Lowest upfront cost — starting around $25,000 for a basic install",
-          "Smooth surface that's gentle on feet and skin",
-          "Can be customized in shape and depth more than fiberglass",
-          "Liners can be changed when worn — essentially a new pool look",
-          "Less expensive to install in cold-climate states",
-        ]} />
-        <H3>Cons of Vinyl Liner Pools</H3>
-        <Ul items={[
-          "Liner replacement every 7–10 years at $3,500–$6,500 — a significant long-term cost",
-          "Liners can tear, puncture, or stain — pets and sharp objects are a risk",
-          "Cannot add attached spas, grottos, or custom water features as easily",
-          "Lower resale value than gunite or fiberglass in most markets",
-          "The floor can feel less rigid than concrete or fiberglass",
-        ]} />
-        <Callout icon="💡" title="Best For">
-          Budget-conscious buyers, first-time pool owners, and homeowners in cold climates who want an inground pool at the lowest entry point. If you're unsure how much you'll use the pool, vinyl is a sensible starting point.
+        <H2>Vinyl Liner Pools — the Budget Entry Point</H2>
+        <Figure src="/pool-vinyl.jpg" alt="Classic vinyl liner inground pool in a Midwest suburban backyard" caption="Vinyl liner pools are the dominant choice in the Midwest, where regional manufacturers and installers concentrate the trade." />
+        <P>A vinyl liner pool is a hybrid. The walls are rigid pre-fabricated steel or polymer panels that bolt together on a concrete footer. The floor is vermiculite or grout-mix over the excavated soil. Over that armature, a single custom-printed vinyl sheet — the liner — is stretched and sealed against the coping. The liner holds the water; the walls and floor just give it shape.</P>
+        <H3>What to know about the wall panels</H3>
+        <P>Steel wall panels are the legacy standard; they cost less but corrode in acidic soil and are incompatible with most saltwater systems. Polymer walls (more common in newer builds) are corrosion-proof and saltwater-safe. If a vinyl quote doesn't specify the wall material, ask — the difference in long-term durability is large.</P>
+        <H3>What to know about the liner</H3>
+        <P>Modern liners are printed on 20–30 mil vinyl; 28-mil or higher is worth paying for. Average real-world life is 8–10 years, though the marketing "20 or 25 year warranty" is almost always heavily prorated — by year five, the payout against a replacement is typically 20–30% of cost. Plan financially as if you're replacing the liner every 9 years at $4,500–$7,500 installed. Sharp dog claws, pointy toys, and bad winterization are the top three liner-killers.</P>
+        <H3>Pros &amp; cons — vinyl</H3>
+        <ProConGrid
+          pros={[
+            "Lowest upfront cost of the three — the entry point to inground ownership",
+            "Install timelines roughly match fiberglass (3–6 weeks once permitted)",
+            "Smooth, soft-feeling surface — kind to feet, knees, and swimsuits",
+            "Liner can be swapped for a new pattern — effectively a visual refresh every decade",
+            "Some custom shape flexibility (L-shapes, rounded ends) that fiberglass lacks",
+            "Forgiving in freeze-thaw climates — walls flex slightly, liner absorbs the rest",
+          ]}
+          cons={[
+            "Liner replacement every 8–10 years at $4,500–$7,500 is a non-optional line item",
+            "Saltwater is problematic with steel walls; insist on polymer walls if salt is on your list",
+            "Lowest resale bump; can read as deferred maintenance in high-end markets",
+            "Cannot integrate an attached spa, vanishing edge, or complex water features",
+            "Sharp objects (dog claws, toys, pool chairs) puncture liners — repairable but visible",
+            "Liner wrinkles and floats can occur if groundwater is high during refills",
+            "Steel walls, if present, are vulnerable to acidic soil and salt corrosion",
+          ]}
+        />
+        <H3>How vinyl actually fails</H3>
+        <P>The most common failure is simply liner aging — UV fade, chlorine fatigue, and tiny shrinkage that eventually manifests as wrinkles or leaks. A patched liner is fine temporarily, but patches are visible and accumulate. More structural failures include wall-panel corrosion (especially steel walls in acidic or salty conditions), washout behind the liner creating bulges in the floor or walls, and liner floats where high groundwater lifts the liner off the substrate during a refill. Polymer walls eliminate the corrosion failure mode; careful winterization and ground-drainage management handle most of the rest.</P>
+        <Callout icon="✅" title="Vinyl is the right choice when">
+          Your total pool budget is capped under $70,000; you're in the Midwest or Northeast and working with established regional vinyl builders; you specifically want a simple rectangular or L-shape pool; you're comfortable replacing the liner as a scheduled expense; and you either don't want saltwater or are willing to pay for polymer walls.
+        </Callout>
+        <Callout icon="⚠️" title="Vinyl is the wrong choice when" color="warn">
+          You have large dogs that will swim with you (claws); you want a saltwater system and are being quoted steel walls; you're in a luxury market where pool quality affects resale; or you want a custom shape, vanishing edge, or integrated spa.
         </Callout>
 
-        <H2>Long-Term Cost of Ownership (10-Year Total)</H2>
+        <H2>Saltwater Compatibility — the Often-Missed Differentiator</H2>
+        <P>Roughly three-quarters of new US pools are now saltwater (Pool &amp; Spa News 2024 State of the Industry). The salt chlorinator converts dissolved salt into chlorine on demand — smoother water, less bagged chlorine, lower ongoing chemical cost. But salt is still salt, and it interacts very differently with each pool type.</P>
         <Table
-          headers={["Cost Category", "Gunite", "Fiberglass", "Vinyl Liner"]}
+          headers={["Pool type", "Saltwater compatibility", "What actually happens"]}
           rows={[
-            ["Initial install", "$75,000", "$55,000", "$40,000"],
-            ["Chemicals (10 yr)", "$12,000", "$7,000", "$9,000"],
-            ["Resurfacing / liner", "$15,000", "$0", "$9,000"],
-            ["Repairs & maintenance", "$6,000", "$3,000", "$5,000"],
-            ["Total 10-year cost", "~$108,000", "~$65,000", "~$63,000"],
+            ["Fiberglass", "Ideal — this is the benchmark", "Gel coat is inert to salt; no degradation mechanism."],
+            ["Gunite — pebble finish", "Good", "Pebble aggregate resists salt erosion; widely recommended by modern builders."],
+            ["Gunite — plaster finish", "Use with caution", "NPC has documented accelerated plaster erosion under salt; expect shorter resurface cycles."],
+            ["Vinyl — polymer walls", "Good", "Polymer is inert; liner seams and hardware should be salt-rated."],
+            ["Vinyl — steel walls", "Avoid", "Salt accelerates galvanized steel corrosion from behind the liner."],
           ]}
         />
-        <P>When you factor in long-term maintenance, fiberglass and vinyl are much closer in 10-year cost — despite vinyl being cheaper upfront. Gunite's higher chemical costs and eventual resurfacing push the 10-year total significantly higher.</P>
+        <P>If saltwater is non-negotiable for you, fiberglass is the simplest pairing; gunite-with-pebble is the premium pairing; and vinyl-with-polymer-walls is the budget pairing. Gunite-with-plaster and vinyl-with-steel are the two combinations to avoid.</P>
 
-        <H2>Which Pool Type Adds the Most Home Value?</H2>
-        <P>Gunite pools are generally perceived as the highest-value addition by appraisers and buyers, particularly in warm-climate states. Fiberglass pools also show well and appeal to buyers who want low maintenance. Vinyl liner pools can actually be a neutral or slight negative in high-end markets because buyers anticipate liner replacement costs.</P>
-        <P>That said, a well-maintained pool of any type adds more value in warm-weather states (Florida, Arizona, Texas, California) than in cold-climate states where the pool season is short.</P>
-
-        <H2>Our Recommendation</H2>
+        <H2>Climate and Soil — Where the Pool Type Actually Breaks or Holds</H2>
+        <P>This is where most cost-first comparisons fall down. The right pool type depends as much on <em>where you are</em> as on what you can spend.</P>
         <Ul items={[
-          "Choose gunite if: you want a custom design, have a budget over $70K, and plan to stay 10+ years",
-          "Choose fiberglass if: you want it done fast, hate maintenance, and are fine with standard sizing",
-          "Choose vinyl if: you're budget-limited, in a cold climate, or testing the waters as a first-time pool owner",
+          "Stable soil, warm climate (Florida, Arizona, coastal Southern California, Gulf Coast): every pool type works. Choose on cost and shape preference. Gunite dominates the luxury segment.",
+          "Expansive clay (Dallas–Fort Worth, Austin, Denver Front Range, parts of the Central Valley): fiberglass handles soil movement best because of the flexible shell. Gunite here requires an experienced builder who understands post-tensioned shells and proper backfill.",
+          "Freeze-thaw climates (Midwest, Northeast, Mid-Atlantic, higher-elevation West): fiberglass is the technically safest choice — the flexible shell tolerates the cyclic flex. Vinyl is historically dominant because the liner absorbs minor wall movement. Gunite is viable with proper winterization and expansion allowances, but risk is higher.",
+          "High water table (coastal areas, parts of Florida and the Gulf, low-lying Midwest): hydrostatic pressure is the risk. Every pool type requires relief systems; fiberglass is most sensitive to improper draining, and vinyl liners can float. Gunite handles groundwater best once cured.",
+          "Acidic or high-salinity soil: avoid steel-wall vinyl. Fiberglass and gunite with properly protected rebar are both fine.",
         ]} />
+
+        <H2>The Honest 10-Year Cost of Ownership</H2>
+        <P>Upfront cost is the headline number; ownership cost is the real one. The table below is a realistic 10-year projection for a 16×32 pool in a mid-cost state, using current industry averages.</P>
+        <Table
+          headers={["Cost category", "Gunite (plaster)", "Gunite (pebble)", "Fiberglass", "Vinyl (polymer)"]}
+          rows={[
+            ["Initial install", "$85,000", "$100,000", "$62,000", "$50,000"],
+            ["Chemicals (10 yr)", "$10,000", "$10,000", "$5,000", "$6,500"],
+            ["Electricity (10 yr, variable-speed pump)", "$4,000", "$4,000", "$3,500", "$3,500"],
+            ["Resurface / liner", "$15,000 (yr 8–10)", "$0–$5,000", "$0", "$12,000 (two liners)"],
+            ["Routine repairs", "$5,000", "$4,000", "$3,000", "$4,500"],
+            ["Acid wash / tune-ups", "$1,500", "$1,200", "$500", "$1,000"],
+            ["Total 10-year cost", "≈ $120,500", "≈ $119,200", "≈ $74,000", "≈ $77,500"],
+          ]}
+        />
+        <P>Two findings jump out. First: fiberglass and vinyl end up very close at the 10-year mark, despite a $12,000 gap in upfront cost — vinyl's liner replacement closes most of that gap. Second: a pebble-finish gunite pool and a plaster-finish gunite pool end up within a few thousand dollars over ten years, because the pebble saves you a resurfacing cycle. If you're going gunite, pay for pebble the first time.</P>
+
+        <H2>Warranty Reality Check</H2>
+        <P>Every pool segment advertises long warranties. Read them carefully.</P>
+        <Ul items={[
+          "Gunite: The structural warranty is from the builder, not a factory. It's only as strong as the builder's business. One- to ten-year coverage is typical; if the builder is small, single-proprietor, or new, treat the warranty as ornamental.",
+          "Fiberglass: Shell structural warranties are factory-backed and usually 'lifetime.' Gel coat surface warranties range from 3 years (some imports) to 15 years (Latham, Thursday Pools). Beware prorated schedules — a '15-year gel coat warranty' often pays 100% in year 1 and under 25% by year 6.",
+          "Vinyl: Wall panels carry multi-decade warranties, often 'lifetime.' Liner warranties of 20–30 years are heavily prorated; real-world replacement is out-of-pocket after year 5–7 in most cases. Budget as though there is no liner warranty past year 5.",
+        ]} />
+
+        <H2>Market Share and Where the Industry Is Going</H2>
+        <P>US new-build market share as reported by Pool &amp; Spa News (annual State of the Industry) has been directionally clear for a decade: gunite is slowly losing share, fiberglass is gaining fastest, and vinyl is holding steady in its regional strongholds.</P>
+        <Ul items={[
+          "Gunite: ~55–60% of new inground builds, down from ~75% a decade ago. Sun Belt holds steady; Midwest and Northeast are where gunite is losing most.",
+          "Fiberglass: ~20–23%, up from ~15% in 2018. Growth is driven by saltwater adoption, skilled-labor shortages in concrete trades, and faster build times.",
+          "Vinyl: ~18–22%, concentrated in the Midwest (Michigan, Ohio, Indiana) where most regional manufacturers operate. Slow decline.",
+        ]} />
+        <P>Two industry dynamics are worth understanding. First, <strong>skilled-labor shortages</strong> in shotcrete and plaster trades have pushed gunite prices up roughly 25–35% since 2020, versus about 15% for factory-built fiberglass. Second, <strong>saltwater is now dominant</strong> — which structurally favors fiberglass and pressures the older plaster-and-steel-wall configurations.</P>
+
+        <H2>Myths, Debunked</H2>
+        <Ul items={[
+          "\"Gunite lasts forever with no maintenance.\" False. The shell is effectively permanent, but the interior finish is a maintenance-intensive surface that needs resurfacing every 10–20 years and acid washing every 3–5 years.",
+          "\"Fiberglass pools float out of the ground.\" Overstated. Shell float is a drain-event failure and happens when a hydrostatic relief valve isn't installed or isn't opened. Modern installs by qualified builders are not at risk.",
+          "\"Vinyl is the cheapest over the long term.\" Usually false once you include two liner replacements at $5,000–$7,500 each. Over 10 years, vinyl and fiberglass are within a few thousand dollars; over 20, fiberglass is clearly cheaper.",
+          "\"Fiberglass pools all look the same.\" Partially true — there are a couple hundred molds industry-wide, so you'll see repeat designs. But the gel coat colors, waterline tile, and coping do a lot of the visual differentiation.",
+          "\"You can't put a fiberglass pool in a cold climate.\" False. Fiberglass outperforms gunite in freeze-thaw because the shell flexes. This is the exact opposite of the folk wisdom.",
+          "\"Shotcrete is just a marketing rebrand of gunite.\" False. Wet-mix shotcrete has measurably fewer voids and better density per NPC technical bulletins. Ask your builder which process they use.",
+        ]} />
+
+        <H2>The Decision Framework</H2>
+        <P>If you answer the questions below honestly, the right pool type almost always becomes obvious.</P>
+        <Ul items={[
+          "Is your total pool budget under $70,000? → Vinyl, or a basic fiberglass if your region has good installers.",
+          "Do you need a specific custom shape, a real diving well, or a vanishing edge? → Gunite. No substitutes.",
+          "Do you want the pool swim-ready in under two months? → Fiberglass.",
+          "Are you in expansive clay (DFW, Austin, Denver) or a freeze-thaw climate? → Fiberglass first, vinyl second. Gunite only with a builder who has a local portfolio in those conditions.",
+          "Do you plan to run saltwater? → Fiberglass is the safest pairing. Gunite-with-pebble and vinyl-with-polymer-walls are both acceptable. Avoid plaster gunite and steel-wall vinyl.",
+          "Do you have backyard access for a wide-load trailer and crane? → If no, fiberglass is off the table. Gunite or vinyl.",
+          "Will you live in this home 15+ years and want to remodel the pool later? → Gunite. Liners and fiberglass shells don't meaningfully remodel.",
+          "Do you have large dogs that will be in the pool? → Avoid vinyl unless you're committed to patching.",
+        ]} />
+
+        <H2>Questions to Ask Every Builder Before You Sign</H2>
+        <Ul items={[
+          "For gunite: Do you use wet-mix shotcrete or dry-mix gunite, and why? What is the structural warranty period, and who backs it if you're out of business?",
+          "For gunite: Is the rebar schedule and steel diameter per ACI specs? Do you post-tension in expansive-soil areas?",
+          "For fiberglass: Which manufacturer and model? What is the gel coat warranty, and is it prorated? Who installs the hydrostatic relief valve, and how is it maintained?",
+          "For fiberglass: Do you have site photos showing crane and truck access on homes like mine?",
+          "For vinyl: Are these polymer or steel wall panels? What mil thickness is the liner? What is the real-world expected liner life for your install base, not the warranty?",
+          "For any type: Are permits, final electrical inspection, and fence installation included in this quote, or billed separately?",
+          "For any type: Can you show me 5+ completed projects within a 20-minute drive that are at least 5 years old?",
+        ]} />
+
+        <Callout icon="🎯" title="The bottom line">
+          There is no universally best pool. There is a best pool for <em>your</em> site, soil, climate, budget, and use case. If you map those five onto the framework above, the choice becomes straightforward — and you'll walk into bids as an informed buyer rather than a shopper.
+        </Callout>
       </>
     )
   },
@@ -907,12 +1060,15 @@ const ARTICLES = {
 /* ─── Per-article metadata: dates, read time, FAQs ─── */
 const ARTICLE_META = {
   "fiberglass-vs-gunite-vs-vinyl": {
-    date: "January 15, 2026", iso: "2026-01-15", readTime: "12 min read",
+    date: "April 18, 2026", iso: "2026-04-18", readTime: "18 min read",
     faqs: [
-      { q: "Which pool type is cheapest to maintain?", a: "Fiberglass pools are the cheapest to maintain long-term, using 50–70% fewer chemicals than gunite ($400–$800/year vs $700–$1,400/year) and requiring no resurfacing for 25+ years. Vinyl liner pools fall in the middle — lower chemicals than gunite but liner replacement every 7–10 years adds $3,500–$7,500 each time." },
-      { q: "Which inground pool lasts the longest?", a: "Gunite (concrete) pools have the longest structural lifespan at 50+ years — the shell essentially lasts forever, though the interior finish needs resurfacing every 10–15 years. Fiberglass shells also last 25–30+ years with no resurfacing. Vinyl liner pools have a long-lasting frame (25+ years) but the liner needs replacement every 7–10 years." },
-      { q: "Is fiberglass or gunite better for cold climates?", a: "Fiberglass is generally better for cold climates because the flexible shell handles freeze-thaw ground movement better than rigid concrete. Concrete pools can develop cracks when soil expands and contracts with freezing. That said, both types are widely built in cold states — proper installation and winterization matter more than pool type." },
-      { q: "What is the most popular pool type in America?", a: "Gunite (concrete) pools are the most common overall, historically accounting for about 50% of inground pools. However, fiberglass is the fastest-growing type, gaining market share rapidly due to lower maintenance and faster installation. In some Sun Belt markets, fiberglass now outsells gunite." },
+      { q: "Which pool type is cheapest to own over 10 years?", a: "Fiberglass, by a small margin. A realistic 10-year total for a 16×32 pool is approximately $74,000 for fiberglass, $77,500 for vinyl (including two liner replacements), and $119,000–$121,000 for gunite (including one resurfacing). Vinyl wins on upfront cost, fiberglass wins on ongoing cost, and the two are within a few thousand dollars of each other by year 10. Gunite is in a different tier because of chemical demand, resurfacing cycles, and higher install cost." },
+      { q: "Is fiberglass or gunite better for cold climates?", a: "Fiberglass, contrary to popular belief. A fiberglass shell flexes roughly 2% without cracking, which is why it tolerates freeze-thaw soil movement better than rigid concrete. Gunite is still widely built in cold states, but it requires experienced builders, expansion allowances, and rigorous winterization. If you're in the Midwest, Northeast, or higher-elevation West and maintenance is a concern, fiberglass is technically safer." },
+      { q: "Can I run a saltwater system on a gunite pool?", a: "Yes, but with a caveat: the interior finish matters a lot. Pebble finishes (PebbleTec, PebbleSheen) resist salt erosion well and are the current recommendation from most high-end builders. Standard plaster finishes erode faster under saltwater — the National Plasterers Council has published technical bulletins noting accelerated wear. If saltwater is on your list and you want gunite, specify a pebble finish at quote time." },
+      { q: "What is the maximum size of a fiberglass pool?", a: "In practice, 16 feet wide by about 40–44 feet long, and 6.5 feet deep. The US DOT highway transport limit without an oversize permit is 16 feet wide, and shells travel from a handful of US factories (Virginia, Indiana, Texas) to your site on a flatbed. A few manufacturers offer 16.5-foot widths with special permitting. Claims of '18-foot fiberglass pools' are almost always split-mold designs (two pieces bonded on site) or exaggeration. If you need more than 16 feet of width, choose gunite." },
+      { q: "What is the most popular pool type in America in 2026?", a: "Gunite still leads US new builds at roughly 55–60% market share, down from about 75% a decade ago. Fiberglass is at 20–23% and growing fastest, driven by saltwater adoption, skilled-labor shortages in concrete trades, and faster build times. Vinyl liner sits at 18–22%, concentrated in the Midwest where regional manufacturers are headquartered. In some Sun Belt submarkets fiberglass now outsells gunite." },
+      { q: "How often do you really need to replace a vinyl liner?", a: "Every 8–10 years on average, though well-maintained liners with UV covers can stretch to 12. Marketing materials advertise 20- to 30-year liner warranties, but those are heavily prorated — by year five, the payout against a replacement is typically 20–30% of cost. Plan financially as if you're replacing the liner every 9 years at $4,500–$7,500 installed. Sharp dog claws, pointy pool toys, and incomplete winterization are the top three liner-killers." },
+      { q: "What is the difference between gunite and shotcrete?", a: "Gunite is a dry-mix process: dry cement and aggregate travel through a hose, and water is added at the nozzle. Shotcrete is wet-mix: the concrete is batched with water at a plant and pumped pre-mixed. Wet-mix shotcrete produces more consistent density, fewer voids, and less material waste. The National Plasterers Council has favored wet-mix shotcrete since 2022, and most top-tier builders have switched. Ask your builder which process they use — if they can't articulate a reason, that's a signal." },
     ]
   },
   "inground-pool-cost-guide": {
@@ -1054,7 +1210,7 @@ export default function BlogPage() {
         </div>
 
         {/* CTA BANNER */}
-        <div style={{ background: T.accentLight, border: `1px solid #bae6fd`, borderRadius: 12, padding: "14px 18px", marginBottom: 28, display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 10 }}>
+        <div style={{ background: T.accentLight, border: `1px solid ${T.accent}33`, borderRadius: 12, padding: "14px 18px", marginBottom: 28, display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 10 }}>
           <div style={{ fontSize: 13, color: T.text, fontWeight: 600 }}>Get a free pool cost estimate for your state</div>
           <Link to="/" style={{ padding: "11px 20px", borderRadius: 10, background: T.text, color: "#fff", textDecoration: "none", fontSize: 13, fontWeight: 600, letterSpacing: "-0.005em", whiteSpace: "nowrap", boxShadow: "0 1px 2px rgba(10,10,10,0.08), 0 4px 12px rgba(10,10,10,0.08)" }}>Try the Calculator →</Link>
         </div>
