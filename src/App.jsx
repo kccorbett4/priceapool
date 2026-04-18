@@ -94,7 +94,8 @@ const FEATURES = [
   {id:"diving",label:"Diving Board",cost:2500,icon:"🏊",laborIntensive:false,minDeep:9},
   {id:"fence",label:"Safety Fence",cost:3200,icon:"🏗️",laborIntensive:true},
   {id:"chemical",label:"Chemical Controller",cost:2800,icon:"⚗️",laborIntensive:false,conflictGroup:"chem"},
-  {id:"grotto",label:"Grotto",cost:13000,icon:"🏔️",laborIntensive:true},
+  {id:"grotto",label:"Grotto",cost:13000,icon:"🏔️",laborIntensive:true,guniteOnly:true},
+  {id:"vanishing",label:"Vanishing Edge",cost:32000,icon:"♾️",laborIntensive:true,guniteOnly:true},
 ];
 
 const FINISH_OPTIONS = {
@@ -615,7 +616,9 @@ export default function App({ initialState = "", hideNav = false }) {
   let featCost = 0; Object.entries(features).forEach(([id, on]) => {
     if (!on || id === "autocover") return;
     const f = FEATURES.find(x => x.id === id);
-    if (f) featCost += f.laborIntensive ? f.cost * lab : f.cost;
+    if (!f) return;
+    if (f.guniteOnly && poolType !== "gunite") return;
+    featCost += f.laborIntensive ? f.cost * lab : f.cost;
   });
 
   /* #1: Decking — labor adjusted (installation is labor-heavy) */
@@ -728,7 +731,7 @@ export default function App({ initialState = "", hideNav = false }) {
   const renderStep2 = () => <>
     <Card><Ttl>Add-On Features</Ttl><Dsc>Toggle for live cost updates. 2026 installed pricing.</Dsc>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(210px,1fr))", gap: 6 }}>
-        {FEATURES.map(f => <Chip key={f.id} on={features[f.id]} onClick={() => toggleFeat(f.id)}>
+        {FEATURES.filter(f => !f.guniteOnly || poolType === "gunite").map(f => <Chip key={f.id} on={features[f.id]} onClick={() => toggleFeat(f.id)}>
           <span style={{ fontSize: 15 }}>{f.icon}</span>
           <div style={{ flex: 1 }}>
             <div style={{ fontSize: 11, fontWeight: 600, color: T.text }}>{f.label}{f.id === "autocover" && hasSpa ? " + Spa Cover" : ""}</div>

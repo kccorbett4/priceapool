@@ -88,8 +88,8 @@ export const BUILDS = {
     type: "Gunite",
     tier: "Luxury",
     image: "/build-scottsdale-resort.jpg",
-    priceTotal: 215000,
-    priceRange: [195000, 240000],
+    priceTotal: 248200,
+    priceRange: [228000, 280000],
     timelineWeeks: 20,
     specs: {
       dimensions: "18 × 40 ft (freeform)",
@@ -113,7 +113,7 @@ export const BUILDS = {
       { label: "PebbleTec Midnight Blue finish", cost: 16200 },
       { label: "Glass mosaic waterline + spa wall tile", cost: 12800 },
       { label: "Travertine coping + 1,200 sq ft travertine deck", cost: 38000 },
-      { label: "Vanishing edge trough + catch basin", cost: 9600 },
+      { label: "Vanishing edge system (weir wall, trough, catch basin, dedicated pump)", cost: 34000 },
       { label: "Plumbing (complex, dual-shell)", cost: 12000 },
       { label: "Pentair IntelliCenter + VS pumps (×3)", cost: 14500 },
       { label: "Saltwater + UV/ozone sanitation", cost: 6800 },
@@ -126,7 +126,7 @@ export const BUILDS = {
       { label: "Startup + orientation", cost: 1400 },
     ],
     whatAddedCost: [
-      { label: "Vanishing edge + catch basin engineering", cost: 18000 },
+      { label: "Vanishing edge system premium over a standard coping edge", cost: 30000 },
       { label: "Travertine deck over broom-finish concrete", cost: 22000 },
       { label: "Pentair IntelliCenter over basic equipment", cost: 6500 },
       { label: "Rock excavation surcharge (desert bedrock)", cost: 4800 },
