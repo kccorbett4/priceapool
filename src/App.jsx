@@ -815,41 +815,6 @@ export default function App({ initialState = "", hideNav = false }) {
       </div>
     </div>
 
-    {/* #17: Financing */}
-    <FinancingBanner total={total} />
-
-    {/* Quick Summary */}
-    <Card>
-      <div style={{ fontSize: 13, fontWeight: 700, color: T.text, marginBottom: 10 }}>Quick Summary</div>
-      <div style={{ fontSize: 12, color: T.textMid, lineHeight: 2 }}>
-        {[["Pool Shell", shell], ["Excavation", excav], ...(depthEng > 0 ? [["Deep End Eng.", depthEng]] : []), ...(soilTot > 0 ? [["Soil Engineering*", soilTot]] : []), ["Plumbing & Equip.", plumb], ["Electrical", elec], [FINISH_OPTIONS[finishType]?.label || "Finish", inter], ...(hasSpa ? [["Spa", spaCost]] : []), ...(poolCoverCost > 0 ? [["Pool Cover", poolCoverCost]] : []), ...(spaAC > 0 ? [["Spa Cover", spaAC]] : []), ...(featCost > 0 ? [["Features", featCost]] : []), ...(deckCost > 0 ? [["Decking", deckCost]] : []), ["Permits", permits], ...(frostC > 0 ? [["Frost", frostC]] : []), [`Contingency (${Math.round(contRate * 100)}%)`, cont]].map(([l, v]) => <div key={l} style={{ display: "flex", justifyContent: "space-between" }}><span>{l}</span><strong style={{ color: T.text }}>{fmt(v)}</strong></div>)}
-        <div style={{ borderTop: `1px solid ${T.borderLight}`, marginTop: 6, paddingTop: 6, display: "flex", justifyContent: "space-between" }}><span style={{ fontWeight: 700, color: T.text }}>Total</span><strong style={{ color: T.accent, fontSize: 15 }}>{fmt(total)}</strong></div>
-      </div>
-    </Card>
-
-    {/* Diagram */}
-    <Card style={{ padding: "16px 8px 8px" }}><div style={{ fontSize: 14, fontWeight: 700, color: T.text, marginBottom: 8, paddingLeft: 14 }}>Your Pool Layout</div><PoolDiagram length={cL} width={cW} shallowDepth={shallowDepth} deepDepth={cDeep} hasSpa={hasSpa} spaSize={spaSize} poolType={poolType} shape={shape} /></Card>
-
-    {/* Breakdown */}
-    <Card>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}><Ttl>Cost Breakdown</Ttl><button onClick={() => setShowBrk(!showBrk)} style={{ padding: "5px 10px", borderRadius: 6, border: `1px solid ${T.border}`, background: T.cardAlt, color: T.textMid, fontSize: 10, fontWeight: 600, cursor: "pointer" }}>{showBrk ? "Collapse" : "Expand"}</button></div>
-      {showBrk && bRows.map((r, i) => <div key={i} style={{ display: "flex", alignItems: "center", padding: r.h ? "8px 10px" : "8px 0", borderBottom: `1px solid ${T.borderLight}`, background: r.h ? T.dangerBg : "transparent", borderRadius: r.h ? 6 : 0, gap: 6 }}>
-        <div style={{ flex: 1, fontSize: 11, color: r.h ? T.danger : T.textMid, fontWeight: r.h ? 700 : 500, minWidth: 0 }}>{r.l}</div>
-        <div style={{ fontSize: 12, fontWeight: 700, color: r.h ? T.danger : T.text, fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap" }}>{fmt(r.v)}</div>
-        <div style={{ width: 60, height: 5, borderRadius: 3, background: T.bg2, flexShrink: 0 }}><div style={{ width: `${Math.min((r.v / maxR) * 100, 100)}%`, height: "100%", borderRadius: 3, background: r.c, transition: "width .4s ease" }} /></div>
-      </div>)}
-    </Card>
-
-
-    {/* Savings */}
-    <Card style={{ borderColor: T.successBorder }}><div style={{ fontSize: 16, fontWeight: 700, color: T.success, marginBottom: 2 }}>💰 Top 3 Ways to Save</div><Dsc>Personalized to your build. Green buttons apply instantly.</Dsc><SavingsTips poolType={poolType} features={features} soil={soil} spaSize={spaSize} deckType={deckType} deckSqft={deckSqft} frost={frostC} length={cL} width={cW} deepDepth={cDeep} shallowDepth={shallowDepth} onApply={handleApply} /></Card>
-
-    {/* #18: Ongoing costs */}
-    <OngoingCostsBanner sqft={sqft} volume={volume} features={features} hasSpa={hasSpa} frost={sd.frost} />
-
-    {/* Adjust */}
-    <Card><Ttl>Adjust Your Build</Ttl><Dsc>Change anything — total updates live.</Dsc>{renderStep1()}{renderStep2()}</Card>
-
     {/* #12: Lead capture CTA */}
     <Card style={{ borderColor: T.accent, background: `linear-gradient(135deg, ${T.accentLight}, #f0f9ff)` }}>
       <div style={{ fontSize: 16, fontWeight: 700, color: T.text, marginBottom: 4 }}>🏗️ Get 3 Free Quotes from {STATES[st]?.name || "Local"} Pool Builders</div>
@@ -891,6 +856,41 @@ export default function App({ initialState = "", hideNav = false }) {
         }} style={{ padding: "13px 24px", borderRadius: 10, border: "none", fontWeight: 600, fontSize: 14, letterSpacing: "-0.005em", background: T.text, color: "#fff", cursor: "pointer", boxShadow: "0 1px 2px rgba(10,10,10,0.08), 0 4px 16px rgba(10,10,10,0.08)", whiteSpace: "nowrap" }}>Get Free Quotes →</button>
       </div> : <div style={{ padding: "12px 16px", background: T.successBg, border: `1px solid ${T.successBorder}`, borderRadius: 9, fontSize: 13, fontWeight: 700, color: T.success }}>✓ We'll be in touch within 24 hours with quotes from {STATES[st]?.name} builders.</div>}
     </Card>
+
+    {/* Quick Summary */}
+    <Card>
+      <div style={{ fontSize: 13, fontWeight: 700, color: T.text, marginBottom: 10 }}>Quick Summary</div>
+      <div style={{ fontSize: 12, color: T.textMid, lineHeight: 2 }}>
+        {[["Pool Shell", shell], ["Excavation", excav], ...(depthEng > 0 ? [["Deep End Eng.", depthEng]] : []), ...(soilTot > 0 ? [["Soil Engineering*", soilTot]] : []), ["Plumbing & Equip.", plumb], ["Electrical", elec], [FINISH_OPTIONS[finishType]?.label || "Finish", inter], ...(hasSpa ? [["Spa", spaCost]] : []), ...(poolCoverCost > 0 ? [["Pool Cover", poolCoverCost]] : []), ...(spaAC > 0 ? [["Spa Cover", spaAC]] : []), ...(featCost > 0 ? [["Features", featCost]] : []), ...(deckCost > 0 ? [["Decking", deckCost]] : []), ["Permits", permits], ...(frostC > 0 ? [["Frost", frostC]] : []), [`Contingency (${Math.round(contRate * 100)}%)`, cont]].map(([l, v]) => <div key={l} style={{ display: "flex", justifyContent: "space-between" }}><span>{l}</span><strong style={{ color: T.text }}>{fmt(v)}</strong></div>)}
+        <div style={{ borderTop: `1px solid ${T.borderLight}`, marginTop: 6, paddingTop: 6, display: "flex", justifyContent: "space-between" }}><span style={{ fontWeight: 700, color: T.text }}>Total</span><strong style={{ color: T.accent, fontSize: 15 }}>{fmt(total)}</strong></div>
+      </div>
+    </Card>
+
+    {/* Diagram */}
+    <Card style={{ padding: "16px 8px 8px" }}><div style={{ fontSize: 14, fontWeight: 700, color: T.text, marginBottom: 8, paddingLeft: 14 }}>Your Pool Layout</div><PoolDiagram length={cL} width={cW} shallowDepth={shallowDepth} deepDepth={cDeep} hasSpa={hasSpa} spaSize={spaSize} poolType={poolType} shape={shape} /></Card>
+
+    {/* Breakdown */}
+    <Card>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}><Ttl>Cost Breakdown</Ttl><button onClick={() => setShowBrk(!showBrk)} style={{ padding: "5px 10px", borderRadius: 6, border: `1px solid ${T.border}`, background: T.cardAlt, color: T.textMid, fontSize: 10, fontWeight: 600, cursor: "pointer" }}>{showBrk ? "Collapse" : "Expand"}</button></div>
+      {showBrk && bRows.map((r, i) => <div key={i} style={{ display: "flex", alignItems: "center", padding: r.h ? "8px 10px" : "8px 0", borderBottom: `1px solid ${T.borderLight}`, background: r.h ? T.dangerBg : "transparent", borderRadius: r.h ? 6 : 0, gap: 6 }}>
+        <div style={{ flex: 1, fontSize: 11, color: r.h ? T.danger : T.textMid, fontWeight: r.h ? 700 : 500, minWidth: 0 }}>{r.l}</div>
+        <div style={{ fontSize: 12, fontWeight: 700, color: r.h ? T.danger : T.text, fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap" }}>{fmt(r.v)}</div>
+        <div style={{ width: 60, height: 5, borderRadius: 3, background: T.bg2, flexShrink: 0 }}><div style={{ width: `${Math.min((r.v / maxR) * 100, 100)}%`, height: "100%", borderRadius: 3, background: r.c, transition: "width .4s ease" }} /></div>
+      </div>)}
+    </Card>
+
+
+    {/* Savings */}
+    <Card style={{ borderColor: T.successBorder }}><div style={{ fontSize: 16, fontWeight: 700, color: T.success, marginBottom: 2 }}>💰 Top 3 Ways to Save</div><Dsc>Personalized to your build. Green buttons apply instantly.</Dsc><SavingsTips poolType={poolType} features={features} soil={soil} spaSize={spaSize} deckType={deckType} deckSqft={deckSqft} frost={frostC} length={cL} width={cW} deepDepth={cDeep} shallowDepth={shallowDepth} onApply={handleApply} /></Card>
+
+    {/* #18: Ongoing costs */}
+    <OngoingCostsBanner sqft={sqft} volume={volume} features={features} hasSpa={hasSpa} frost={sd.frost} />
+
+    {/* Adjust */}
+    <Card><Ttl>Adjust Your Build</Ttl><Dsc>Change anything — total updates live.</Dsc>{renderStep1()}{renderStep2()}</Card>
+
+    {/* #17: Financing */}
+    <FinancingBanner total={total} />
 
     {/* #13: Share + Start Over */}
     <div style={{ textAlign: "center", margin: "14px 0", display: "flex", justifyContent: "center", gap: 10, flexWrap: "wrap" }}>
