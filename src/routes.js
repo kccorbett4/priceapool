@@ -21,13 +21,20 @@ export const CITY_SLUGS = [
   "atlanta","charlotte","denver","las-vegas","nashville"
 ];
 
+export const BUILD_SLUGS = [
+  "austin-family-fiberglass","scottsdale-resort-gunite","annarbor-budget-vinyl",
+  "tampa-standard-gunite","paloalto-lap-fiberglass","connecticut-estate-gunite"
+];
+
 export function getAllPaths() {
   return [
     '/',
     '/pool-cost-by-state',
     '/pool-cost-data',
+    '/builds',
     ...STATE_SLUGS.map(s => `/${s}`),
     ...BLOG_SLUGS.map(s => `/blog/${s}`),
     ...CITY_SLUGS.map(s => `/city/${s}`),
+    ...BUILD_SLUGS.map(s => `/builds/${s}`),
   ];
 }

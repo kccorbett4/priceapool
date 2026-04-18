@@ -932,8 +932,9 @@ export default function App({ initialState = "", hideNav = false }) {
         </svg>
         <span style={{ fontSize: 17, fontWeight: 600, color: T.text, letterSpacing: "-0.02em", fontFamily: "'Fraunces',Georgia,serif" }}>PriceAPool</span>
       </Link>
-      <div style={{ display: "flex", gap: 28, alignItems: "center" }}>
+      <div style={{ display: "flex", gap: 24, alignItems: "center" }}>
         <Link to="/pool-cost-by-state" style={{ fontSize: 13, color: T.textMid, textDecoration: "none", fontWeight: 500 }}>By State</Link>
+        <Link to="/builds" style={{ fontSize: 13, color: T.textMid, textDecoration: "none", fontWeight: 500 }}>Builds</Link>
         <Link to="/blog/fiberglass-vs-gunite-vs-vinyl" style={{ fontSize: 13, color: T.textMid, textDecoration: "none", fontWeight: 500 }}>Guides</Link>
         <Link to="/blog/inground-pool-cost-guide" style={{ fontSize: 13, color: T.textMid, textDecoration: "none", fontWeight: 500 }}>Cost Data</Link>
       </div>
