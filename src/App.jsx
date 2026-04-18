@@ -117,15 +117,15 @@ const POOL_SHAPES = {
 
 const fmt = n => "$" + Math.round(n).toLocaleString();
 
-/* ── Colors ── */
+/* ── Colors — "Editorial Depth": warm paper + deep teal + ink ── */
 const T = {
-  bg: "#f5f0eb", bg2: "#ede7e0", card: "#ffffff", cardAlt: "#faf8f5",
-  border: "#e2ddd6", borderLight: "#eee9e3",
-  accent: "#0284c7", accentLight: "#e0f2fe", accentDark: "#0369a1",
-  text: "#1e293b", textMid: "#475569", textDim: "#94a3b8",
-  danger: "#dc2626", dangerBg: "#fef2f2", dangerBorder: "#fecaca",
-  warn: "#d97706", warnBg: "#fffbeb", warnBorder: "#fde68a",
-  success: "#16a34a", successBg: "#f0fdf4", successBorder: "#bbf7d0",
+  bg: "#FAF8F3", bg2: "#F2EFE7", card: "#FFFFFF", cardAlt: "#FAF8F3",
+  border: "#E8E3D7", borderLight: "#EFEBE0",
+  accent: "#0F4C5C", accentLight: "#E6EEF0", accentDark: "#0A3440",
+  text: "#0A0A0A", textMid: "#3D3D3D", textDim: "#8A8A8A",
+  danger: "#991B1B", dangerBg: "#FDF2F2", dangerBorder: "#F4CCCC",
+  warn: "#92400E", warnBg: "#FFFBEB", warnBorder: "#F5E4BC",
+  success: "#166534", successBg: "#F0FDF4", successBorder: "#BBF7D0",
 };
 
 /* ── Styles (extracted — #15) ── */
@@ -135,7 +135,7 @@ const S = {
   dsc: { fontSize: 13, color: T.textMid, marginBottom: 18, lineHeight: 1.55 },
   chip: (on) => ({ display: "flex", alignItems: "center", gap: 7, padding: "9px 11px", borderRadius: 9, border: on ? `2px solid ${T.accent}` : `2px solid ${T.borderLight}`, background: on ? T.accentLight : T.cardAlt, cursor: "pointer", transition: "all .15s" }),
   opt: (sel) => ({ background: sel ? T.accentLight : T.cardAlt, border: sel ? `2px solid ${T.accent}` : `2px solid ${T.borderLight}`, borderRadius: 10, padding: "11px 13px", cursor: "pointer", transition: "all .15s" }),
-  btn: (pri, dis) => ({ padding: "11px 26px", borderRadius: 9, border: "none", fontWeight: 700, fontSize: 13, cursor: dis ? "not-allowed" : "pointer", background: pri ? (dis ? T.border : `linear-gradient(135deg,${T.accent},${T.accentDark})`) : T.bg2, color: pri ? (dis ? T.textDim : "#fff") : T.textMid, transition: "all .2s", boxShadow: pri && !dis ? "0 2px 8px rgba(2,132,199,0.2)" : "none" }),
+  btn: (pri, dis) => ({ padding: "13px 28px", borderRadius: 10, border: pri ? "none" : `1px solid ${T.border}`, fontWeight: 600, fontSize: 14, letterSpacing: "-0.005em", cursor: dis ? "not-allowed" : "pointer", background: pri ? (dis ? "#D4D0C7" : T.text) : "transparent", color: pri ? (dis ? "#8A8A8A" : "#FFFFFF") : T.text, transition: "all .18s cubic-bezier(.4,0,.2,1)", boxShadow: pri && !dis ? "0 1px 2px rgba(10,10,10,0.08), 0 4px 16px rgba(10,10,10,0.08)" : "none" }),
   conflictBanner: { background: T.warnBg, border: `1px solid ${T.warnBorder}`, borderRadius: 9, padding: "10px 14px", marginTop: 10, fontSize: 11, color: T.warn, lineHeight: 1.5 },
 };
 
@@ -394,7 +394,7 @@ function SavingsTips({ poolType, features, soil, spaSize, deckType, deckSqft, fr
   if (spaSize === "large") { const saveSpa = spaPrice("large", poolType) - spaPrice("medium", poolType); tips.push({ id: "downspa", title: "Downsize Spa to Medium", save: fmt(saveSpa), desc: `Medium 6–7 person handles most families. Save ${fmt(saveSpa)} on your ${POOL_TYPES[poolType]?.label || ""} build.`, impact: 1, action: { label: "Downsize", fn: () => onApply("spaSize", "medium") } }); }
   tips.sort((a, b) => a.impact - b.impact);
   const top3 = tips.slice(0, 3);
-  const colors = [T.danger, T.warn, "#0284c7"]; const bgs = [T.dangerBg, T.warnBg, T.accentLight]; const borders = [T.dangerBorder, T.warnBorder, "#bae6fd"]; const labels = ["HIGH IMPACT", "MODERATE", "MINOR"];
+  const colors = [T.danger, T.warn, T.accent]; const bgs = [T.dangerBg, T.warnBg, T.accentLight]; const borders = [T.dangerBorder, T.warnBorder, T.accent + "33"]; const labels = ["HIGH IMPACT", "MODERATE", "MINOR"];
   return <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
     {top3.map((tip) => <div key={tip.id} style={{ background: bgs[tip.impact], border: `1px solid ${borders[tip.impact]}`, borderRadius: 12, padding: "18px 20px", borderLeft: `4px solid ${colors[tip.impact]}` }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6, flexWrap: "wrap", gap: 6 }}>
@@ -776,7 +776,7 @@ export default function App({ initialState = "", hideNav = false }) {
     ...(featCost > 0 ? [{ l: "Add-Ons", v: featCost, c: "#ea580c" }] : []),
     ...(deckCost > 0 ? [{ l: `${DECK_OPTIONS[deckType].label} Deck`, v: deckCost, c: "#0d9488" }] : []),
     { l: "Permits & Inspections", v: permits, c: "#4f46e5" },
-    ...(frostC > 0 ? [{ l: "❄️ Frost Protection", v: frostC, c: "#0891b2" }] : []),
+    ...(frostC > 0 ? [{ l: "❄️ Frost Protection", v: frostC, c: T.accent }] : []),
     { l: `Contingency (${Math.round(contRate * 100)}%)`, v: cont, c: T.textDim },
   ];
   const maxR = Math.max(...bRows.map(r => r.v));
@@ -788,30 +788,27 @@ export default function App({ initialState = "", hideNav = false }) {
     {stateChanged && <div style={{ textAlign: "center", padding: "9px 14px", background: T.warnBg, border: `1px solid ${T.warnBorder}`, borderRadius: 8, marginBottom: 12, fontSize: 12, fontWeight: 700, color: T.warn, animation: "fadeUp .3s ease" }}>📍 State changed to {STATES[st]?.name} — estimate recalculated</div>}
 
     {/* Total */}
-    <div style={{ position: "relative", textAlign: "center", padding: "32px 16px", background: `linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%)`, border: `1px solid ${T.accent}40`, borderRadius: 18, marginBottom: 16, boxShadow: "0 1px 2px rgba(2,132,199,0.08), 0 12px 32px rgba(2,132,199,0.12)", overflow: "hidden" }}>
-      <div style={{ position: "absolute", inset: 0, background: `radial-gradient(circle at 80% 0%, ${T.accentLight}80 0%, transparent 60%)`, pointerEvents: "none" }} />
-      <div style={{ position: "relative", fontSize: 11, textTransform: "uppercase", letterSpacing: 3, color: T.textDim, fontWeight: 700 }}>Estimated Build Cost</div>
-      <div style={{ position: "relative", fontSize: "clamp(38px,9vw,60px)", fontWeight: 800, color: T.accent, margin: "6px 0", fontVariantNumeric: "tabular-nums", fontFamily: "'Fraunces',Georgia,serif", letterSpacing: "-0.02em" }}>{fmt(animTotal)}</div>
-      <div style={{ fontSize: 10, color: T.textDim }}>{fmt(total / sqft)}/sqft · {td.label}{hasSpa ? " + Spa" : ""}{metro.label ? ` · ${metro.label}` : ""}</div>
-      <div style={{ margin: "10px auto 10px", maxWidth: 320 }}>
-        <div style={{ fontSize: 10, color: T.textDim, marginBottom: 5 }}>Typical contractor quote range</div>
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <span style={{ fontSize: 13, fontWeight: 700, color: T.textMid, whiteSpace: "nowrap" }}>{fmt(total * 0.87)}</span>
-          <div style={{ flex: 1, height: 6, borderRadius: 3, background: T.bg2, position: "relative" }}>
-            <div style={{ position: "absolute", left: "0%", right: "0%", top: 0, bottom: 0, borderRadius: 3, background: `linear-gradient(90deg, ${T.accentLight}, ${T.accent}33)` }} />
-            <div style={{ position: "absolute", left: "50%", transform: "translateX(-50%)", top: -3, width: 12, height: 12, borderRadius: "50%", background: T.accent, border: "2px solid #fff", boxShadow: "0 1px 4px rgba(0,0,0,0.15)" }} />
+    <div style={{ position: "relative", textAlign: "center", padding: "40px 24px 32px", background: T.text, color: "#fff", borderRadius: 18, marginBottom: 16, boxShadow: "0 2px 4px rgba(10,10,10,0.08), 0 24px 48px -8px rgba(10,10,10,0.24)", overflow: "hidden" }}>
+      <div style={{ position: "absolute", inset: 0, background: `radial-gradient(circle at 85% 20%, rgba(15,76,92,0.35) 0%, transparent 55%)`, pointerEvents: "none" }} />
+      <div style={{ position: "relative", fontSize: 11, textTransform: "uppercase", letterSpacing: "0.25em", color: "rgba(255,255,255,0.55)", fontWeight: 500 }}>Estimated Build</div>
+      <div style={{ position: "relative", fontSize: "clamp(44px,10vw,76px)", fontWeight: 500, color: "#fff", margin: "8px 0 2px", fontVariantNumeric: "tabular-nums", fontFamily: "'Fraunces',Georgia,serif", letterSpacing: "-0.035em", lineHeight: 1 }}>{fmt(animTotal)}</div>
+      <div style={{ position: "relative", fontSize: 12, color: "rgba(255,255,255,0.55)", letterSpacing: "0.02em", marginTop: 6 }}>{fmt(total / sqft)}/sqft · {td.label}{hasSpa ? " + Spa" : ""}{metro.label ? ` · ${metro.label}` : ""}</div>
+      <div style={{ position: "relative", margin: "24px auto 4px", maxWidth: 360 }}>
+        <div style={{ fontSize: 10, color: "rgba(255,255,255,0.5)", marginBottom: 8, textTransform: "uppercase", letterSpacing: "0.18em", fontWeight: 500 }}>Contractor Quote Range</div>
+        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          <span style={{ fontSize: 13, fontWeight: 500, color: "rgba(255,255,255,0.8)", whiteSpace: "nowrap", fontVariantNumeric: "tabular-nums" }}>{fmt(total * 0.87)}</span>
+          <div style={{ flex: 1, height: 2, background: "rgba(255,255,255,0.15)", position: "relative", borderRadius: 1 }}>
+            <div style={{ position: "absolute", left: "50%", transform: "translate(-50%,-50%)", top: "50%", width: 10, height: 10, borderRadius: "50%", background: "#fff" }} />
           </div>
-          <span style={{ fontSize: 13, fontWeight: 700, color: T.textMid, whiteSpace: "nowrap" }}>{fmt(total * 1.18)}</span>
+          <span style={{ fontSize: 13, fontWeight: 500, color: "rgba(255,255,255,0.8)", whiteSpace: "nowrap", fontVariantNumeric: "tabular-nums" }}>{fmt(total * 1.18)}</span>
         </div>
-        <div style={{ fontSize: 9, color: T.textDim, marginTop: 4 }}>Based on competitive vs. premium contractor bids for this build</div>
-        <div style={{ fontSize: 9, color: T.warn, marginTop: 6 }}>* Soil conditions vary by site and can affect your final cost. A geotech report ($2K-$3K) provides the most accurate assessment.</div>
       </div>
-      <div style={{ display: "inline-flex", alignItems: "center", gap: 8, flexWrap: "wrap", justifyContent: "center" }}>
-        <select value={st} onChange={e => setSt(e.target.value)} style={{ padding: "7px 28px 7px 12px", borderRadius: 8, border: `1px solid ${T.border}`, background: T.cardAlt, color: T.text, fontSize: 13, fontWeight: 600, appearance: "none", backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%2394a3b8'/%3E%3C/svg%3E")`, backgroundRepeat: "no-repeat", backgroundPosition: "right 10px center", cursor: "pointer", outline: "none" }}>
-          {Object.entries(STATES).map(([code, s]) => <option key={code} value={code}>{s.name}</option>)}
+      <div style={{ position: "relative", display: "inline-flex", alignItems: "center", gap: 10, flexWrap: "wrap", justifyContent: "center", marginTop: 20 }}>
+        <select value={st} onChange={e => setSt(e.target.value)} style={{ padding: "8px 30px 8px 14px", borderRadius: 8, border: "1px solid rgba(255,255,255,0.18)", background: "rgba(255,255,255,0.08)", color: "#fff", fontSize: 13, fontWeight: 500, appearance: "none", backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23ffffff99'/%3E%3C/svg%3E")`, backgroundRepeat: "no-repeat", backgroundPosition: "right 12px center", cursor: "pointer", outline: "none" }}>
+          {Object.entries(STATES).map(([code, s]) => <option key={code} value={code} style={{ color: T.text }}>{s.name}</option>)}
         </select>
-        {STATES[st]?.frost && <span style={{ fontSize: 10, color: T.textDim }}>❄️ Frost state</span>}
-        {contRate > baseContRate && <span style={{ fontSize: 10, color: T.warn, fontWeight: 600 }}>⚠️ {Math.round(contRate * 100)}% contingency</span>}
+        {STATES[st]?.frost && <span style={{ fontSize: 11, color: "rgba(255,255,255,0.55)", fontWeight: 500 }}>Frost state</span>}
+        {contRate > baseContRate && <span style={{ fontSize: 11, color: "#F5C978", fontWeight: 500 }}>{Math.round(contRate * 100)}% contingency</span>}
       </div>
     </div>
 
@@ -888,7 +885,7 @@ export default function App({ initialState = "", hideNav = false }) {
               perSqft: fmt(total / sqft),
             }),
           }).catch(() => {});
-        }} style={{ padding: "11px 22px", borderRadius: 9, border: "none", fontWeight: 700, fontSize: 13, background: `linear-gradient(135deg,${T.accent},${T.accentDark})`, color: "#fff", cursor: "pointer", boxShadow: "0 2px 8px rgba(2,132,199,0.2)", whiteSpace: "nowrap" }}>Get Free Quotes →</button>
+        }} style={{ padding: "13px 24px", borderRadius: 10, border: "none", fontWeight: 600, fontSize: 14, letterSpacing: "-0.005em", background: T.text, color: "#fff", cursor: "pointer", boxShadow: "0 1px 2px rgba(10,10,10,0.08), 0 4px 16px rgba(10,10,10,0.08)", whiteSpace: "nowrap" }}>Get Free Quotes →</button>
       </div> : <div style={{ padding: "12px 16px", background: T.successBg, border: `1px solid ${T.successBorder}`, borderRadius: 9, fontSize: 13, fontWeight: 700, color: T.success }}>✓ We'll be in touch within 24 hours with quotes from {STATES[st]?.name} builders.</div>}
     </Card>
 
@@ -902,7 +899,7 @@ export default function App({ initialState = "", hideNav = false }) {
   const steps = [renderStep0, renderStep1, renderStep2, renderResults];
   const stepNames = ["Location", "Pool Size & Spa", "Features", "Your Estimate"];
 
-  return <div style={{ minHeight: "100vh", background: `linear-gradient(180deg,${T.bg} 0%,#eef2f5 55%,#eaf4f8 100%)`, fontFamily: "'Inter',system-ui,-apple-system,sans-serif", color: T.text }}>
+  return <div style={{ minHeight: "100vh", background: T.bg, fontFamily: "'Inter',system-ui,-apple-system,sans-serif", color: T.text }}>
     {!hideNav && <Helmet>
       <title>Pool Cost Calculator 2026 — How Much Does a Pool Cost in Your State?</title>
       <meta name="description" content="Free pool cost calculator for 2026. Get an instant estimate for gunite, fiberglass, or vinyl pools — adjusted for your state and build specs. Accurate pricing in under 2 minutes." />
@@ -915,36 +912,42 @@ export default function App({ initialState = "", hideNav = false }) {
     <style>{`
       .pool-slider{-webkit-appearance:none;appearance:none;width:100%;height:44px;background:transparent;outline:none;cursor:pointer;margin:0;padding:0;touch-action:pan-x;-webkit-tap-highlight-color:transparent}
       .pool-slider::-webkit-slider-runnable-track{height:8px;border-radius:4px;background:${T.border}}
-      .pool-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:32px;height:32px;border-radius:50%;background:${T.accent};border:3px solid #fff;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.2);margin-top:-12px;position:relative}
+      .pool-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:28px;height:28px;border-radius:50%;background:${T.text};border:3px solid #fff;cursor:pointer;box-shadow:0 1px 2px rgba(10,10,10,0.12),0 4px 12px rgba(10,10,10,0.10);margin-top:-10px;position:relative}
       .pool-slider::-moz-range-track{height:8px;border-radius:4px;background:${T.border}}
-      .pool-slider::-moz-range-thumb{width:32px;height:32px;border-radius:50%;background:${T.accent};border:3px solid #fff;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.2)}
-      .pool-slider:active::-webkit-slider-thumb{transform:scale(1.15);box-shadow:0 2px 12px rgba(2,132,199,0.4)}
-      .pool-slider:active::-moz-range-thumb{transform:scale(1.15);box-shadow:0 2px 12px rgba(2,132,199,0.4)}
+      .pool-slider::-moz-range-thumb{width:28px;height:28px;border-radius:50%;background:${T.text};border:3px solid #fff;cursor:pointer;box-shadow:0 1px 2px rgba(10,10,10,0.12),0 4px 12px rgba(10,10,10,0.10)}
+      .pool-slider:active::-webkit-slider-thumb{transform:scale(1.1);box-shadow:0 1px 2px rgba(10,10,10,0.15),0 6px 18px rgba(10,10,10,0.15)}
+      .pool-slider:active::-moz-range-thumb{transform:scale(1.1);box-shadow:0 1px 2px rgba(10,10,10,0.15),0 6px 18px rgba(10,10,10,0.15)}
       *{box-sizing:border-box;margin:0}
       @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
       ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:${T.border};border-radius:2px}
       @media print{.no-print{display:none!important}body{background:#fff!important}}
     `}</style>
     {/* NAV */}
-    {!hideNav && <nav className="no-print" style={{ position: "sticky", top: 0, zIndex: 100, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 16px", height: 52, background: "rgba(245,240,235,0.92)", backdropFilter: "blur(12px)", borderBottom: `1px solid ${T.border}` }}>
-      <Link to="/" style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none" }}>
-        <div style={{ width: 30, height: 30, borderRadius: 7, background: `linear-gradient(135deg,${T.accent},${T.accentDark})`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14, color: "#fff" }}>🏊</div>
-        <span style={{ fontSize: 15, fontWeight: 800, color: T.text, letterSpacing: "-.5px" }}>PriceAPool<span style={{ color: T.accent }}>.com</span></span>
+    {!hideNav && <nav className="no-print" style={{ position: "sticky", top: 0, zIndex: 100, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 24px", height: 64, background: "rgba(250,248,243,0.85)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", borderBottom: `1px solid ${T.borderLight}` }}>
+      <Link to="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
+        <svg width="28" height="28" viewBox="0 0 28 28" style={{ display: "block" }}>
+          <circle cx="14" cy="14" r="14" fill={T.text} />
+          <path d="M6 15.5 Q 9 13, 12 15.5 T 18 15.5 T 24 15.5" fill="none" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" />
+          <path d="M6 19.5 Q 9 17, 12 19.5 T 18 19.5 T 24 19.5" fill="none" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" opacity="0.6" />
+        </svg>
+        <span style={{ fontSize: 17, fontWeight: 600, color: T.text, letterSpacing: "-0.02em", fontFamily: "'Fraunces',Georgia,serif" }}>PriceAPool</span>
       </Link>
-      <div style={{ display: "flex", gap: 16, alignItems: "center" }}>
-        <Link to="/blog/fiberglass-vs-gunite-vs-vinyl" style={{ fontSize: 12, color: T.textMid, textDecoration: "none", fontWeight: 600 }}>Pool Guides</Link>
-        <Link to="/blog/inground-pool-cost-guide" style={{ fontSize: 12, color: T.textMid, textDecoration: "none", fontWeight: 600 }}>Cost Guide</Link>
+      <div style={{ display: "flex", gap: 28, alignItems: "center" }}>
+        <Link to="/pool-cost-by-state" style={{ fontSize: 13, color: T.textMid, textDecoration: "none", fontWeight: 500 }}>By State</Link>
+        <Link to="/blog/fiberglass-vs-gunite-vs-vinyl" style={{ fontSize: 13, color: T.textMid, textDecoration: "none", fontWeight: 500 }}>Guides</Link>
+        <Link to="/blog/inground-pool-cost-guide" style={{ fontSize: 13, color: T.textMid, textDecoration: "none", fontWeight: 500 }}>Cost Data</Link>
       </div>
     </nav>}
-    {step < 3 && <div style={{ textAlign: "center", padding: "32px 20px 6px" }}>
-      <h1 style={{ fontSize: "clamp(22px,4.5vw,34px)", fontWeight: 800, color: T.text, letterSpacing: "-.5px" }}>How Much Does a Pool Cost in <span style={{ color: T.accent }}>2026</span>?</h1>
-      <p style={{ fontSize: 13, color: T.textMid, marginTop: 6, maxWidth: 520, marginLeft: "auto", marginRight: "auto" }}>Accurate estimate in under 2 minutes — adjusted for your state and build.</p>
+    {step < 3 && <div style={{ textAlign: "center", padding: "72px 20px 24px", maxWidth: 840, margin: "0 auto" }}>
+      <div style={{ fontSize: 11, fontWeight: 600, color: T.textDim, textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: 20 }}>Pool Cost Estimator · 2026</div>
+      <h1 style={{ fontSize: "clamp(40px,7vw,72px)", fontWeight: 500, color: T.text, letterSpacing: "-0.035em", lineHeight: 1.02, fontFamily: "'Fraunces',Georgia,serif" }}>How much does a pool <em style={{ fontStyle: "italic", fontWeight: 400 }}>really</em> cost?</h1>
+      <p style={{ fontSize: 17, color: T.textMid, marginTop: 20, maxWidth: 560, marginLeft: "auto", marginRight: "auto", lineHeight: 1.55, fontWeight: 400 }}>An honest estimate in under two minutes — priced against 2026 labor rates in your state, metro, and soil.</p>
     </div>}
     <div style={{ maxWidth: 720, margin: "0 auto", padding: "0 16px" }}>
       <div style={{ display: "flex", justifyContent: "center", gap: 4, margin: "16px 0 20px" }}>
-        {stepNames.map((s, i) => <div key={i} onClick={() => i < step && setStep(i)} style={{ display: "flex", alignItems: "center", gap: 4, padding: "6px 12px", borderRadius: 20, background: step === i ? T.accentLight : i < step ? "rgba(2,132,199,0.05)" : "transparent", border: step === i ? `1px solid ${T.accent}` : "1px solid transparent", cursor: i < step ? "pointer" : "default", transition: "all .15s" }}>
-          <div style={{ width: 20, height: 20, borderRadius: 10, background: i < step ? T.accent : step === i ? "rgba(2,132,199,0.15)" : T.border, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 10, fontWeight: 700, color: i < step ? "#fff" : step === i ? T.accent : T.textDim }}>{i < step ? "✓" : i + 1}</div>
-          <span style={{ fontSize: 11, fontWeight: 600, color: step === i ? T.accent : i < step ? T.textMid : T.textDim, display: step === i || i < step ? "inline" : "none" }}>{s}</span>
+        {stepNames.map((s, i) => <div key={i} onClick={() => i < step && setStep(i)} style={{ display: "flex", alignItems: "center", gap: 6, padding: "7px 14px", borderRadius: 100, background: step === i ? T.text : i < step ? T.bg2 : "transparent", border: step === i ? `1px solid ${T.text}` : `1px solid ${T.borderLight}`, cursor: i < step ? "pointer" : "default", transition: "all .15s" }}>
+          <div style={{ width: 18, height: 18, borderRadius: 9, background: i < step ? T.text : step === i ? "rgba(255,255,255,0.15)" : T.border, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 10, fontWeight: 600, color: i < step ? "#fff" : step === i ? "#fff" : T.textDim }}>{i < step ? "✓" : i + 1}</div>
+          <span style={{ fontSize: 12, fontWeight: 500, color: step === i ? "#fff" : i < step ? T.textMid : T.textDim, display: step === i || i < step ? "inline" : "none" }}>{s}</span>
         </div>)}
       </div>
       <div key={step} style={{ animation: "fadeUp .3s ease", maxWidth: 720, margin: "0 auto" }}>

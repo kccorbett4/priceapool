@@ -5,11 +5,11 @@ import { STATE_CONTENT } from './stateContent.js'
 import BrowseByState from './BrowseByState.jsx'
 
 const T = {
-  bg: "#f5f0eb", bg2: "#ede7e0", card: "#ffffff",
-  border: "#e2ddd6", borderLight: "#eee9e3",
-  accent: "#0284c7", accentLight: "#e0f2fe", accentDark: "#0369a1",
-  text: "#1e293b", textMid: "#475569", textDim: "#94a3b8",
-  success: "#16a34a", successBg: "#f0fdf4", successBorder: "#bbf7d0",
+  bg: "#FAF8F3", bg2: "#F2EFE7", card: "#FFFFFF",
+  border: "#E8E3D7", borderLight: "#EFEBE0",
+  accent: "#0F4C5C", accentLight: "#E6EEF0", accentDark: "#0A3440",
+  text: "#0A0A0A", textMid: "#3D3D3D", textDim: "#8A8A8A",
+  success: "#166534", successBg: "#F0FDF4", successBorder: "#BBF7D0",
 };
 
 const SLUG_TO_CODE = {
@@ -184,10 +184,10 @@ export default function StatePage() {
         <script type="application/ld+json">{JSON.stringify(stateSchema)}</script>
       </Helmet>
       {/* NAV */}
-      <nav style={{ position: "sticky", top: 0, zIndex: 100, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 16px", height: 52, background: "rgba(245,240,235,0.92)", backdropFilter: "blur(12px)", borderBottom: `1px solid ${T.border}` }}>
+      <nav style={{ position: "sticky", top: 0, zIndex: 100, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 24px", height: 64, background: "rgba(250,248,243,0.85)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", borderBottom: `1px solid ${T.border}` }}>
         <Link to="/" style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none" }}>
-          <div style={{ width: 30, height: 30, borderRadius: 7, background: `linear-gradient(135deg,${T.accent},${T.accentDark})`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14, color: "#fff" }}>🏊</div>
-          <span style={{ fontSize: 15, fontWeight: 800, color: T.text, letterSpacing: "-.5px" }}>PriceAPool<span style={{ color: T.accent }}>.com</span></span>
+          <svg width="28" height="28" viewBox="0 0 28 28" style={{ display: "block" }}><circle cx="14" cy="14" r="14" fill={T.text} /><path d="M6 15.5 Q 9 13, 12 15.5 T 18 15.5 T 24 15.5" fill="none" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" /><path d="M6 19.5 Q 9 17, 12 19.5 T 18 19.5 T 24 19.5" fill="none" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" opacity="0.6" /></svg>
+          <span style={{ fontSize: 17, fontWeight: 600, color: T.text, letterSpacing: "-0.02em", fontFamily: "'Fraunces',Georgia,serif" }}>PriceAPool</span>
         </Link>
         <Link to="/blog/fiberglass-vs-gunite-vs-vinyl" style={{ fontSize: 12, color: T.accent, textDecoration: "none", fontWeight: 600 }}>Pool Guides →</Link>
       </nav>
@@ -209,7 +209,7 @@ export default function StatePage() {
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(180px,1fr))", gap: 12, marginBottom: 16 }}>
           {[
             { type: "Gunite / Shotcrete", cost: costs.gunite, tag: "Most Durable", color: T.accent },
-            { type: "Fiberglass", cost: costs.fiber, tag: "Fastest Install", color: "#0891b2" },
+            { type: "Fiberglass", cost: costs.fiber, tag: "Fastest Install", color: T.accentDark },
             { type: "Vinyl Liner", cost: costs.vinyl, tag: "Most Affordable", color: T.success },
           ].map(({ type, cost, tag, color }) => (
             <div key={type} style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: 14, padding: "18px 16px", textAlign: "center", boxShadow: "0 1px 2px rgba(15,23,42,0.04), 0 8px 24px rgba(15,23,42,0.06)" }}>

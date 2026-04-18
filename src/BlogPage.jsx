@@ -3,12 +3,12 @@ import { Helmet } from 'react-helmet-async'
 import BrowseByState from './BrowseByState.jsx'
 
 const T = {
-  bg: "#f5f0eb", bg2: "#ede7e0", card: "#ffffff",
-  border: "#e2ddd6", borderLight: "#eee9e3",
-  accent: "#0284c7", accentLight: "#e0f2fe", accentDark: "#0369a1",
-  text: "#1e293b", textMid: "#475569", textDim: "#94a3b8",
-  success: "#16a34a", successBg: "#f0fdf4", successBorder: "#bbf7d0",
-  warn: "#d97706", warnBg: "#fffbeb",
+  bg: "#FAF8F3", bg2: "#F2EFE7", card: "#FFFFFF",
+  border: "#E8E3D7", borderLight: "#EFEBE0",
+  accent: "#0F4C5C", accentLight: "#E6EEF0", accentDark: "#0A3440",
+  text: "#0A0A0A", textMid: "#3D3D3D", textDim: "#8A8A8A",
+  success: "#166534", successBg: "#F0FDF4", successBorder: "#BBF7D0",
+  warn: "#92400E", warnBg: "#FFFBEB",
 };
 
 /* ─── Shared layout components ─── */
@@ -1032,10 +1032,10 @@ export default function BlogPage() {
         {faqSchema && <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>}
       </Helmet>
       {/* NAV */}
-      <nav style={{ position: "sticky", top: 0, zIndex: 100, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 16px", height: 52, background: "rgba(245,240,235,0.92)", backdropFilter: "blur(12px)", borderBottom: `1px solid ${T.border}` }}>
+      <nav style={{ position: "sticky", top: 0, zIndex: 100, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 24px", height: 64, background: "rgba(250,248,243,0.85)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", borderBottom: `1px solid ${T.border}` }}>
         <Link to="/" style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none" }}>
-          <div style={{ width: 30, height: 30, borderRadius: 7, background: `linear-gradient(135deg,${T.accent},${T.accentDark})`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14, color: "#fff" }}>🏊</div>
-          <span style={{ fontSize: 15, fontWeight: 800, color: T.text, letterSpacing: "-.5px" }}>PriceAPool<span style={{ color: T.accent }}>.com</span></span>
+          <svg width="28" height="28" viewBox="0 0 28 28" style={{ display: "block" }}><circle cx="14" cy="14" r="14" fill={T.text} /><path d="M6 15.5 Q 9 13, 12 15.5 T 18 15.5 T 24 15.5" fill="none" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" /><path d="M6 19.5 Q 9 17, 12 19.5 T 18 19.5 T 24 19.5" fill="none" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" opacity="0.6" /></svg>
+          <span style={{ fontSize: 17, fontWeight: 600, color: T.text, letterSpacing: "-0.02em", fontFamily: "'Fraunces',Georgia,serif" }}>PriceAPool</span>
         </Link>
         <Link to="/" style={{ fontSize: 12, color: T.accent, textDecoration: "none", fontWeight: 600 }}>Free Calculator →</Link>
       </nav>
@@ -1056,7 +1056,7 @@ export default function BlogPage() {
         {/* CTA BANNER */}
         <div style={{ background: T.accentLight, border: `1px solid #bae6fd`, borderRadius: 12, padding: "14px 18px", marginBottom: 28, display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 10 }}>
           <div style={{ fontSize: 13, color: T.text, fontWeight: 600 }}>Get a free pool cost estimate for your state</div>
-          <Link to="/" style={{ padding: "9px 18px", borderRadius: 9, background: `linear-gradient(135deg,${T.accent},${T.accentDark})`, color: "#fff", textDecoration: "none", fontSize: 13, fontWeight: 700, whiteSpace: "nowrap" }}>Try the Calculator →</Link>
+          <Link to="/" style={{ padding: "11px 20px", borderRadius: 10, background: T.text, color: "#fff", textDecoration: "none", fontSize: 13, fontWeight: 600, letterSpacing: "-0.005em", whiteSpace: "nowrap", boxShadow: "0 1px 2px rgba(10,10,10,0.08), 0 4px 12px rgba(10,10,10,0.08)" }}>Try the Calculator →</Link>
         </div>
 
         {/* ARTICLE BODY */}

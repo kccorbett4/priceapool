@@ -1,17 +1,27 @@
 :root {
   --sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --display: 'Fraunces', Georgia, 'Times New Roman', serif;
-  --bg: #f5f0eb;
-  --bg-cool: #eaf4f8;
-  --text: #1e293b;
-  --text-mid: #475569;
-  --accent: #0284c7;
-  --border: #e2ddd6;
+
+  --bg: #FAF8F3;
+  --bg-2: #F2EFE7;
+  --surface: #FFFFFF;
+  --surface-alt: #FAF8F3;
+
+  --rule: #E8E3D7;
+  --rule-soft: #EFEBE0;
+
+  --ink: #0A0A0A;
+  --ink-2: #3D3D3D;
+  --ink-3: #8A8A8A;
+
+  --brand: #0F4C5C;
+  --brand-dark: #0A3440;
+  --brand-tint: #E6EEF0;
 
   font-family: var(--sans);
   font-size: 16px;
   line-height: 1.5;
-  color: var(--text);
+  color: var(--ink);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -25,28 +35,29 @@
 body {
   margin: 0;
   font-family: var(--sans);
-  background: linear-gradient(180deg, #f5f0eb 0%, #eef2f5 50%, #eaf4f8 100%);
+  background: var(--bg);
   min-height: 100vh;
-  color: var(--text);
+  color: var(--ink);
 }
 
 h1, h2, h3 {
   font-family: var(--display);
   font-weight: 600;
-  color: var(--text);
-  letter-spacing: -0.015em;
-  line-height: 1.15;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
   margin: 0;
 }
 
-p {
-  margin: 0;
-}
+p { margin: 0; }
 
 button, input, select, textarea {
   font-family: inherit;
 }
 
-a {
-  color: var(--accent);
+a { color: var(--brand); }
+
+::selection {
+  background: var(--brand);
+  color: #fff;
 }

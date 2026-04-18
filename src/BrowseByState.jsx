@@ -29,21 +29,23 @@ const ALPHABETIZED = [...STATE_SLUGS].sort((a, b) =>
 
 export default function BrowseByState({ variant = 'card' }) {
   const outer = variant === 'footer'
-    ? { padding: "18px 16px 6px", borderTop: "1px solid #e2ddd6", marginTop: 24 }
-    : { background: "#ffffff", border: "1px solid #e2ddd6", borderRadius: 14, padding: 22, marginBottom: 16, boxShadow: "0 1px 3px rgba(0,0,0,0.04)" };
+    ? { padding: "24px 16px 8px", borderTop: "1px solid #E8E3D7", marginTop: 28 }
+    : { background: "#FFFFFF", border: "1px solid #E8E3D7", borderRadius: 14, padding: 28, marginBottom: 16, boxShadow: "0 1px 2px rgba(15,23,42,0.04), 0 8px 24px rgba(15,23,42,0.06)" };
 
   const heading = variant === 'footer'
-    ? { fontSize: 12, fontWeight: 700, color: "#475569", textTransform: "uppercase", letterSpacing: 1.2, marginBottom: 12, textAlign: "center" }
-    : { fontSize: 16, fontWeight: 700, color: "#1e293b", marginBottom: 12 };
+    ? { fontSize: 11, fontWeight: 600, color: "#8A8A8A", textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: 16, textAlign: "center" }
+    : { fontSize: 22, fontWeight: 600, color: "#0A0A0A", marginBottom: 16, fontFamily: "'Fraunces',Georgia,serif", letterSpacing: "-0.015em" };
 
   const linkStyle = {
-    fontSize: 12,
-    color: "#475569",
+    fontSize: 13,
+    color: "#3D3D3D",
     textDecoration: "none",
-    padding: "4px 8px",
+    padding: "5px 8px",
     borderRadius: 6,
     display: "block",
-    lineHeight: 1.4,
+    lineHeight: 1.45,
+    fontWeight: 400,
+    transition: "color .15s",
   };
 
   return (
