@@ -935,11 +935,12 @@ export default function App({ initialState = "", hideNav = false }) {
         </svg>
         <span style={{ fontSize: 17, fontWeight: 600, color: T.text, letterSpacing: "-0.02em", fontFamily: "'Fraunces',Georgia,serif" }}>PriceAPool</span>
       </Link>
-      <div style={{ display: "flex", gap: 24, alignItems: "center" }}>
+      <div style={{ display: "flex", gap: 20, alignItems: "center", flexWrap: "wrap" }}>
         <Link to="/pool-cost-by-state" style={{ fontSize: 13, color: T.textMid, textDecoration: "none", fontWeight: 500 }}>By State</Link>
         <Link to="/builds" style={{ fontSize: 13, color: T.textMid, textDecoration: "none", fontWeight: 500 }}>Builds</Link>
         <Link to="/blog/fiberglass-vs-gunite-vs-vinyl" style={{ fontSize: 13, color: T.textMid, textDecoration: "none", fontWeight: 500 }}>Guides</Link>
         <Link to="/blog/inground-pool-cost-guide" style={{ fontSize: 13, color: T.textMid, textDecoration: "none", fontWeight: 500 }}>Cost Data</Link>
+        <a href="https://priceadeck.com" style={{ fontSize: 13, color: T.textMid, textDecoration: "none", fontWeight: 500, display: "flex", alignItems: "center", gap: 4 }}>Deck Costs<span style={{ fontSize: 9, color: T.accent, fontWeight: 700, background: T.accentLight, padding: "2px 5px", borderRadius: 4 }}>NEW</span></a>
       </div>
     </nav>}
     {step < 3 && <div style={{ textAlign: "center", padding: "72px 20px 24px", maxWidth: 840, margin: "0 auto" }}>
@@ -1032,6 +1033,7 @@ export default function App({ initialState = "", hideNav = false }) {
         <BrowseByState variant="footer" />
         <div style={{ borderTop: `1px solid ${T.border}`, paddingTop: 16, fontSize: 10, color: T.textDim, lineHeight: 1.8, textAlign: "center" }}>
           Estimates based on 2026 national averages adjusted for state, metro area, and scope. Actual costs vary by contractor, site, soil conditions, and materials. Always get 3+ written bids.<br />
+          Also from us: <a href="https://priceadeck.com" style={{ color: T.accent, fontWeight: 600, textDecoration: "none" }}>PriceADeck.com</a> — deck cost calculator.<br />
           © 2026 PriceAPool.com
         </div>
       </div>
