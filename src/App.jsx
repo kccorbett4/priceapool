@@ -177,7 +177,7 @@ function ShapeIcon({ shape, active }) {
     <svg viewBox="0 0 32 20" style={{ width: 36, height: 22, display: "block", flexShrink: 0 }}>
       {shape === "rectangle" && <rect x="1.5" y="1.5" width="29" height="17" rx="2.5" fill={fill} stroke={col} strokeWidth="1.8" />}
       {shape === "lshape" && <path d="M1.5,1.5 L19,1.5 L19,10.5 L30.5,10.5 L30.5,18.5 L1.5,18.5 Z" fill={fill} stroke={col} strokeWidth="1.8" strokeLinejoin="round" />}
-      {shape === "kidney" && <path d="M2,10 C2,3 10,0.5 16,1 C22,0.5 30,3 30,10 C30,17 25,20 20,19.5 C18,19.3 17,17 17,15 C17,13 15,13 15,15 C15,17 14,19.3 12,19.5 C7,20 2,17 2,10 Z" fill={fill} stroke={col} strokeWidth="1.8" />}
+      {shape === "kidney" && <path d="M3,11 C3,4 9,1.5 15,2 C17,2.2 17,7 19,7 C21,7 21,2.2 24,2 C29,1.8 29,7 29,11 C29,17 24,19 17,19 C9,19 3,17.5 3,11 Z" fill={fill} stroke={col} strokeWidth="1.8" strokeLinejoin="round" />}
       {shape === "roman" && <path d="M10,1.5 L22,1.5 A9,9 0 0 1 22,18.5 L10,18.5 A9,9 0 0 1 10,1.5 Z" fill={fill} stroke={col} strokeWidth="1.8" />}
     </svg>
   );
