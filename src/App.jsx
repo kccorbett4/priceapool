@@ -1,10 +1,11 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import BrowseByState from "./BrowseByState.jsx";
 
 /* ═══════════════ DATA ═══════════════ */
 const STATES = {
-  AL:{name:"Alabama",labor:0.82,permit:1000,frost:false},AK:{name:"Alaska",labor:1.45,permit:2500,frost:true},AZ:{name:"Arizona",labor:1.02,permit:1600,frost:false},AR:{name:"Arkansas",labor:0.78,permit:900,frost:false},CA:{name:"California",labor:1.38,permit:2900,frost:false},CO:{name:"Colorado",labor:1.10,permit:1900,frost:true},CT:{name:"Connecticut",labor:1.25,permit:2400,frost:true},DE:{name:"Delaware",labor:1.08,permit:1700,frost:true},FL:{name:"Florida",labor:0.92,permit:1300,frost:false},GA:{name:"Georgia",labor:0.88,permit:1200,frost:false},HI:{name:"Hawaii",labor:1.55,permit:3200,frost:false},ID:{name:"Idaho",labor:0.98,permit:1500,frost:true},IL:{name:"Illinois",labor:1.05,permit:1800,frost:true},IN:{name:"Indiana",labor:0.90,permit:1300,frost:true},IA:{name:"Iowa",labor:0.88,permit:1200,frost:true},KS:{name:"Kansas",labor:0.84,permit:1100,frost:true},KY:{name:"Kentucky",labor:0.83,permit:1100,frost:true},LA:{name:"Louisiana",labor:0.80,permit:1000,frost:false},ME:{name:"Maine",labor:1.12,permit:1900,frost:true},MD:{name:"Maryland",labor:1.15,permit:2100,frost:true},MA:{name:"Massachusetts",labor:1.30,permit:2500,frost:true},MI:{name:"Michigan",labor:0.95,permit:1500,frost:true},MN:{name:"Minnesota",labor:1.02,permit:1600,frost:true},MS:{name:"Mississippi",labor:0.76,permit:900,frost:false},MO:{name:"Missouri",labor:0.84,permit:1100,frost:true},MT:{name:"Montana",labor:1.00,permit:1500,frost:true},NE:{name:"Nebraska",labor:0.86,permit:1100,frost:true},NV:{name:"Nevada",labor:1.05,permit:1700,frost:false},NH:{name:"New Hampshire",labor:1.15,permit:2000,frost:true},NJ:{name:"New Jersey",labor:1.28,permit:2600,frost:true},NM:{name:"New Mexico",labor:0.90,permit:1300,frost:false},NY:{name:"New York",labor:1.35,permit:2800,frost:true},NC:{name:"North Carolina",labor:0.87,permit:1200,frost:false},ND:{name:"North Dakota",labor:0.95,permit:1400,frost:true},OH:{name:"Ohio",labor:0.92,permit:1400,frost:true},OK:{name:"Oklahoma",labor:0.80,permit:1000,frost:false},OR:{name:"Oregon",labor:1.12,permit:1900,frost:true},PA:{name:"Pennsylvania",labor:1.10,permit:2000,frost:true},RI:{name:"Rhode Island",labor:1.22,permit:2300,frost:true},SC:{name:"South Carolina",labor:0.85,permit:1100,frost:false},SD:{name:"South Dakota",labor:0.88,permit:1200,frost:true},TN:{name:"Tennessee",labor:0.83,permit:1100,frost:false},TX:{name:"Texas",labor:0.88,permit:1100,frost:false},UT:{name:"Utah",labor:1.05,permit:1800,frost:true},VT:{name:"Vermont",labor:1.15,permit:2000,frost:true},VA:{name:"Virginia",labor:1.02,permit:1700,frost:true},WA:{name:"Washington",labor:1.18,permit:2100,frost:true},WV:{name:"West Virginia",labor:0.82,permit:1000,frost:true},WI:{name:"Wisconsin",labor:0.95,permit:1400,frost:true},WY:{name:"Wyoming",labor:1.00,permit:1400,frost:true},DC:{name:"Washington D.C.",labor:1.30,permit:2800,frost:true},
+  AL:{name:"Alabama",labor:0.82,permit:1000,frost:false},AK:{name:"Alaska",labor:1.35,permit:2500,frost:true},AZ:{name:"Arizona",labor:1.02,permit:1600,frost:false},AR:{name:"Arkansas",labor:0.78,permit:900,frost:false},CA:{name:"California",labor:1.38,permit:2900,frost:false},CO:{name:"Colorado",labor:1.10,permit:1900,frost:true},CT:{name:"Connecticut",labor:1.25,permit:2400,frost:true},DE:{name:"Delaware",labor:1.08,permit:1700,frost:true},FL:{name:"Florida",labor:0.92,permit:1300,frost:false},GA:{name:"Georgia",labor:0.88,permit:1200,frost:false},HI:{name:"Hawaii",labor:1.40,permit:3200,frost:false},ID:{name:"Idaho",labor:0.98,permit:1500,frost:true},IL:{name:"Illinois",labor:1.05,permit:1800,frost:true},IN:{name:"Indiana",labor:0.90,permit:1300,frost:true},IA:{name:"Iowa",labor:0.88,permit:1200,frost:true},KS:{name:"Kansas",labor:0.84,permit:1100,frost:true},KY:{name:"Kentucky",labor:0.83,permit:1100,frost:true},LA:{name:"Louisiana",labor:0.80,permit:1000,frost:false},ME:{name:"Maine",labor:1.12,permit:1900,frost:true},MD:{name:"Maryland",labor:1.15,permit:2100,frost:true},MA:{name:"Massachusetts",labor:1.30,permit:2500,frost:true},MI:{name:"Michigan",labor:0.95,permit:1500,frost:true},MN:{name:"Minnesota",labor:1.02,permit:1600,frost:true},MS:{name:"Mississippi",labor:0.76,permit:900,frost:false},MO:{name:"Missouri",labor:0.84,permit:1100,frost:true},MT:{name:"Montana",labor:1.00,permit:1500,frost:true},NE:{name:"Nebraska",labor:0.86,permit:1100,frost:true},NV:{name:"Nevada",labor:1.05,permit:1700,frost:false},NH:{name:"New Hampshire",labor:1.15,permit:2000,frost:true},NJ:{name:"New Jersey",labor:1.28,permit:2600,frost:true},NM:{name:"New Mexico",labor:0.90,permit:1300,frost:false},NY:{name:"New York",labor:1.35,permit:2800,frost:true},NC:{name:"North Carolina",labor:0.87,permit:1200,frost:false},ND:{name:"North Dakota",labor:0.95,permit:1400,frost:true},OH:{name:"Ohio",labor:0.92,permit:1400,frost:true},OK:{name:"Oklahoma",labor:0.80,permit:1000,frost:false},OR:{name:"Oregon",labor:1.12,permit:1900,frost:true},PA:{name:"Pennsylvania",labor:1.10,permit:2000,frost:true},RI:{name:"Rhode Island",labor:1.22,permit:2300,frost:true},SC:{name:"South Carolina",labor:0.85,permit:1100,frost:false},SD:{name:"South Dakota",labor:0.88,permit:1200,frost:true},TN:{name:"Tennessee",labor:0.83,permit:1100,frost:false},TX:{name:"Texas",labor:0.88,permit:1100,frost:false},UT:{name:"Utah",labor:1.05,permit:1800,frost:true},VT:{name:"Vermont",labor:1.15,permit:2000,frost:true},VA:{name:"Virginia",labor:1.02,permit:1700,frost:true},WA:{name:"Washington",labor:1.18,permit:2100,frost:true},WV:{name:"West Virginia",labor:0.82,permit:1000,frost:true},WI:{name:"Wisconsin",labor:0.95,permit:1400,frost:true},WY:{name:"Wyoming",labor:1.00,permit:1400,frost:true},DC:{name:"Washington D.C.",labor:1.30,permit:2800,frost:true},
 };
 
 /* ── #20: Zip-to-metro adjustment ── */
@@ -20,7 +21,7 @@ const METRO_PREFIXES = {
   "750":"dal","751":"dal","752":"dal","753":"dal","760":"dal","761":"dal",
   "770":"hou","771":"hou","772":"hou","773":"hou","774":"hou","775":"hou",
   "850":"phx","851":"phx","852":"phx","853":"phx",
-  "802":"vt_rural","803":"vt_rural","804":"vt_rural","805":"vt_rural",
+  "050":"vt_rural","051":"vt_rural","052":"vt_rural","053":"vt_rural","054":"vt_rural","056":"vt_rural","057":"vt_rural","058":"vt_rural","059":"vt_rural",
   "040":"me_rural","041":"me_rural","042":"me_rural","043":"me_rural","044":"me_rural","045":"me_rural","046":"me_rural","047":"me_rural","048":"me_rural","049":"me_rural",
   "570":"sd_rural","571":"sd_rural","572":"sd_rural","573":"sd_rural","574":"sd_rural","575":"sd_rural","576":"sd_rural","577":"sd_rural",
   "580":"nd_rural","581":"nd_rural","582":"nd_rural","583":"nd_rural","584":"nd_rural","585":"nd_rural","586":"nd_rural","587":"nd_rural","588":"nd_rural",
@@ -34,7 +35,7 @@ const METRO_PREFIXES = {
   "441":"cle","440":"cle","442":"cle","443":"cle","444":"cle",
   "191":"phi","190":"phi","193":"phi","194":"phi",
   "300":"atl","301":"atl","302":"atl","303":"atl",
-  "801":"den","800":"den","803":"den",
+  "800":"den","801":"den","802":"den","803":"den","804":"den","805":"den",
   "551":"nj_metro","070":"nj_metro","071":"nj_metro","072":"nj_metro","073":"nj_metro","074":"nj_metro","076":"nj_metro","077":"nj_metro","078":"nj_metro","079":"nj_metro",
 };
 const METRO_MULT = {
@@ -86,7 +87,7 @@ const FEATURES = [
   {id:"lighting",label:"LED Lighting",cost:3500,icon:"💡",laborIntensive:false},
   {id:"auto",label:"Automation System",cost:5000,icon:"📱",laborIntensive:false},
   {id:"heater",label:"Gas Heater",cost:4800,icon:"🌡️",laborIntensive:true,conflictGroup:"heat"},
-  {id:"heatpump",label:"Heat Pump",cost:6500,icon:"♻️",laborIntensive:true,conflictGroup:"heat"},
+  {id:"heatpump",label:"Heat Pump",cost:5200,icon:"♻️",laborIntensive:true,conflictGroup:"heat"},
   {id:"saltcell",label:"Salt Cell",cost:2400,icon:"🧂",laborIntensive:false,conflictGroup:"chem"},
   {id:"autocover",label:"Auto Safety Cover",cost:12500,icon:"🛡️",laborIntensive:true},
   {id:"slide",label:"Pool Slide",cost:5000,icon:"🎢",laborIntensive:true},
@@ -97,9 +98,9 @@ const FEATURES = [
 ];
 
 const FINISH_OPTIONS = {
-  plaster:{label:"Standard White Plaster",rate:8},
-  quartz:{label:"Quartz Aggregate",rate:12},
-  pebble:{label:"PebbleTec / Pebble Finish",rate:16},
+  plaster:{label:"Standard White Plaster",rate:5},
+  quartz:{label:"Quartz Aggregate",rate:10},
+  pebble:{label:"PebbleTec / Pebble Finish",rate:14},
   glass:{label:"Glass Bead Finish",rate:22},
 };
 const DECK_OPTIONS = {
@@ -129,9 +130,9 @@ const T = {
 
 /* ── Styles (extracted — #15) ── */
 const S = {
-  card: { background: T.card, border: `1px solid ${T.border}`, borderRadius: 14, padding: 22, marginBottom: 16, boxShadow: "0 1px 3px rgba(0,0,0,0.04)" },
-  ttl: { fontSize: 17, fontWeight: 700, color: T.text, marginBottom: 2 },
-  dsc: { fontSize: 11, color: T.textMid, marginBottom: 16, lineHeight: 1.5 },
+  card: { background: T.card, border: `1px solid ${T.border}`, borderRadius: 14, padding: 22, marginBottom: 16, boxShadow: "0 1px 2px rgba(15,23,42,0.04), 0 8px 24px rgba(15,23,42,0.06)" },
+  ttl: { fontSize: 20, fontWeight: 700, color: T.text, marginBottom: 4, fontFamily: "'Fraunces',Georgia,serif", letterSpacing: "-0.01em" },
+  dsc: { fontSize: 13, color: T.textMid, marginBottom: 18, lineHeight: 1.55 },
   chip: (on) => ({ display: "flex", alignItems: "center", gap: 7, padding: "9px 11px", borderRadius: 9, border: on ? `2px solid ${T.accent}` : `2px solid ${T.borderLight}`, background: on ? T.accentLight : T.cardAlt, cursor: "pointer", transition: "all .15s" }),
   opt: (sel) => ({ background: sel ? T.accentLight : T.cardAlt, border: sel ? `2px solid ${T.accent}` : `2px solid ${T.borderLight}`, borderRadius: 10, padding: "11px 13px", cursor: "pointer", transition: "all .15s" }),
   btn: (pri, dis) => ({ padding: "11px 26px", borderRadius: 9, border: "none", fontWeight: 700, fontSize: 13, cursor: dis ? "not-allowed" : "pointer", background: pri ? (dis ? T.border : `linear-gradient(135deg,${T.accent},${T.accentDark})`) : T.bg2, color: pri ? (dis ? T.textDim : "#fff") : T.textMid, transition: "all .2s", boxShadow: pri && !dis ? "0 2px 8px rgba(2,132,199,0.2)" : "none" }),
@@ -382,8 +383,8 @@ function SavingsTips({ poolType, features, soil, spaSize, deckType, deckSqft, fr
   if (features.autocover) { const s = 9500 + (spaSize !== "none" ? 5500 : 0); tips.push({ id: "cover", title: "Manual Cover Instead of Auto", save: fmt(s), desc: `Manual safety covers run $3K–$4K vs $12.5K automatic${spaSize !== "none" ? " per cover" : ""}. 2 minutes of effort saves ~${fmt(s)}.`, impact: 1, action: { label: "Remove Auto Cover", fn: () => onApply("feature_off", "autocover") } }); }
   if (deepDepth > 6) {
     const depthEngSave = deepDepth <= 8 ? 1200 : deepDepth <= 9 ? 3000 : deepDepth <= 10 ? 5500 : 8500;
-    const excavSave = Math.round((length * width * (deepDepth - 6)) / 27 * 35 * 0.3 * (deepDepth <= 8 ? 0.12 : deepDepth <= 9 ? 0.3 : 0.5));
-    const shellSave = Math.round(length * width * 82 * ((((shallowDepth + deepDepth) / 2) - 5) * 0.05 - (Math.max(((shallowDepth + 6) / 2) - 5, 0)) * 0.05));
+    const excavSave = Math.round((length * width * (deepDepth - 6)) / 27 * 35 * 0.3 * ((deepDepth - 6) * 0.15));
+    const shellSave = Math.round(length * width * 82 * ((((shallowDepth + deepDepth) / 2) - 5) * 0.07 - (Math.max(((shallowDepth + 6) / 2) - 5, 0)) * 0.07));
     const totalSave = depthEngSave + excavSave + Math.max(shellSave, 0);
     tips.push({ id: "depth", title: "Reduce Deep End to 6ft", save: fmt(totalSave), desc: `Eliminates ${fmt(depthEngSave)} in deep-end engineering, reduces excavation difficulty, and lowers shell material costs. 6ft handles everything except diving boards (9ft+ required).`, impact: 1, action: { label: "Set to 6ft", fn: () => onApply("deepDepth", 6) } });
   }
@@ -571,6 +572,7 @@ export default function App({ initialState = "", hideNav = false }) {
   const perim = 2 * (cL + cW);
   const wallSqft = perim * avgD;
   const sqft = cL * cW;
+  const surfaceSqft = sqft * shapeFactor;
   const cuYd = (sqft * avgD * shapeFactor) / 27;
   const volume = Math.round(sqft * avgD * 7.48 * shapeFactor);
 
@@ -580,11 +582,12 @@ export default function App({ initialState = "", hideNav = false }) {
   const metro = getMetroMult(zip);
   const lab = (sd.labor || 1) * metro.mult;
 
-  /* #1 & #2: Shell — labor multiplied consistently */
-  const depthMult = avgD <= 5 ? 1.0 : 1 + (avgD - 5) * 0.05;
-  const shell = Math.max(sqft * td.sqftRate * lab * depthMult, td.min);
+  /* Shell priced off shape-adjusted water surface; depth adds 7% per ft above 5ft avg */
+  const depthMult = 1 + Math.max(0, avgD - 5) * 0.07;
+  const shell = Math.max(surfaceSqft * td.sqftRate * lab * depthMult, td.min);
 
-  const depthExcavMult = cDeep <= 6 ? 1.0 : cDeep <= 8 ? 1.12 : cDeep <= 9 ? 1.3 : cDeep <= 10 ? 1.5 : 1.75;
+  /* Smooth per-foot excavation premium past 6ft deep end (15% per ft) */
+  const depthExcavMult = 1 + Math.max(0, cDeep - 6) * 0.15;
   const excav = cuYd * 35 * (soilD.excavMult || 1) * lab * depthExcavMult;
 
   const depthEng = cDeep <= 6 ? 0 : cDeep <= 8 ? 1200 : cDeep <= 9 ? 3000 : cDeep <= 10 ? 5500 : 8500;
@@ -596,7 +599,7 @@ export default function App({ initialState = "", hideNav = false }) {
   const elec = (3500 + sqft * 1.0) * lab;
 
   /* #2: Interior finish — gunite only; fiberglass/vinyl gel coat is included in shell */
-  const finishRate = FINISH_OPTIONS[finishType]?.rate || 8;
+  const finishRate = FINISH_OPTIONS[finishType]?.rate || 5;
   const totalFinishSqft = floorSqft + wallSqft;
   const inter = poolType === "gunite" ? totalFinishSqft * finishRate * lab : 0;
 
@@ -760,7 +763,7 @@ export default function App({ initialState = "", hideNav = false }) {
 
   /* ── STEP 3: RESULTS ── */
   const bRows = [
-    { l: `${td.label} Shell (${sqft} sqft)`, v: shell, c: T.accent },
+    { l: `${td.label} Shell (${Math.round(surfaceSqft)} sqft)`, v: shell, c: T.accent },
     { l: `Excavation (${Math.round(cuYd)} cu yd)`, v: excav, c: T.warn },
     ...(depthEng > 0 ? [{ l: `⚠️ Deep End Engineering (${cDeep}ft)`, v: depthEng, c: T.danger, h: true }] : []),
     ...(soilTot > 0 ? [{ l: "Soil Engineering*", v: soilTot, c: T.warn, h: false }] : []),
@@ -785,9 +788,10 @@ export default function App({ initialState = "", hideNav = false }) {
     {stateChanged && <div style={{ textAlign: "center", padding: "9px 14px", background: T.warnBg, border: `1px solid ${T.warnBorder}`, borderRadius: 8, marginBottom: 12, fontSize: 12, fontWeight: 700, color: T.warn, animation: "fadeUp .3s ease" }}>📍 State changed to {STATES[st]?.name} — estimate recalculated</div>}
 
     {/* Total */}
-    <div style={{ textAlign: "center", padding: "28px 16px", background: T.card, border: `2px solid ${T.accent}`, borderRadius: 14, marginBottom: 16, boxShadow: "0 4px 20px rgba(2,132,199,0.08)" }}>
-      <div style={{ fontSize: 11, textTransform: "uppercase", letterSpacing: 3, color: T.textDim, fontWeight: 600 }}>Estimated Build Cost</div>
-      <div style={{ fontSize: "clamp(34px,8vw,52px)", fontWeight: 900, color: T.accent, margin: "4px 0", fontVariantNumeric: "tabular-nums" }}>{fmt(animTotal)}</div>
+    <div style={{ position: "relative", textAlign: "center", padding: "32px 16px", background: `linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%)`, border: `1px solid ${T.accent}40`, borderRadius: 18, marginBottom: 16, boxShadow: "0 1px 2px rgba(2,132,199,0.08), 0 12px 32px rgba(2,132,199,0.12)", overflow: "hidden" }}>
+      <div style={{ position: "absolute", inset: 0, background: `radial-gradient(circle at 80% 0%, ${T.accentLight}80 0%, transparent 60%)`, pointerEvents: "none" }} />
+      <div style={{ position: "relative", fontSize: 11, textTransform: "uppercase", letterSpacing: 3, color: T.textDim, fontWeight: 700 }}>Estimated Build Cost</div>
+      <div style={{ position: "relative", fontSize: "clamp(38px,9vw,60px)", fontWeight: 800, color: T.accent, margin: "6px 0", fontVariantNumeric: "tabular-nums", fontFamily: "'Fraunces',Georgia,serif", letterSpacing: "-0.02em" }}>{fmt(animTotal)}</div>
       <div style={{ fontSize: 10, color: T.textDim }}>{fmt(total / sqft)}/sqft · {td.label}{hasSpa ? " + Spa" : ""}{metro.label ? ` · ${metro.label}` : ""}</div>
       <div style={{ margin: "10px auto 10px", maxWidth: 320 }}>
         <div style={{ fontSize: 10, color: T.textDim, marginBottom: 5 }}>Typical contractor quote range</div>
@@ -898,7 +902,7 @@ export default function App({ initialState = "", hideNav = false }) {
   const steps = [renderStep0, renderStep1, renderStep2, renderResults];
   const stepNames = ["Location", "Pool Size & Spa", "Features", "Your Estimate"];
 
-  return <div style={{ minHeight: "100vh", background: `linear-gradient(180deg,${T.bg} 0%,${T.bg2} 50%,#e8e0d8 100%)`, fontFamily: "'Instrument Sans','DM Sans',system-ui,sans-serif", color: T.text }}>
+  return <div style={{ minHeight: "100vh", background: `linear-gradient(180deg,${T.bg} 0%,#eef2f5 55%,#eaf4f8 100%)`, fontFamily: "'Inter',system-ui,-apple-system,sans-serif", color: T.text }}>
     {!hideNav && <Helmet>
       <title>Pool Cost Calculator 2026 — How Much Does a Pool Cost in Your State?</title>
       <meta name="description" content="Free pool cost calculator for 2026. Get an instant estimate for gunite, fiberglass, or vinyl pools — adjusted for your state and build specs. Accurate pricing in under 2 minutes." />
@@ -1010,6 +1014,7 @@ export default function App({ initialState = "", hideNav = false }) {
             ))}
           </div>
         </div>
+        <BrowseByState variant="footer" />
         <div style={{ borderTop: `1px solid ${T.border}`, paddingTop: 16, fontSize: 10, color: T.textDim, lineHeight: 1.8, textAlign: "center" }}>
           Estimates based on 2026 national averages adjusted for state, metro area, and scope. Actual costs vary by contractor, site, soil conditions, and materials. Always get 3+ written bids.<br />
           © 2026 PriceAPool.com

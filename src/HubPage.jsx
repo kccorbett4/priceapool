@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
+import BrowseByState from './BrowseByState.jsx'
 
 const T = {
   bg: "#f5f0eb", bg2: "#ede7e0", card: "#ffffff",
@@ -12,7 +13,7 @@ const fmt = n => "$" + Math.round(n).toLocaleString();
 
 const STATES = [
   { name: "Alabama", slug: "alabama", labor: 0.82, permit: 1000, frost: false },
-  { name: "Alaska", slug: "alaska", labor: 1.45, permit: 2500, frost: true },
+  { name: "Alaska", slug: "alaska", labor: 1.35, permit: 2500, frost: true },
   { name: "Arizona", slug: "arizona", labor: 1.02, permit: 1600, frost: false },
   { name: "Arkansas", slug: "arkansas", labor: 0.78, permit: 900, frost: false },
   { name: "California", slug: "california", labor: 1.38, permit: 2900, frost: false },
@@ -21,7 +22,7 @@ const STATES = [
   { name: "Delaware", slug: "delaware", labor: 1.08, permit: 1700, frost: true },
   { name: "Florida", slug: "florida", labor: 0.92, permit: 1300, frost: false },
   { name: "Georgia", slug: "georgia", labor: 0.88, permit: 1200, frost: false },
-  { name: "Hawaii", slug: "hawaii", labor: 1.55, permit: 3200, frost: false },
+  { name: "Hawaii", slug: "hawaii", labor: 1.40, permit: 3200, frost: false },
   { name: "Idaho", slug: "idaho", labor: 0.98, permit: 1500, frost: true },
   { name: "Illinois", slug: "illinois", labor: 1.05, permit: 1800, frost: true },
   { name: "Indiana", slug: "indiana", labor: 0.90, permit: 1300, frost: true },
@@ -92,9 +93,9 @@ export default function HubPage() {
     ]
   };
 
-  const wrap = { fontFamily: "'Instrument Sans','DM Sans',system-ui,sans-serif", color: T.text, background: T.bg, minHeight: "100vh" };
+  const wrap = { fontFamily: "'Inter',system-ui,-apple-system,sans-serif", color: T.text, background: T.bg, minHeight: "100vh" };
   const inner = { maxWidth: 860, margin: "0 auto", padding: "0 16px 60px" };
-  const card = { background: T.card, border: `1px solid ${T.border}`, borderRadius: 14, padding: 22, marginBottom: 16, boxShadow: "0 1px 3px rgba(0,0,0,0.04)" };
+  const card = { background: T.card, border: `1px solid ${T.border}`, borderRadius: 14, padding: 22, marginBottom: 16, boxShadow: "0 1px 2px rgba(15,23,42,0.04), 0 8px 24px rgba(15,23,42,0.06)" };
 
   const cheapest = STATES[0];
   const mostExpensive = [...STATES].sort((a, b) => b.gunite - a.gunite)[0];
@@ -136,7 +137,7 @@ export default function HubPage() {
             { label: "Most expensive state", value: mostExpensive.name, sub: `Gunite from ${fmt(mostExpensive.gunite)}` },
             { label: "Cost range (all states)", value: `${fmt(cheapest.gunite)}–${fmt(mostExpensive.gunite)}`, sub: "Gunite, standard 500 sq ft" },
           ].map(({ label, value, sub }) => (
-            <div key={label} style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: 14, padding: "16px", boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}>
+            <div key={label} style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: 14, padding: "16px", boxShadow: "0 1px 2px rgba(15,23,42,0.04), 0 8px 24px rgba(15,23,42,0.06)" }}>
               <div style={{ fontSize: 10, fontWeight: 700, color: T.textDim, textTransform: "uppercase", letterSpacing: 1, marginBottom: 6 }}>{label}</div>
               <div style={{ fontSize: 20, fontWeight: 800, color: T.text, letterSpacing: "-.3px" }}>{value}</div>
               <div style={{ fontSize: 11, color: T.textDim, marginTop: 3 }}>{sub}</div>
@@ -213,6 +214,8 @@ export default function HubPage() {
             ))}
           </div>
         </div>
+
+        <BrowseByState />
       </div>
     </div>
   );

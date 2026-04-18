@@ -1,6 +1,8 @@
 import { useParams, Navigate, Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import App from './App.jsx'
+import { STATE_CONTENT } from './stateContent.js'
+import BrowseByState from './BrowseByState.jsx'
 
 const T = {
   bg: "#f5f0eb", bg2: "#ede7e0", card: "#ffffff",
@@ -27,7 +29,7 @@ const SLUG_TO_CODE = {
 
 const STATE_DATA = {
   AL:{name:"Alabama",labor:0.82,permit:1000,frost:false,region:"south",cities:["Birmingham","Huntsville","Mobile","Montgomery"],neighbors:["georgia","florida","mississippi","tennessee"]},
-  AK:{name:"Alaska",labor:1.45,permit:2500,frost:true,region:"north",cities:["Anchorage","Fairbanks","Juneau"],neighbors:[]},
+  AK:{name:"Alaska",labor:1.35,permit:2500,frost:true,region:"north",cities:["Anchorage","Fairbanks","Juneau"],neighbors:[]},
   AZ:{name:"Arizona",labor:1.02,permit:1600,frost:false,region:"southwest",cities:["Phoenix","Tucson","Scottsdale","Mesa","Chandler"],neighbors:["california","nevada","utah","new-mexico"]},
   AR:{name:"Arkansas",labor:0.78,permit:900,frost:false,region:"south",cities:["Little Rock","Fayetteville","Fort Smith","Jonesboro"],neighbors:["missouri","tennessee","mississippi","louisiana","texas","oklahoma"]},
   CA:{name:"California",labor:1.38,permit:2900,frost:false,region:"west",cities:["Los Angeles","San Diego","San Jose","San Francisco","Sacramento","Fresno"],neighbors:["oregon","nevada","arizona"]},
@@ -36,7 +38,7 @@ const STATE_DATA = {
   DE:{name:"Delaware",labor:1.08,permit:1700,frost:true,region:"midatlantic",cities:["Wilmington","Dover","Newark"],neighbors:["maryland","pennsylvania","new-jersey"]},
   FL:{name:"Florida",labor:0.92,permit:1300,frost:false,region:"south",cities:["Miami","Tampa","Orlando","Jacksonville","Fort Lauderdale","Naples","Sarasota"],neighbors:["georgia","alabama"]},
   GA:{name:"Georgia",labor:0.88,permit:1200,frost:false,region:"south",cities:["Atlanta","Augusta","Savannah","Columbus","Marietta","Alpharetta"],neighbors:["florida","alabama","tennessee","north-carolina","south-carolina"]},
-  HI:{name:"Hawaii",labor:1.55,permit:3200,frost:false,region:"pacific",cities:["Honolulu","Kailua","Pearl City","Hilo"],neighbors:[]},
+  HI:{name:"Hawaii",labor:1.40,permit:3200,frost:false,region:"pacific",cities:["Honolulu","Kailua","Pearl City","Hilo"],neighbors:[]},
   ID:{name:"Idaho",labor:0.98,permit:1500,frost:true,region:"mountain",cities:["Boise","Meridian","Nampa","Idaho Falls"],neighbors:["washington","oregon","nevada","utah","wyoming","montana"]},
   IL:{name:"Illinois",labor:1.05,permit:1800,frost:true,region:"midwest",cities:["Chicago","Aurora","Naperville","Rockford","Springfield"],neighbors:["wisconsin","iowa","missouri","kentucky","indiana"]},
   IN:{name:"Indiana",labor:0.90,permit:1300,frost:true,region:"midwest",cities:["Indianapolis","Fort Wayne","Evansville","South Bend","Carmel"],neighbors:["michigan","ohio","kentucky","illinois"]},
@@ -96,7 +98,7 @@ function getStateCosts(d) {
   const gExcav = cuYd * 35 * lab;
   const gPlumb = (7000 + sqft * 3.5) * lab;
   const gElec  = (3500 + sqft * 1.0) * lab;
-  const gInter = (sqft * 1.4) * 8 * lab; // ~700 sqft finish at $8/sqft
+  const gInter = (sqft * 1.4) * 5 * lab; // ~700 sqft plaster finish at $5/sqft
   const gSub   = gShell + gExcav + gPlumb + gElec + gInter + permits + frostC;
   const gunite = Math.round((gSub * (1 + cont)) / 1000) * 1000;
 
@@ -119,25 +121,10 @@ function getStateCosts(d) {
   return { gunite, fiber, vinyl };
 }
 
-function climateSentence(d) {
-  if (!d.frost) {
-    const regions = { south: "long summers and mild winters", southwest: "a hot, dry climate", pacific: "warm tropical weather" };
-    return `${d.name}'s ${regions[d.region] || "warm climate"} means you can enjoy your pool up to 8–10 months per year with no winterization required.`;
-  }
-  return `${d.name} has cold winters, so pool owners typically close their pool in October and reopen in April–May. Budget $300–$600 per year for winterization and opening services.`;
-}
-
 function permitSentence(d) {
   const low = d.permit;
   const high = Math.round(d.permit * 1.8);
   return `Building permits in ${d.name} typically run ${fmt(low)}–${fmt(high)} depending on your county, pool type, and local requirements. Most municipalities also require a fence or barrier around the pool.`;
-}
-
-function laborSentence(d) {
-  if (d.labor >= 1.25) return `${d.name} has above-average labor costs — pool contractors here charge 20–40% more than the national average. Getting multiple bids is especially important in this market.`;
-  if (d.labor >= 1.05) return `${d.name} has slightly above-average labor costs, meaning your total pool cost will run 5–15% higher than the national median.`;
-  if (d.labor <= 0.85) return `${d.name} has below-average labor costs — one of the more affordable states to build a pool. You may find competitive pricing by shopping local contractors.`;
-  return `${d.name} has near-average labor costs, so pricing is close to national medians for each pool type.`;
 }
 
 export default function StatePage() {
@@ -148,6 +135,7 @@ export default function StatePage() {
 
   const d = STATE_DATA[code];
   const costs = getStateCosts(d);
+  const content = STATE_CONTENT[code];
 
   const stateSchema = {
     "@context": "https://schema.org",
@@ -180,8 +168,8 @@ export default function StatePage() {
     ]
   };
 
-  const wrap = { fontFamily: "'Instrument Sans','DM Sans',system-ui,sans-serif", color: T.text, background: T.bg, minHeight: "100vh" };
-  const card = { background: T.card, border: `1px solid ${T.border}`, borderRadius: 14, padding: 22, marginBottom: 16, boxShadow: "0 1px 3px rgba(0,0,0,0.04)" };
+  const wrap = { fontFamily: "'Inter',system-ui,-apple-system,sans-serif", color: T.text, background: T.bg, minHeight: "100vh" };
+  const card = { background: T.card, border: `1px solid ${T.border}`, borderRadius: 14, padding: 22, marginBottom: 16, boxShadow: "0 1px 2px rgba(15,23,42,0.04), 0 8px 24px rgba(15,23,42,0.06)" };
   const inner = { maxWidth: 720, margin: "0 auto", padding: "0 16px" };
 
   return (
@@ -205,7 +193,7 @@ export default function StatePage() {
       </nav>
 
       {/* HERO */}
-      <div style={{ textAlign: "center", padding: "40px 20px 24px", background: `linear-gradient(180deg,${T.bg} 0%,${T.bg2} 100%)` }}>
+      <div style={{ textAlign: "center", padding: "56px 20px 32px", background: `linear-gradient(180deg,${T.bg} 0%,#eef2f5 60%,#eaf4f8 100%)` }}>
         <div style={{ fontSize: 11, fontWeight: 700, color: T.accent, textTransform: "uppercase", letterSpacing: 2, marginBottom: 10 }}>Pool Cost Estimator — {d.name}</div>
         <h1 style={{ fontSize: "clamp(24px,5vw,38px)", fontWeight: 800, color: T.text, letterSpacing: "-.5px", lineHeight: 1.15, marginBottom: 12 }}>
           How Much Does a Pool Cost in {d.name} in 2026?
@@ -224,7 +212,7 @@ export default function StatePage() {
             { type: "Fiberglass", cost: costs.fiber, tag: "Fastest Install", color: "#0891b2" },
             { type: "Vinyl Liner", cost: costs.vinyl, tag: "Most Affordable", color: T.success },
           ].map(({ type, cost, tag, color }) => (
-            <div key={type} style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: 14, padding: "18px 16px", textAlign: "center", boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}>
+            <div key={type} style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: 14, padding: "18px 16px", textAlign: "center", boxShadow: "0 1px 2px rgba(15,23,42,0.04), 0 8px 24px rgba(15,23,42,0.06)" }}>
               <div style={{ fontSize: 10, fontWeight: 700, color, textTransform: "uppercase", letterSpacing: 1.2, marginBottom: 6 }}>{tag}</div>
               <div style={{ fontSize: 28, fontWeight: 800, color: T.text, letterSpacing: "-.5px" }}>{fmt(cost)}</div>
               <div style={{ fontSize: 12, color: T.textMid, marginTop: 4 }}>{type}</div>
@@ -233,17 +221,47 @@ export default function StatePage() {
           ))}
         </div>
 
-        {/* ABOUT THIS STATE */}
+        {/* ABOUT THIS STATE — intro paragraph */}
         <div style={card}>
           <h2 style={{ fontSize: 18, fontWeight: 700, color: T.text, marginBottom: 14 }}>Pool Costs in {d.name}: What You Need to Know</h2>
-          <p style={{ fontSize: 14, color: T.textMid, lineHeight: 1.75, marginBottom: 12 }}>
-            {laborSentence(d)}
-          </p>
-          <p style={{ fontSize: 14, color: T.textMid, lineHeight: 1.75, marginBottom: 12 }}>
-            {climateSentence(d)}
-          </p>
           <p style={{ fontSize: 14, color: T.textMid, lineHeight: 1.75 }}>
-            {permitSentence(d)}
+            {content.intro}
+          </p>
+        </div>
+
+        {/* LOCAL DETAIL SECTIONS — hand-written per state */}
+        <div style={card}>
+          <h2 style={{ fontSize: 18, fontWeight: 700, color: T.text, marginBottom: 14 }}>Pool Permits and Building Code in {d.name}</h2>
+          <p style={{ fontSize: 14, color: T.textMid, lineHeight: 1.75 }}>
+            {content.permits}
+          </p>
+        </div>
+
+        <div style={card}>
+          <h2 style={{ fontSize: 18, fontWeight: 700, color: T.text, marginBottom: 14 }}>Pool Season and Climate in {d.name}</h2>
+          <p style={{ fontSize: 14, color: T.textMid, lineHeight: 1.75 }}>
+            {content.climate}
+          </p>
+        </div>
+
+        <div style={card}>
+          <h2 style={{ fontSize: 18, fontWeight: 700, color: T.text, marginBottom: 14 }}>Soil and Site Conditions in {d.name}</h2>
+          <p style={{ fontSize: 14, color: T.textMid, lineHeight: 1.75 }}>
+            {content.soil}
+          </p>
+        </div>
+
+        <div style={card}>
+          <h2 style={{ fontSize: 18, fontWeight: 700, color: T.text, marginBottom: 14 }}>Metro Labor and Where {d.name} Pool Costs Spike</h2>
+          <p style={{ fontSize: 14, color: T.textMid, lineHeight: 1.75 }}>
+            {content.metros}
+          </p>
+        </div>
+
+        <div style={card}>
+          <h2 style={{ fontSize: 18, fontWeight: 700, color: T.text, marginBottom: 14 }}>Pool Builders Operating in {d.name}</h2>
+          <p style={{ fontSize: 14, color: T.textMid, lineHeight: 1.75 }}>
+            {content.builders}
           </p>
         </div>
 
@@ -370,6 +388,8 @@ export default function StatePage() {
             </div>
           </div>
         )}
+
+        <BrowseByState />
       </div>
     </div>
   );

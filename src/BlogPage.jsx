@@ -1,5 +1,6 @@
 import { useParams, Navigate, Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
+import BrowseByState from './BrowseByState.jsx'
 
 const T = {
   bg: "#f5f0eb", bg2: "#ede7e0", card: "#ffffff",
@@ -1015,7 +1016,7 @@ export default function BlogPage() {
     "mainEntity": meta.faqs.map(f => ({ "@type": "Question", "name": f.q, "acceptedAnswer": { "@type": "Answer", "text": f.a } }))
   } : null;
 
-  const wrap = { fontFamily: "'Instrument Sans','DM Sans',system-ui,sans-serif", color: T.text, background: T.bg, minHeight: "100vh" };
+  const wrap = { fontFamily: "'Inter',system-ui,-apple-system,sans-serif", color: T.text, background: T.bg, minHeight: "100vh" };
   const inner = { maxWidth: 720, margin: "0 auto", padding: "0 16px 60px" };
 
   return (
@@ -1078,16 +1079,9 @@ export default function BlogPage() {
 
         <RelatedPosts current={slug} />
 
-        {/* STATE LINKS */}
-        <div style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: 14, padding: 22, marginTop: 16 }}>
-          <div style={{ fontSize: 15, fontWeight: 700, color: T.text, marginBottom: 12 }}>Pool Cost by State</div>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-            {["florida","texas","california","arizona","georgia","north-carolina","tennessee","colorado","washington","new-york"].map(slug => (
-              <Link key={slug} to={`/${slug}`} style={{ padding: "7px 13px", borderRadius: 20, background: T.bg2, color: T.textMid, textDecoration: "none", fontSize: 12, fontWeight: 600, textTransform: "capitalize" }}>
-                {slug.replace(/-/g, " ")} →
-              </Link>
-            ))}
-          </div>
+        {/* ALL STATE LINKS */}
+        <div style={{ marginTop: 16 }}>
+          <BrowseByState />
         </div>
       </div>
     </div>

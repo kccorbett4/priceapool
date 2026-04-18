@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
+import BrowseByState from './BrowseByState.jsx'
 
 const T = {
   bg: "#f5f0eb", bg2: "#ede7e0", card: "#ffffff",
@@ -49,9 +50,9 @@ export default function DataPage() {
     "temporalCoverage": "2026",
   };
 
-  const wrap = { fontFamily: "'Instrument Sans','DM Sans',system-ui,sans-serif", color: T.text, background: T.bg, minHeight: "100vh" };
+  const wrap = { fontFamily: "'Inter',system-ui,-apple-system,sans-serif", color: T.text, background: T.bg, minHeight: "100vh" };
   const inner = { maxWidth: 800, margin: "0 auto", padding: "0 16px 60px" };
-  const card = { background: T.card, border: `1px solid ${T.border}`, borderRadius: 14, padding: "24px 28px", marginBottom: 16, boxShadow: "0 1px 3px rgba(0,0,0,0.04)" };
+  const card = { background: T.card, border: `1px solid ${T.border}`, borderRadius: 14, padding: "24px 28px", marginBottom: 16, boxShadow: "0 1px 2px rgba(15,23,42,0.04), 0 8px 24px rgba(15,23,42,0.06)" };
 
   return (
     <div style={wrap}>
@@ -236,6 +237,8 @@ export default function DataPage() {
             ))}
           </div>
         </div>
+
+        <BrowseByState />
       </div>
     </div>
   );

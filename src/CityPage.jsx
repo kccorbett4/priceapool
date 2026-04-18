@@ -1,6 +1,7 @@
 import { useParams, Navigate, Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import App from './App.jsx'
+import BrowseByState from './BrowseByState.jsx'
 
 const T = {
   bg: "#f5f0eb", bg2: "#ede7e0", card: "#ffffff",
@@ -182,9 +183,9 @@ export default function CityPage() {
     ]
   };
 
-  const wrap = { fontFamily: "'Instrument Sans','DM Sans',system-ui,sans-serif", color: T.text, background: T.bg, minHeight: "100vh" };
+  const wrap = { fontFamily: "'Inter',system-ui,-apple-system,sans-serif", color: T.text, background: T.bg, minHeight: "100vh" };
   const inner = { maxWidth: 720, margin: "0 auto", padding: "0 16px" };
-  const card = { background: T.card, border: `1px solid ${T.border}`, borderRadius: 14, padding: 22, marginBottom: 16, boxShadow: "0 1px 3px rgba(0,0,0,0.04)" };
+  const card = { background: T.card, border: `1px solid ${T.border}`, borderRadius: 14, padding: 22, marginBottom: 16, boxShadow: "0 1px 2px rgba(15,23,42,0.04), 0 8px 24px rgba(15,23,42,0.06)" };
 
   return (
     <div style={wrap}>
@@ -207,7 +208,7 @@ export default function CityPage() {
         </div>
       </nav>
 
-      <div style={{ textAlign: "center", padding: "40px 20px 24px", background: `linear-gradient(180deg,${T.bg} 0%,${T.bg2} 100%)` }}>
+      <div style={{ textAlign: "center", padding: "56px 20px 32px", background: `linear-gradient(180deg,${T.bg} 0%,#eef2f5 60%,#eaf4f8 100%)` }}>
         <div style={{ fontSize: 11, fontWeight: 700, color: T.accent, textTransform: "uppercase", letterSpacing: 2, marginBottom: 10 }}>Pool Cost Estimator — {city.name}, {city.state}</div>
         <h1 style={{ fontSize: "clamp(22px,5vw,36px)", fontWeight: 800, color: T.text, letterSpacing: "-.5px", lineHeight: 1.15, marginBottom: 12 }}>
           How Much Does a Pool Cost in {city.name} in 2026?
@@ -302,6 +303,8 @@ export default function CityPage() {
           </div>
           <Link to="/pool-cost-by-state" style={{ fontSize: 13, color: T.accent, textDecoration: "none", fontWeight: 600 }}>→ See pool costs for all 50 states</Link>
         </div>
+
+        <BrowseByState />
       </div>
     </div>
   );
