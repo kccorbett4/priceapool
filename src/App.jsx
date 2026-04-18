@@ -941,7 +941,7 @@ export default function App({ initialState = "", hideNav = false }) {
     {step < 3 && <div style={{ textAlign: "center", padding: "72px 20px 24px", maxWidth: 840, margin: "0 auto" }}>
       <div style={{ fontSize: 11, fontWeight: 600, color: T.textDim, textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: 20 }}>Pool Cost Estimator · 2026</div>
       <h1 style={{ fontSize: "clamp(40px,7vw,72px)", fontWeight: 500, color: T.text, letterSpacing: "-0.035em", lineHeight: 1.02, fontFamily: "'Fraunces',Georgia,serif" }}>How much does a pool <em style={{ fontStyle: "italic", fontWeight: 400 }}>really</em> cost?</h1>
-      <p style={{ fontSize: 17, color: T.textMid, marginTop: 20, maxWidth: 560, marginLeft: "auto", marginRight: "auto", lineHeight: 1.55, fontWeight: 400 }}>An honest estimate in under two minutes — priced against 2026 labor rates in your state, metro, and soil.</p>
+      <p style={{ fontSize: 17, color: T.textMid, marginTop: 20, maxWidth: 560, marginLeft: "auto", marginRight: "auto", lineHeight: 1.55, fontWeight: 400 }}>An honest estimate in under two minutes — priced against 2026 labor rates in your state and metro.</p>
     </div>}
     <div style={{ maxWidth: 720, margin: "0 auto", padding: "0 16px" }}>
       <div style={{ display: "flex", justifyContent: "center", gap: 4, margin: "16px 0 20px" }}>
