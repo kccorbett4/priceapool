@@ -943,6 +943,11 @@ export default function App({ initialState = "", hideNav = false }) {
       <h1 style={{ fontSize: "clamp(40px,7vw,72px)", fontWeight: 500, color: T.text, letterSpacing: "-0.035em", lineHeight: 1.02, fontFamily: "'Fraunces',Georgia,serif" }}>How much does a pool <em style={{ fontStyle: "italic", fontWeight: 400 }}>really</em> cost?</h1>
       <p style={{ fontSize: 17, color: T.textMid, marginTop: 20, maxWidth: 560, marginLeft: "auto", marginRight: "auto", lineHeight: 1.55, fontWeight: 400 }}>An honest estimate in under two minutes — priced against 2026 labor rates in your state and metro.</p>
     </div>}
+    {step < 3 && <div style={{ maxWidth: 1080, margin: "24px auto 0", padding: "0 16px" }}>
+      <div style={{ borderRadius: 20, overflow: "hidden", boxShadow: "0 1px 2px rgba(10,10,10,0.06), 0 24px 60px -20px rgba(10,10,10,0.22)", aspectRatio: "16 / 9", background: T.bg2 }}>
+        <img src="/hero-pool.jpg" alt="A family playing in a modern backyard swimming pool at golden hour" loading="eager" fetchpriority="high" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+      </div>
+    </div>}
     <div style={{ maxWidth: 720, margin: "0 auto", padding: "0 16px" }}>
       <div style={{ display: "flex", justifyContent: "center", gap: 4, margin: "16px 0 20px" }}>
         {stepNames.map((s, i) => <div key={i} onClick={() => i < step && setStep(i)} style={{ display: "flex", alignItems: "center", gap: 6, padding: "7px 14px", borderRadius: 100, background: step === i ? T.text : i < step ? T.bg2 : "transparent", border: step === i ? `1px solid ${T.text}` : `1px solid ${T.borderLight}`, cursor: i < step ? "pointer" : "default", transition: "all .15s" }}>
