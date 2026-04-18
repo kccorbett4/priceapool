@@ -142,21 +142,22 @@ const S = {
 
 /* ── Reusable Components (extracted from App — #14) ── */
 function Card({ children, style: sx }) {
-  return <div style={{ ...S.card, ...sx }}>{children}</div>;
+  return <div data-card-hover="true" style={{ ...S.card, ...sx }}>{children}</div>;
 }
 function Ttl({ children }) { return <div style={S.ttl}>{children}</div>; }
 function Dsc({ children }) { return <div style={S.dsc}>{children}</div>; }
 function Opt({ sel, onClick, children, style: sx }) {
-  return <div onClick={onClick} style={{ ...S.opt(sel), ...sx }}>{children}</div>;
+  return <div data-option onClick={onClick} style={{ ...S.opt(sel), ...sx }}>{children}</div>;
 }
 function Chip({ on, onClick, children }) {
-  return <div onClick={onClick} style={S.chip(on)}>{children}<div style={{ width: 18, height: 18, borderRadius: 4, background: on ? T.accent : T.border, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 800, color: "#fff", flexShrink: 0 }}>{on ? "✓" : ""}</div></div>;
+  return <div data-option onClick={onClick} style={S.chip(on)}>{children}<div style={{ width: 18, height: 18, borderRadius: 4, background: on ? T.accent : T.border, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 800, color: "#fff", flexShrink: 0 }}>{on ? "✓" : ""}</div></div>;
 }
 function Btn({ pri, dis, children, onClick }) {
-  return <button onClick={onClick} disabled={dis} style={S.btn(pri, dis)}>{children}</button>;
+  return <button data-btn={pri ? "primary" : "secondary"} onClick={onClick} disabled={dis} style={S.btn(pri, dis)}>{children}</button>;
 }
 function Slider({ label, val, setter, min, max, stp = 1, warn, suffix = "ft" }) {
   const display = stp >= 1 ? Math.round(val) : Math.round(val / stp) * stp;
+  const pct = Math.max(0, Math.min(100, ((val - min) / (max - min)) * 100));
   return <div style={{ marginBottom: 16 }}>
     <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 6 }}>
       <span style={{ fontSize: 12, fontWeight: 600, color: T.textMid }}>{label}</span>
@@ -165,6 +166,7 @@ function Slider({ label, val, setter, min, max, stp = 1, warn, suffix = "ft" }) 
     <input type="range" min={min} max={max} step="any" value={val}
       onInput={e => setter(Math.round(+e.target.value / stp) * stp)}
       onChange={e => setter(Math.round(+e.target.value / stp) * stp)}
+      style={{ "--fill": `${pct}%` }}
       className="pool-slider" />
   </div>;
 }
@@ -791,7 +793,7 @@ export default function App({ initialState = "", hideNav = false }) {
     {stateChanged && <div style={{ textAlign: "center", padding: "9px 14px", background: T.warnBg, border: `1px solid ${T.warnBorder}`, borderRadius: 8, marginBottom: 12, fontSize: 12, fontWeight: 700, color: T.warn, animation: "fadeUp .3s ease" }}>📍 State changed to {STATES[st]?.name} — estimate recalculated</div>}
 
     {/* Total */}
-    <div style={{ position: "relative", textAlign: "center", padding: "40px 24px 32px", background: T.text, color: "#fff", borderRadius: 18, marginBottom: 16, boxShadow: "0 2px 4px rgba(10,10,10,0.08), 0 24px 48px -8px rgba(10,10,10,0.24)", overflow: "hidden" }}>
+    <div data-estimate-card style={{ position: "relative", textAlign: "center", padding: "40px 24px 32px", background: T.text, color: "#fff", borderRadius: 18, marginBottom: 16, boxShadow: "0 2px 4px rgba(10,10,10,0.08), 0 24px 48px -8px rgba(10,10,10,0.24)", overflow: "hidden" }}>
       <div style={{ position: "absolute", inset: 0, background: `radial-gradient(circle at 85% 20%, rgba(15,76,92,0.35) 0%, transparent 55%)`, pointerEvents: "none" }} />
       <div style={{ position: "relative", fontSize: 11, textTransform: "uppercase", letterSpacing: "0.25em", color: "rgba(255,255,255,0.55)", fontWeight: 500 }}>Estimated Build</div>
       <div style={{ position: "relative", fontSize: "clamp(44px,10vw,76px)", fontWeight: 500, color: "#fff", margin: "8px 0 2px", fontVariantNumeric: "tabular-nums", fontFamily: "'Fraunces',Georgia,serif", letterSpacing: "-0.035em", lineHeight: 1 }}>{fmt(animTotal)}</div>
@@ -902,7 +904,7 @@ export default function App({ initialState = "", hideNav = false }) {
   const steps = [renderStep0, renderStep1, renderStep2, renderResults];
   const stepNames = ["Location", "Pool Size & Spa", "Features", "Your Estimate"];
 
-  return <div style={{ minHeight: "100vh", background: T.bg, fontFamily: "'Inter',system-ui,-apple-system,sans-serif", color: T.text }}>
+  return <div style={{ minHeight: "100vh", fontFamily: "'Inter',system-ui,-apple-system,sans-serif", color: T.text }}>
     {!hideNav && <Helmet>
       <title>Pool Cost Calculator 2026 — How Much Does a Pool Cost in Your State?</title>
       <meta name="description" content="Free pool cost calculator for 2026. Get an instant estimate for gunite, fiberglass, or vinyl pools — adjusted for your state and build specs. Accurate pricing in under 2 minutes." />
@@ -914,12 +916,14 @@ export default function App({ initialState = "", hideNav = false }) {
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <style>{`
       .pool-slider{-webkit-appearance:none;appearance:none;width:100%;height:44px;background:transparent;outline:none;cursor:pointer;margin:0;padding:0;touch-action:pan-x;-webkit-tap-highlight-color:transparent}
-      .pool-slider::-webkit-slider-runnable-track{height:8px;border-radius:4px;background:${T.border}}
-      .pool-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:28px;height:28px;border-radius:50%;background:${T.text};border:3px solid #fff;cursor:pointer;box-shadow:0 1px 2px rgba(10,10,10,0.12),0 4px 12px rgba(10,10,10,0.10);margin-top:-10px;position:relative}
-      .pool-slider::-moz-range-track{height:8px;border-radius:4px;background:${T.border}}
-      .pool-slider::-moz-range-thumb{width:28px;height:28px;border-radius:50%;background:${T.text};border:3px solid #fff;cursor:pointer;box-shadow:0 1px 2px rgba(10,10,10,0.12),0 4px 12px rgba(10,10,10,0.10)}
-      .pool-slider:active::-webkit-slider-thumb{transform:scale(1.1);box-shadow:0 1px 2px rgba(10,10,10,0.15),0 6px 18px rgba(10,10,10,0.15)}
-      .pool-slider:active::-moz-range-thumb{transform:scale(1.1);box-shadow:0 1px 2px rgba(10,10,10,0.15),0 6px 18px rgba(10,10,10,0.15)}
+      .pool-slider::-webkit-slider-runnable-track{height:8px;border-radius:999px;background:linear-gradient(to right, ${T.accent} 0%, ${T.accent} var(--fill, 50%), ${T.border} var(--fill, 50%), ${T.border} 100%);transition:background .15s ease}
+      .pool-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:24px;height:24px;border-radius:50%;background:#fff;border:3px solid ${T.accent};cursor:pointer;box-shadow:0 2px 6px rgba(15,76,92,0.28),0 1px 2px rgba(10,10,10,0.08);margin-top:-8px;position:relative;transition:transform .15s ease, box-shadow .15s ease}
+      .pool-slider::-moz-range-track{height:8px;border-radius:999px;background:linear-gradient(to right, ${T.accent} 0%, ${T.accent} var(--fill, 50%), ${T.border} var(--fill, 50%), ${T.border} 100%)}
+      .pool-slider::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:#fff;border:3px solid ${T.accent};cursor:pointer;box-shadow:0 2px 6px rgba(15,76,92,0.28);transition:transform .15s ease, box-shadow .15s ease}
+      .pool-slider:hover::-webkit-slider-thumb{transform:scale(1.12);box-shadow:0 4px 12px rgba(15,76,92,0.32),0 0 0 8px rgba(15,76,92,0.08)}
+      .pool-slider:hover::-moz-range-thumb{transform:scale(1.12);box-shadow:0 4px 12px rgba(15,76,92,0.32),0 0 0 8px rgba(15,76,92,0.08)}
+      .pool-slider:active::-webkit-slider-thumb{transform:scale(1.08)}
+      .pool-slider:active::-moz-range-thumb{transform:scale(1.08)}
       *{box-sizing:border-box;margin:0}
       @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
       ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:${T.border};border-radius:2px}
