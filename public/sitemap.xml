@@ -44,6 +44,11 @@
   <url><loc>https://www.priceapool.com/city/jacksonville</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
   <url><loc>https://www.priceapool.com/city/tucson</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
   <url><loc>https://www.priceapool.com/city/scottsdale</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.priceapool.com/city/sarasota</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.priceapool.com/city/naples</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.priceapool.com/city/fort-lauderdale</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.priceapool.com/city/san-antonio</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.priceapool.com/city/austin-tx</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
 
   <!-- State Pages -->
   <url><loc>https://www.priceapool.com/alabama</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>

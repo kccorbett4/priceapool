@@ -84,6 +84,56 @@ const STATE_DATA = {
 const fmt = n => "$" + Math.round(n).toLocaleString();
 const fmtK = n => "$" + Math.round(n / 1000) + "K";
 
+// Per-state click triggers + primary-source citations.
+// Listed only for the 5 highest-demand states from GSC.
+const STATE_HOOKS = {
+  FL: {
+    hook: "screen enclosures, HVHZ cages, dewatering",
+    descClickTrigger: "Includes pool cage costs, HVHZ enclosure rules, and high-water-table dewatering surcharges.",
+    sources: [
+      { label: "Florida Statute 515 — Residential Swimming Pool Safety Act", url: "http://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0500-0599/0515/0515.html" },
+      { label: "Florida Building Code (current edition) — pool barrier & enclosure rules", url: "https://www.floridabuilding.org/c/default.aspx" },
+      { label: "Florida Swimming Pool Association (FSPA)", url: "https://floridapoolpro.com/" },
+    ],
+  },
+  AZ: {
+    hook: "caliche, ARS § 36-1681, HOA design review",
+    descClickTrigger: "Includes caliche excavation surcharges, ARS § 36-1681 barrier rules, and HOA design-review timelines.",
+    sources: [
+      { label: "ARS § 36-1681 — Pool Enclosure (Arizona Revised Statute)", url: "https://www.azleg.gov/ars/36/01681.htm" },
+      { label: "City of Phoenix pool permit info", url: "https://www.phoenix.gov/pdd/development-fees" },
+      { label: "Maricopa County environmental & permit services", url: "https://www.maricopa.gov/" },
+    ],
+  },
+  CA: {
+    kook: null,
+    hook: "Title 24, drought, geotech",
+    descClickTrigger: "Includes Title 24 energy requirements, expansive clay engineering, and hillside-lot geotech surcharges.",
+    sources: [
+      { label: "California Swimming Pool Safety Act (Health & Safety Code §§ 115920–115929)", url: "https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=HSC&division=104.&title=&part=10.&chapter=5.&article=" },
+      { label: "California Energy Commission — Title 24 pool requirements", url: "https://www.energy.ca.gov/programs-and-topics/programs/building-energy-efficiency-standards" },
+      { label: "California Pool & Spa Association (CPSA)", url: "https://www.cpsa.org/" },
+    ],
+  },
+  TX: {
+    hook: "expansive clay, Hill Country limestone, geotech",
+    descClickTrigger: "Includes expansive-clay engineering (Dallas/Houston) and Hill Country limestone excavation surcharges (Austin).",
+    sources: [
+      { label: "Texas Health & Safety Code Chapter 757 — Pool Yard Enclosures", url: "https://statutes.capitol.texas.gov/Docs/HS/htm/HS.757.htm" },
+      { label: "Texas Department of State Health Services — Pool & Spa", url: "https://www.dshs.texas.gov/swimming-pool-spa" },
+      { label: "Texas Pool & Spa Coalition", url: "https://www.atlanticpools.com/texas-pool-association/" },
+    ],
+  },
+  NV: {
+    hook: "Clark County permits, desert evaporation",
+    descClickTrigger: "Includes Clark County permit timelines, alkaline-soil notes, and desert evaporation rates.",
+    sources: [
+      { label: "Clark County (NV) Building Department — Pool Permits", url: "https://www.clarkcountynv.gov/government/departments/building.php" },
+      { label: "Nevada Revised Statutes Chapter 461 — Construction", url: "https://www.leg.state.nv.us/nrs/" },
+    ],
+  },
+};
+
 function getStateCosts(d) {
   // All-in estimate for a standard 500 sqft pool (16x32, avg depth 4.75ft, standard soil)
   const sqft = 500;
@@ -216,7 +266,7 @@ export default function StatePage() {
     <div style={wrap}>
       <Helmet>
         <title>{`${d.name} Pool Cost 2026: ${fmtK(costs.vinyl)}-${fmtK(costs.gunite)} (Free Estimate)`}</title>
-        <meta name="description" content={`2026 ${d.name} pool prices: gunite from ${fmt(costs.gunite)}, fiberglass from ${fmt(costs.fiber)}, vinyl from ${fmt(costs.vinyl)}. Free instant estimate by ZIP — no signup, no calls.`} />
+        <meta name="description" content={`2026 ${d.name} pool prices: gunite from ${fmt(costs.gunite)}, fiberglass from ${fmt(costs.fiber)}, vinyl from ${fmt(costs.vinyl)}.${STATE_HOOKS[code] ? ` ${STATE_HOOKS[code].descClickTrigger}` : ""} Free instant estimate by ZIP — no signup, no calls.`} />
         <link rel="canonical" href={`https://www.priceapool.com/${stateSlug}`} />
         <meta property="og:title" content={`${d.name} Pool Cost 2026: ${fmtK(costs.vinyl)}-${fmtK(costs.gunite)}`} />
         <meta property="og:description" content={`2026 ${d.name} pool prices: gunite from ${fmt(costs.gunite)}, fiberglass from ${fmt(costs.fiber)}, vinyl from ${fmt(costs.vinyl)}. Free instant estimate, no signup.`} />
@@ -358,6 +408,22 @@ export default function StatePage() {
           </p>
         </div>
 
+        {/* PRIMARY SOURCE CITATIONS — for high-demand states only (FL, AZ, CA, TX, NV) */}
+        {STATE_HOOKS[code]?.sources?.length > 0 && (
+          <div style={card}>
+            <h2 style={{ fontSize: 18, fontWeight: 700, color: T.text, marginBottom: 8 }}>{d.name} Pool Building — Primary Sources</h2>
+            <p style={{ fontSize: 12, color: T.textMid, marginBottom: 14, lineHeight: 1.55 }}>Direct references to the laws, codes, and agencies that govern {d.name} pool construction. Click any source to verify our data.</p>
+            <ul style={{ paddingLeft: 18, margin: 0 }}>
+              {STATE_HOOKS[code].sources.map((src, i) => (
+                <li key={i} style={{ fontSize: 13, color: T.textMid, lineHeight: 1.75, marginBottom: 6 }}>
+                  <a href={src.url} rel="noopener nofollow" target="_blank" style={{ color: T.accent, fontWeight: 600, textDecoration: "none" }}>{src.label}</a>
+                </li>
+              ))}
+            </ul>
+            <p style={{ fontSize: 11, color: T.textDim, marginTop: 12 }}>Methodology: see <Link to="/methodology" style={{ color: T.accent, fontWeight: 600 }}>how we calculate these costs</Link>. Open data: <a href="/pool-cost-data.json" style={{ color: T.accent, fontWeight: 600 }}>/pool-cost-data.json</a>.</p>
+          </div>
+        )}
+
         {/* KEY COST FACTORS */}
         <div style={card}>
           <h2 style={{ fontSize: 18, fontWeight: 700, color: T.text, marginBottom: 14 }}>What Affects Pool Cost in {d.name}?</h2>
@@ -484,6 +550,42 @@ export default function StatePage() {
 
         <BrowseByState />
       </div>
+
+      {/* STICKY MOBILE CTA — visible only <=768px wide. Codex+Gemini both flagged this. */}
+      <style>{`
+        @media (max-width: 768px) {
+          .pap-sticky-cta { display: flex !important; }
+          body { padding-bottom: 64px; }
+        }
+      `}</style>
+      <a href="#calculator-start"
+        className="pap-sticky-cta"
+        onClick={(e) => {
+          e.preventDefault();
+          const cal = document.querySelector('input[type="range"]') || document.querySelector('h1');
+          if (cal && cal.scrollIntoView) cal.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }}
+        style={{
+          display: "none",
+          position: "fixed",
+          bottom: 0, left: 0, right: 0,
+          zIndex: 200,
+          padding: "10px 14px",
+          background: T.text,
+          color: "#fff",
+          textDecoration: "none",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: 10,
+          boxShadow: "0 -4px 18px rgba(10,10,10,0.18)",
+          fontFamily: "'Inter',system-ui,-apple-system,sans-serif",
+        }}>
+        <div style={{ display: "flex", flexDirection: "column", lineHeight: 1.2 }}>
+          <span style={{ fontSize: 11, color: "rgba(255,255,255,0.6)", textTransform: "uppercase", letterSpacing: "0.1em" }}>Your {d.name} Estimate</span>
+          <span style={{ fontSize: 14, fontWeight: 700 }}>From {fmtK(costs.vinyl)} to {fmtK(costs.gunite)}+</span>
+        </div>
+        <span style={{ padding: "9px 16px", borderRadius: 8, background: "#fff", color: T.text, fontSize: 13, fontWeight: 700, whiteSpace: "nowrap" }}>Customize →</span>
+      </a>
     </div>
   );
 }

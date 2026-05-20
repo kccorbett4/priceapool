@@ -19,7 +19,8 @@ export const BLOG_SLUGS = [
 export const CITY_SLUGS = [
   "houston","dallas","phoenix","miami","orlando",
   "atlanta","charlotte","denver","las-vegas","nashville",
-  "tampa","jacksonville","tucson","scottsdale"
+  "tampa","jacksonville","tucson","scottsdale",
+  "sarasota","naples","fort-lauderdale","san-antonio","austin-tx"
 ];
 
 export const BUILD_SLUGS = [
