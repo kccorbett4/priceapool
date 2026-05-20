@@ -1043,7 +1043,7 @@ export default function App({ initialState = "", hideNav = false }) {
         </div>
         <BrowseByState variant="footer" />
         <div style={{ borderTop: `1px solid ${T.border}`, paddingTop: 16, fontSize: 10, color: T.textDim, lineHeight: 1.8, textAlign: "center" }}>
-          Estimates based on 2026 national averages adjusted for state, metro area, and scope. Actual costs vary by contractor, site, soil conditions, and materials. Always get 3+ written bids.<br />
+          Estimates based on 2026 national averages adjusted for state, metro area, and scope. <Link to="/methodology" style={{ color: T.accent, fontWeight: 600, textDecoration: "none" }}>See full methodology</Link> · <a href="/pool-cost-data.json" style={{ color: T.accent, fontWeight: 600, textDecoration: "none" }}>Open data</a>. Actual costs vary by contractor, site, soil conditions, and materials. Always get 3+ written bids.<br />
           Also from us: <a href="https://priceadeck.com" style={{ color: T.accent, fontWeight: 600, textDecoration: "none" }}>PriceADeck.com</a> — deck cost calculator.<br />
           © 2026 PriceAPool.com
         </div>

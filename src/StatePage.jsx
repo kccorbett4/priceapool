@@ -132,6 +132,47 @@ const STATE_HOOKS = {
       { label: "Nevada Revised Statutes Chapter 461 — Construction", url: "https://www.leg.state.nv.us/nrs/" },
     ],
   },
+  NY: {
+    hook: "Westchester permits, glacial till, frost",
+    descClickTrigger: "Includes Westchester/Long Island permit overhead, glacial-till rock excavation, and frost-line winterization.",
+    sources: [
+      { label: "NY State Uniform Code Chapter 18-K — Residential Swimming Pools", url: "https://dos.ny.gov/codes" },
+      { label: "Westchester County permit/zoning resources", url: "https://planning.westchestergov.com/" },
+      { label: "NY Public Health Law § 1399 — pool barrier rules", url: "https://www.nysenate.gov/legislation/laws/PBH" },
+    ],
+  },
+  NJ: {
+    hook: "shore towns, fence rules, glacial soils",
+    descClickTrigger: "Includes shore-town permitting overhead, NJ Pool Code fence rules, and glacial-soil engineering.",
+    sources: [
+      { label: "NJ Administrative Code 5:23 — Uniform Construction Code (pools)", url: "https://www.nj.gov/dca/divisions/codes/" },
+      { label: "NJ Department of Community Affairs — Pool Safety", url: "https://www.nj.gov/dca/" },
+    ],
+  },
+  MA: {
+    hook: "Title 5, frost line, granite",
+    descClickTrigger: "Includes 105 CMR pool barrier rules, deep frost-line winterization, and granite-bedrock rock removal.",
+    sources: [
+      { label: "Massachusetts 105 CMR 435 — Minimum Standards for Swimming Pools", url: "https://www.mass.gov/regulations/105-CMR-43500-minimum-standards-for-swimming-pools-state-sanitary-code-chapter-v" },
+      { label: "Massachusetts Department of Public Health pool resources", url: "https://www.mass.gov/orgs/department-of-public-health" },
+    ],
+  },
+  GA: {
+    hook: "red clay, Fulton/Cobb permits",
+    descClickTrigger: "Includes Georgia red-clay soil engineering and Fulton/Cobb county permit timelines.",
+    sources: [
+      { label: "Georgia O.C.G.A. § 31-45 — Public Swimming Pool & Aquatic Facility Safety Act", url: "https://law.justia.com/codes/georgia/2022/title-31/chapter-45/" },
+      { label: "Georgia Department of Public Health — Pool & Spa", url: "https://dph.georgia.gov/EnvHealthLU" },
+    ],
+  },
+  NC: {
+    hook: "Mecklenburg/Wake permits, red clay",
+    descClickTrigger: "Includes Mecklenburg (Charlotte) and Wake (Raleigh) permit timelines and red-clay engineering notes.",
+    sources: [
+      { label: "NC Administrative Code 15A NCAC 18A .2500 — Swimming Pools", url: "https://www.deq.nc.gov/about/divisions/environmental-health" },
+      { label: "NC Department of Health & Human Services — Public Swimming Pools", url: "https://epi.dph.ncdhhs.gov/oee/pools/" },
+    ],
+  },
 };
 
 function getStateCosts(d) {
