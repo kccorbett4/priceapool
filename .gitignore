@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# GA4 analytics pulls
+analytics/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

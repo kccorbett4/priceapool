@@ -175,11 +175,11 @@ export default function StatePage() {
   return (
     <div style={wrap}>
       <Helmet>
-        <title>{`How Much Does a Pool Cost in ${d.name} (2026)? | PriceAPool`}</title>
-        <meta name="description" content={`2026 pool cost in ${d.name}: gunite pools average ${fmt(costs.gunite)}, fiberglass ${fmt(costs.fiber)}, vinyl ${fmt(costs.vinyl)}. Free calculator adjusted for ${d.name} labor rates, permits, and climate.`} />
+        <title>{`${d.name} Pool Cost 2026 — Free Estimate by ZIP (15 sec)`}</title>
+        <meta name="description" content={`2026 ${d.name} pool prices: gunite from ${fmt(costs.gunite)}, fiberglass from ${fmt(costs.fiber)}, vinyl from ${fmt(costs.vinyl)}. Free instant estimate by ZIP — no signup, no calls.`} />
         <link rel="canonical" href={`https://priceapool.com/${stateSlug}`} />
-        <meta property="og:title" content={`Pool Cost in ${d.name} (2026) — Free Calculator`} />
-        <meta property="og:description" content={`How much does a pool cost in ${d.name}? Get a free instant estimate adjusted for local labor and permit costs.`} />
+        <meta property="og:title" content={`${d.name} Pool Cost 2026 — Free Estimate by ZIP`} />
+        <meta property="og:description" content={`2026 ${d.name} pool prices: gunite from ${fmt(costs.gunite)}, fiberglass from ${fmt(costs.fiber)}, vinyl from ${fmt(costs.vinyl)}. Free instant estimate, no signup.`} />
         <meta property="og:url" content={`https://priceapool.com/${stateSlug}`} />
         <script type="application/ld+json">{JSON.stringify(stateSchema)}</script>
       </Helmet>

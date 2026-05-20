@@ -12,6 +12,8 @@
     "indexnow": "INDEXNOW_FORCE=1 node scripts/indexnow.js"
   },
   "dependencies": {
+    "@google-analytics/data": "^6.0.0",
+    "googleapis": "^171.4.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-helmet-async": "^3.0.0",
