@@ -1160,11 +1160,11 @@ export default function BlogPage() {
     "@type": "Article",
     "headline": article.title,
     "description": article.description,
-    "url": `https://priceapool.com/blog/${slug}`,
+    "url": `https://www.priceapool.com/blog/${slug}`,
     "datePublished": meta.iso || "2026-01-01",
     "dateModified": meta.iso || "2026-01-01",
-    "author": { "@type": "Organization", "name": "PriceAPool Editorial Team", "url": "https://priceapool.com" },
-    "publisher": { "@type": "Organization", "name": "PriceAPool.com", "url": "https://priceapool.com" },
+    "author": { "@type": "Organization", "name": "PriceAPool Editorial Team", "url": "https://www.priceapool.com" },
+    "publisher": { "@type": "Organization", "name": "PriceAPool.com", "url": "https://www.priceapool.com" },
   };
   const faqSchema = meta.faqs?.length ? {
     "@context": "https://schema.org",
@@ -1180,10 +1180,10 @@ export default function BlogPage() {
       <Helmet>
         <title>{`${article.title} | PriceAPool`}</title>
         <meta name="description" content={article.description} />
-        <link rel="canonical" href={`https://priceapool.com/blog/${slug}`} />
+        <link rel="canonical" href={`https://www.priceapool.com/blog/${slug}`} />
         <meta property="og:title" content={article.title} />
         <meta property="og:description" content={article.description} />
-        <meta property="og:url" content={`https://priceapool.com/blog/${slug}`} />
+        <meta property="og:url" content={`https://www.priceapool.com/blog/${slug}`} />
         <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>
         {faqSchema && <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>}
       </Helmet>

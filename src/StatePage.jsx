@@ -82,6 +82,7 @@ const STATE_DATA = {
 };
 
 const fmt = n => "$" + Math.round(n).toLocaleString();
+const fmtK = n => "$" + Math.round(n / 1000) + "K";
 
 function getStateCosts(d) {
   // All-in estimate for a standard 500 sqft pool (16x32, avg depth 4.75ft, standard soil)
@@ -137,7 +138,9 @@ export default function StatePage() {
   const costs = getStateCosts(d);
   const content = STATE_CONTENT[code];
 
-  const stateSchema = {
+  const dateModified = "2026-05-19";
+
+  const stateFaqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
@@ -146,26 +149,63 @@ export default function StatePage() {
         "name": `How much does an inground pool cost in ${d.name}?`,
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": `In ${d.name}, a gunite pool averages ${fmt(costs.gunite)}, fiberglass averages ${fmt(costs.fiber)}, and vinyl liner pools average ${fmt(costs.vinyl)} for a standard 500 sq ft pool. Prices vary by size, features, soil conditions, and local contractor.`
+          "text": `In ${d.name}, a gunite (concrete) pool averages ${fmt(costs.gunite)}, fiberglass pools average ${fmt(costs.fiber)}, and vinyl liner pools average ${fmt(costs.vinyl)} for a standard-size pool. These are base estimates — your final cost depends on size, soil conditions, features like spas or water features, and decking.`
         }
       },
       {
         "@type": "Question",
-        "name": `Do you need a permit to build a pool in ${d.name}?`,
+        "name": `What is the cheapest inground pool in ${d.name}?`,
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": permitSentence(d)
+          "text": `Vinyl liner pools are the most affordable option in ${d.name}, starting around ${fmt(costs.vinyl)}. The liner will need replacement every 7-10 years at a cost of $3,500-$6,000. Fiberglass pools offer a middle ground - faster to install and lower long-term maintenance than vinyl.`
         }
       },
       {
         "@type": "Question",
-        "name": `What is the cheapest pool to build in ${d.name}?`,
+        "name": `How much do pool permits cost in ${d.name}?`,
+        "acceptedAnswer": { "@type": "Answer", "text": permitSentence(d) }
+      },
+      {
+        "@type": "Question",
+        "name": `How long does it take to build a pool in ${d.name}?`,
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": `Vinyl liner pools are the most affordable option in ${d.name}, starting around ${fmt(costs.vinyl)}. Fiberglass pools offer a mid-range option at around ${fmt(costs.fiber)}, while gunite pools are the most customizable and start at ${fmt(costs.gunite)}.`
+          "text": `Gunite pools in ${d.name} typically take 8-14 weeks from permit approval to completion. Fiberglass pools can be installed in 3-6 weeks. Vinyl liner pools fall in between at 4-8 weeks. Delays can occur due to weather, permit processing times, or contractor availability - especially during peak season (spring and summer).`
         }
       },
+      {
+        "@type": "Question",
+        "name": `Do I need to winterize my pool in ${d.name}?`,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": d.frost
+            ? `Yes - ${d.name} winters require proper pool winterization to prevent freeze damage to pipes and equipment. Professional closing and opening typically costs $300-$600 combined. Plan for this as an annual operating cost.`
+            : `Most of ${d.name} does not require traditional pool winterization. In rare cold snaps, running equipment overnight is usually sufficient to protect your pool. This is one of the advantages of building a pool in ${d.name}.`
+        }
+      }
     ]
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Pool Cost Calculator", "item": "https://www.priceapool.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Pool Cost by State", "item": "https://www.priceapool.com/pool-cost-by-state" },
+      { "@type": "ListItem", "position": 3, "name": `${d.name} Pool Cost`, "item": `https://www.priceapool.com/${stateSlug}` }
+    ]
+  };
+
+  const stateArticleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": `${d.name} Pool Cost 2026: ${fmtK(costs.vinyl)}-${fmtK(costs.gunite)} — Free Estimate`,
+    "description": `2026 pool building cost data for ${d.name}: gunite, fiberglass, and vinyl prices including permits, labor, and metro adjustments.`,
+    "dateModified": dateModified,
+    "datePublished": "2026-04-03",
+    "author": { "@type": "Organization", "name": "PriceAPool Editorial Team", "url": "https://www.priceapool.com" },
+    "publisher": { "@type": "Organization", "name": "PriceAPool.com", "url": "https://www.priceapool.com" },
+    "mainEntityOfPage": `https://www.priceapool.com/${stateSlug}`
   };
 
   const wrap = { fontFamily: "'Inter',system-ui,-apple-system,sans-serif", color: T.text, background: T.bg, minHeight: "100vh" };
@@ -175,13 +215,16 @@ export default function StatePage() {
   return (
     <div style={wrap}>
       <Helmet>
-        <title>{`${d.name} Pool Cost 2026 — Free Estimate by ZIP (15 sec)`}</title>
+        <title>{`${d.name} Pool Cost 2026: ${fmtK(costs.vinyl)}-${fmtK(costs.gunite)} (Free Estimate)`}</title>
         <meta name="description" content={`2026 ${d.name} pool prices: gunite from ${fmt(costs.gunite)}, fiberglass from ${fmt(costs.fiber)}, vinyl from ${fmt(costs.vinyl)}. Free instant estimate by ZIP — no signup, no calls.`} />
-        <link rel="canonical" href={`https://priceapool.com/${stateSlug}`} />
-        <meta property="og:title" content={`${d.name} Pool Cost 2026 — Free Estimate by ZIP`} />
+        <link rel="canonical" href={`https://www.priceapool.com/${stateSlug}`} />
+        <meta property="og:title" content={`${d.name} Pool Cost 2026: ${fmtK(costs.vinyl)}-${fmtK(costs.gunite)}`} />
         <meta property="og:description" content={`2026 ${d.name} pool prices: gunite from ${fmt(costs.gunite)}, fiberglass from ${fmt(costs.fiber)}, vinyl from ${fmt(costs.vinyl)}. Free instant estimate, no signup.`} />
-        <meta property="og:url" content={`https://priceapool.com/${stateSlug}`} />
-        <script type="application/ld+json">{JSON.stringify(stateSchema)}</script>
+        <meta property="og:url" content={`https://www.priceapool.com/${stateSlug}`} />
+        <meta property="article:modified_time" content={`${dateModified}T00:00:00Z`} />
+        <script type="application/ld+json">{JSON.stringify(stateFaqSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(stateArticleSchema)}</script>
       </Helmet>
       {/* NAV */}
       <nav style={{ position: "sticky", top: 0, zIndex: 100, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 24px", height: 64, background: "rgba(250,248,243,0.85)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", borderBottom: `1px solid ${T.border}` }}>

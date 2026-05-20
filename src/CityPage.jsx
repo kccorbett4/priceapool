@@ -192,9 +192,9 @@ export default function CityPage() {
       <Helmet>
         <title>{`Pool Cost in ${city.name} (2026) — Free Calculator | PriceAPool`}</title>
         <meta name="description" content={`How much does a pool cost in ${city.name} in 2026? Gunite pools average ${fmt(gunite)}, fiberglass ${fmt(fiber)}, vinyl ${fmt(vinyl)}. Free calculator with ${city.name}-specific pricing.`} />
-        <link rel="canonical" href={`https://priceapool.com/city/${citySlug}`} />
+        <link rel="canonical" href={`https://www.priceapool.com/city/${citySlug}`} />
         <meta property="og:title" content={`Pool Cost in ${city.name} (2026) — Free Calculator`} />
-        <meta property="og:url" content={`https://priceapool.com/city/${citySlug}`} />
+        <meta property="og:url" content={`https://www.priceapool.com/city/${citySlug}`} />
         <script type="application/ld+json">{JSON.stringify(citySchema)}</script>
       </Helmet>
       <nav style={{ position: "sticky", top: 0, zIndex: 100, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 24px", height: 64, background: "rgba(250,248,243,0.85)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", borderBottom: `1px solid ${T.border}` }}>

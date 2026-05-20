@@ -908,12 +908,11 @@ export default function App({ initialState = "", hideNav = false }) {
     {!hideNav && <Helmet>
       <title>Pool Cost Calculator 2026 — How Much Does a Pool Cost in Your State?</title>
       <meta name="description" content="Free pool cost calculator for 2026. Get an instant estimate for gunite, fiberglass, or vinyl pools — adjusted for your state and build specs. Accurate pricing in under 2 minutes." />
-      <link rel="canonical" href="https://priceapool.com/" />
+      <link rel="canonical" href="https://www.priceapool.com/" />
       <meta property="og:title" content="Pool Cost Calculator 2026 — How Much Does a Pool Cost?" />
       <meta property="og:description" content="Free instant pool cost estimate adjusted for your state and build. Gunite, fiberglass, and vinyl pricing in under 2 minutes." />
-      <meta property="og:url" content="https://priceapool.com/" />
+      <meta property="og:url" content="https://www.priceapool.com/" />
     </Helmet>}
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <style>{`
       .pool-slider{-webkit-appearance:none;appearance:none;width:100%;height:44px;background:transparent;outline:none;cursor:pointer;margin:0;padding:0;touch-action:pan-x;-webkit-tap-highlight-color:transparent}
       .pool-slider::-webkit-slider-runnable-track{height:8px;border-radius:999px;background:linear-gradient(to right, ${T.accent} 0%, ${T.accent} var(--fill, 50%), ${T.border} var(--fill, 50%), ${T.border} 100%);transition:background .15s ease}
@@ -947,7 +946,7 @@ export default function App({ initialState = "", hideNav = false }) {
         <a href="https://priceadeck.com" style={{ fontSize: 13, color: T.textMid, textDecoration: "none", fontWeight: 500, display: "flex", alignItems: "center", gap: 4 }}>Deck Costs<span style={{ fontSize: 9, color: T.accent, fontWeight: 700, background: T.accentLight, padding: "2px 5px", borderRadius: 4 }}>NEW</span></a>
       </div>
     </nav>}
-    {step < 3 && <div style={{ textAlign: "center", padding: "72px 20px 24px", maxWidth: 840, margin: "0 auto" }}>
+    {step < 3 && !hideNav && <div style={{ textAlign: "center", padding: "72px 20px 24px", maxWidth: 840, margin: "0 auto" }}>
       <div style={{ fontSize: 11, fontWeight: 600, color: T.textDim, textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: 20 }}>Pool Cost Estimator · 2026</div>
       <h1 style={{ fontSize: "clamp(40px,7vw,72px)", fontWeight: 500, color: T.text, letterSpacing: "-0.035em", lineHeight: 1.02, fontFamily: "'Fraunces',Georgia,serif" }}>How much does a pool <em style={{ fontStyle: "italic", fontWeight: 400 }}>really</em> cost?</h1>
       <p style={{ fontSize: 17, color: T.textMid, marginTop: 20, maxWidth: 560, marginLeft: "auto", marginRight: "auto", lineHeight: 1.55, fontWeight: 400 }}>An honest estimate in under two minutes — priced against 2026 labor rates in your state and metro.</p>

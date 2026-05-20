@@ -418,11 +418,11 @@ export default function BuildPage() {
       <Helmet>
         <title>{`${b.title} — ${money(b.priceTotal)} in ${b.location} | PriceAPool`}</title>
         <meta name="description" content={`${b.summary} Full cost breakdown, specs, and decisions behind this ${b.type.toLowerCase()} pool build.`} />
-        <link rel="canonical" href={`https://priceapool.com/builds/${buildSlug}`} />
+        <link rel="canonical" href={`https://www.priceapool.com/builds/${buildSlug}`} />
         <meta property="og:title" content={`${b.title} — ${money(b.priceTotal)} in ${b.location}`} />
         <meta property="og:description" content={b.summary} />
-        <meta property="og:image" content={`https://priceapool.com${b.image}`} />
-        <meta property="og:url" content={`https://priceapool.com/builds/${buildSlug}`} />
+        <meta property="og:image" content={`https://www.priceapool.com${b.image}`} />
+        <meta property="og:url" content={`https://www.priceapool.com/builds/${buildSlug}`} />
       </Helmet>
 
       <Nav />
@@ -570,7 +570,7 @@ export function BuildsIndex() {
       <Helmet>
         <title>Sample Pool Builds with Full Cost Breakdowns | PriceAPool</title>
         <meta name="description" content="Six real-world pool build examples across gunite, fiberglass, and vinyl, from budget $54K Midwest builds to $215K desert resort gunite. Every build includes specs, line-item pricing, and what drove the numbers up or down." />
-        <link rel="canonical" href="https://priceapool.com/builds" />
+        <link rel="canonical" href="https://www.priceapool.com/builds" />
       </Helmet>
 
       <Nav />

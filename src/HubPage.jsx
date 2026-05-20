@@ -105,9 +105,9 @@ export default function HubPage() {
       <Helmet>
         <title>Pool Cost by State 2026 — All 50 States Compared | PriceAPool</title>
         <meta name="description" content="Compare inground pool costs across all 50 states in 2026. See average gunite, fiberglass, and vinyl pool prices for every state — adjusted for local labor rates and permit costs." />
-        <link rel="canonical" href="https://priceapool.com/pool-cost-by-state" />
+        <link rel="canonical" href="https://www.priceapool.com/pool-cost-by-state" />
         <meta property="og:title" content="Pool Cost by State 2026 — All 50 States Compared" />
-        <meta property="og:url" content="https://priceapool.com/pool-cost-by-state" />
+        <meta property="og:url" content="https://www.priceapool.com/pool-cost-by-state" />
         <script type="application/ld+json">{JSON.stringify(hubSchema)}</script>
       </Helmet>
       <nav style={{ position: "sticky", top: 0, zIndex: 100, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 24px", height: 64, background: "rgba(250,248,243,0.85)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", borderBottom: `1px solid ${T.border}` }}>

@@ -43,7 +43,7 @@ export default function DataPage() {
     "@context": "https://schema.org", "@type": "Dataset",
     "name": "Inground Pool Cost Data 2026",
     "description": "Comprehensive dataset of inground pool costs across the United States in 2026, including averages by pool type, state, size, and feature.",
-    "url": "https://priceapool.com/pool-cost-data",
+    "url": "https://www.priceapool.com/pool-cost-data",
     "creator": { "@type": "Organization", "name": "PriceAPool.com" },
     "dateModified": "2026-01-01",
     "spatialCoverage": "United States",
@@ -59,9 +59,9 @@ export default function DataPage() {
       <Helmet>
         <title>Pool Cost Statistics &amp; Data 2026 | PriceAPool Research</title>
         <meta name="description" content="Comprehensive pool cost statistics and data for 2026: national averages, cost by pool type, cost by state, maintenance costs, ROI data, and 25 key facts about inground pool pricing." />
-        <link rel="canonical" href="https://priceapool.com/pool-cost-data" />
+        <link rel="canonical" href="https://www.priceapool.com/pool-cost-data" />
         <meta property="og:title" content="Pool Cost Statistics & Data 2026 — PriceAPool Research" />
-        <meta property="og:url" content="https://priceapool.com/pool-cost-data" />
+        <meta property="og:url" content="https://www.priceapool.com/pool-cost-data" />
         <script type="application/ld+json">{JSON.stringify(dataSchema)}</script>
       </Helmet>
       <nav style={{ position: "sticky", top: 0, zIndex: 100, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 24px", height: 64, background: "rgba(250,248,243,0.85)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", borderBottom: `1px solid ${T.border}` }}>
