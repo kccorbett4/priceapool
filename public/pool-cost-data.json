@@ -1,0 +1,2168 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "name": "2026 US Inground Pool Cost by State",
+  "description": "Programmatic 2026 inground pool building cost estimates for all 50 US states plus Washington D.C. Includes baseline pricing for gunite, fiberglass, and vinyl liner pools at a standard 500 sq ft size, adjusted for each state's labor index and permit costs.",
+  "url": "https://www.priceapool.com/pool-cost-data.json",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "creator": {
+    "@type": "Organization",
+    "name": "PriceAPool.com",
+    "url": "https://www.priceapool.com"
+  },
+  "dateModified": "2026-05-20",
+  "datePublished": "2026-04-03",
+  "spatialCoverage": {
+    "@type": "Country",
+    "name": "United States"
+  },
+  "temporalCoverage": "2026",
+  "keywords": [
+    "inground pool cost",
+    "swimming pool cost calculator",
+    "pool construction cost by state",
+    "gunite pool cost",
+    "fiberglass pool cost",
+    "vinyl liner pool cost",
+    "2026 pool cost data"
+  ],
+  "variableMeasured": [
+    {
+      "@type": "PropertyValue",
+      "name": "gunite pool cost (500 sq ft baseline)",
+      "unitText": "USD"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "fiberglass pool cost (500 sq ft baseline)",
+      "unitText": "USD"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "vinyl liner pool cost (500 sq ft baseline)",
+      "unitText": "USD"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "labor index",
+      "description": "Multiplier vs. US median, 1.00 = average"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "permit cost",
+      "unitText": "USD"
+    }
+  ],
+  "data": [
+    {
+      "state_code": "AL",
+      "state_name": "Alabama",
+      "slug": "alabama",
+      "url": "https://www.priceapool.com/alabama",
+      "labor_index": 0.82,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 1000,
+      "frost_state": false,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 70000,
+        "fiberglass": 53000,
+        "vinyl_liner": 42000
+      }
+    },
+    {
+      "state_code": "AK",
+      "state_name": "Alaska",
+      "slug": "alaska",
+      "url": "https://www.priceapool.com/alaska",
+      "labor_index": 1.35,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 2500,
+      "frost_state": true,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 93000,
+        "fiberglass": 72000,
+        "vinyl_liner": 55000
+      }
+    },
+    {
+      "state_code": "AZ",
+      "state_name": "Arizona",
+      "slug": "arizona",
+      "url": "https://www.priceapool.com/arizona",
+      "labor_index": 1.02,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 1600,
+      "frost_state": false,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 75000,
+        "fiberglass": 57000,
+        "vinyl_liner": 46000
+      }
+    },
+    {
+      "state_code": "AR",
+      "state_name": "Arkansas",
+      "slug": "arkansas",
+      "url": "https://www.priceapool.com/arkansas",
+      "labor_index": 0.78,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 900,
+      "frost_state": false,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 69000,
+        "fiberglass": 52000,
+        "vinyl_liner": 41000
+      }
+    },
+    {
+      "state_code": "CA",
+      "state_name": "California",
+      "slug": "california",
+      "url": "https://www.priceapool.com/california",
+      "labor_index": 1.38,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 2900,
+      "frost_state": false,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 93000,
+        "fiberglass": 71000,
+        "vinyl_liner": 54000
+      }
+    },
+    {
+      "state_code": "CO",
+      "state_name": "Colorado",
+      "slug": "colorado",
+      "url": "https://www.priceapool.com/colorado",
+      "labor_index": 1.1,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 1900,
+      "frost_state": true,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 79000,
+        "fiberglass": 61000,
+        "vinyl_liner": 50000
+      }
+    },
+    {
+      "state_code": "CT",
+      "state_name": "Connecticut",
+      "slug": "connecticut",
+      "url": "https://www.priceapool.com/connecticut",
+      "labor_index": 1.25,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 2400,
+      "frost_state": true,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 87000,
+        "fiberglass": 67000,
+        "vinyl_liner": 54000
+      }
+    },
+    {
+      "state_code": "DE",
+      "state_name": "Delaware",
+      "slug": "delaware",
+      "url": "https://www.priceapool.com/delaware",
+      "labor_index": 1.08,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 1700,
+      "frost_state": true,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 79000,
+        "fiberglass": 61000,
+        "vinyl_liner": 50000
+      }
+    },
+    {
+      "state_code": "FL",
+      "state_name": "Florida",
+      "slug": "florida",
+      "url": "https://www.priceapool.com/florida",
+      "labor_index": 0.92,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 1300,
+      "frost_state": false,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 72000,
+        "fiberglass": 55000,
+        "vinyl_liner": 44000
+      }
+    },
+    {
+      "state_code": "GA",
+      "state_name": "Georgia",
+      "slug": "georgia",
+      "url": "https://www.priceapool.com/georgia",
+      "labor_index": 0.88,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 1200,
+      "frost_state": false,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 72000,
+        "fiberglass": 54000,
+        "vinyl_liner": 43000
+      }
+    },
+    {
+      "state_code": "HI",
+      "state_name": "Hawaii",
+      "slug": "hawaii",
+      "url": "https://www.priceapool.com/hawaii",
+      "labor_index": 1.4,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 3200,
+      "frost_state": false,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 95000,
+        "fiberglass": 73000,
+        "vinyl_liner": 54000
+      }
+    },
+    {
+      "state_code": "ID",
+      "state_name": "Idaho",
+      "slug": "idaho",
+      "url": "https://www.priceapool.com/idaho",
+      "labor_index": 0.98,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 1500,
+      "frost_state": true,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 77000,
+        "fiberglass": 59000,
+        "vinyl_liner": 48000
+      }
+    },
+    {
+      "state_code": "IL",
+      "state_name": "Illinois",
+      "slug": "illinois",
+      "url": "https://www.priceapool.com/illinois",
+      "labor_index": 1.05,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 1800,
+      "frost_state": true,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 78000,
+        "fiberglass": 60000,
+        "vinyl_liner": 49000
+      }
+    },
+    {
+      "state_code": "IN",
+      "state_name": "Indiana",
+      "slug": "indiana",
+      "url": "https://www.priceapool.com/indiana",
+      "labor_index": 0.9,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 1300,
+      "frost_state": true,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 75000,
+        "fiberglass": 57000,
+        "vinyl_liner": 46000
+      }
+    },
+    {
+      "state_code": "IA",
+      "state_name": "Iowa",
+      "slug": "iowa",
+      "url": "https://www.priceapool.com/iowa",
+      "labor_index": 0.88,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 1200,
+      "frost_state": true,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 74000,
+        "fiberglass": 57000,
+        "vinyl_liner": 46000
+      }
+    },
+    {
+      "state_code": "KS",
+      "state_name": "Kansas",
+      "slug": "kansas",
+      "url": "https://www.priceapool.com/kansas",
+      "labor_index": 0.84,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 1100,
+      "frost_state": true,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 73000,
+        "fiberglass": 56000,
+        "vinyl_liner": 45000
+      }
+    },
+    {
+      "state_code": "KY",
+      "state_name": "Kentucky",
+      "slug": "kentucky",
+      "url": "https://www.priceapool.com/kentucky",
+      "labor_index": 0.83,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 1100,
+      "frost_state": true,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 73000,
+        "fiberglass": 56000,
+        "vinyl_liner": 45000
+      }
+    },
+    {
+      "state_code": "LA",
+      "state_name": "Louisiana",
+      "slug": "louisiana",
+      "url": "https://www.priceapool.com/louisiana",
+      "labor_index": 0.8,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 1000,
+      "frost_state": false,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 70000,
+        "fiberglass": 53000,
+        "vinyl_liner": 42000
+      }
+    },
+    {
+      "state_code": "ME",
+      "state_name": "Maine",
+      "slug": "maine",
+      "url": "https://www.priceapool.com/maine",
+      "labor_index": 1.12,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 1900,
+      "frost_state": true,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 80000,
+        "fiberglass": 62000,
+        "vinyl_liner": 51000
+      }
+    },
+    {
+      "state_code": "MD",
+      "state_name": "Maryland",
+      "slug": "maryland",
+      "url": "https://www.priceapool.com/maryland",
+      "labor_index": 1.15,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 2100,
+      "frost_state": true,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 81000,
+        "fiberglass": 62000,
+        "vinyl_liner": 52000
+      }
+    },
+    {
+      "state_code": "MA",
+      "state_name": "Massachusetts",
+      "slug": "massachusetts",
+      "url": "https://www.priceapool.com/massachusetts",
+      "labor_index": 1.3,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 2500,
+      "frost_state": true,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 90000,
+        "fiberglass": 70000,
+        "vinyl_liner": 55000
+      }
+    },
+    {
+      "state_code": "MI",
+      "state_name": "Michigan",
+      "slug": "michigan",
+      "url": "https://www.priceapool.com/michigan",
+      "labor_index": 0.95,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 1500,
+      "frost_state": true,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 76000,
+        "fiberglass": 58000,
+        "vinyl_liner": 47000
+      }
+    },
+    {
+      "state_code": "MN",
+      "state_name": "Minnesota",
+      "slug": "minnesota",
+      "url": "https://www.priceapool.com/minnesota",
+      "labor_index": 1.02,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 1600,
+      "frost_state": true,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 77000,
+        "fiberglass": 60000,
+        "vinyl_liner": 49000
+      }
+    },
+    {
+      "state_code": "MS",
+      "state_name": "Mississippi",
+      "slug": "mississippi",
+      "url": "https://www.priceapool.com/mississippi",
+      "labor_index": 0.76,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 900,
+      "frost_state": false,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 69000,
+        "fiberglass": 52000,
+        "vinyl_liner": 41000
+      }
+    },
+    {
+      "state_code": "MO",
+      "state_name": "Missouri",
+      "slug": "missouri",
+      "url": "https://www.priceapool.com/missouri",
+      "labor_index": 0.84,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 1100,
+      "frost_state": true,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 73000,
+        "fiberglass": 56000,
+        "vinyl_liner": 45000
+      }
+    },
+    {
+      "state_code": "MT",
+      "state_name": "Montana",
+      "slug": "montana",
+      "url": "https://www.priceapool.com/montana",
+      "labor_index": 1,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 1500,
+      "frost_state": true,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 77000,
+        "fiberglass": 59000,
+        "vinyl_liner": 48000
+      }
+    },
+    {
+      "state_code": "NE",
+      "state_name": "Nebraska",
+      "slug": "nebraska",
+      "url": "https://www.priceapool.com/nebraska",
+      "labor_index": 0.86,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 1100,
+      "frost_state": true,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 74000,
+        "fiberglass": 56000,
+        "vinyl_liner": 45000
+      }
+    },
+    {
+      "state_code": "NV",
+      "state_name": "Nevada",
+      "slug": "nevada",
+      "url": "https://www.priceapool.com/nevada",
+      "labor_index": 1.05,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 1700,
+      "frost_state": false,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 76000,
+        "fiberglass": 58000,
+        "vinyl_liner": 47000
+      }
+    },
+    {
+      "state_code": "NH",
+      "state_name": "New Hampshire",
+      "slug": "new-hampshire",
+      "url": "https://www.priceapool.com/new-hampshire",
+      "labor_index": 1.15,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 2000,
+      "frost_state": true,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 81000,
+        "fiberglass": 62000,
+        "vinyl_liner": 51000
+      }
+    },
+    {
+      "state_code": "NJ",
+      "state_name": "New Jersey",
+      "slug": "new-jersey",
+      "url": "https://www.priceapool.com/new-jersey",
+      "labor_index": 1.28,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 2600,
+      "frost_state": true,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 89000,
+        "fiberglass": 69000,
+        "vinyl_liner": 54000
+      }
+    },
+    {
+      "state_code": "NM",
+      "state_name": "New Mexico",
+      "slug": "new-mexico",
+      "url": "https://www.priceapool.com/new-mexico",
+      "labor_index": 0.9,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 1300,
+      "frost_state": false,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 72000,
+        "fiberglass": 55000,
+        "vinyl_liner": 44000
+      }
+    },
+    {
+      "state_code": "NY",
+      "state_name": "New York",
+      "slug": "new-york",
+      "url": "https://www.priceapool.com/new-york",
+      "labor_index": 1.35,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 2800,
+      "frost_state": true,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 94000,
+        "fiberglass": 72000,
+        "vinyl_liner": 56000
+      }
+    },
+    {
+      "state_code": "NC",
+      "state_name": "North Carolina",
+      "slug": "north-carolina",
+      "url": "https://www.priceapool.com/north-carolina",
+      "labor_index": 0.87,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 1200,
+      "frost_state": false,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 71000,
+        "fiberglass": 54000,
+        "vinyl_liner": 43000
+      }
+    },
+    {
+      "state_code": "ND",
+      "state_name": "North Dakota",
+      "slug": "north-dakota",
+      "url": "https://www.priceapool.com/north-dakota",
+      "labor_index": 0.95,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 1400,
+      "frost_state": true,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 76000,
+        "fiberglass": 58000,
+        "vinyl_liner": 47000
+      }
+    },
+    {
+      "state_code": "OH",
+      "state_name": "Ohio",
+      "slug": "ohio",
+      "url": "https://www.priceapool.com/ohio",
+      "labor_index": 0.92,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 1400,
+      "frost_state": true,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 75000,
+        "fiberglass": 58000,
+        "vinyl_liner": 47000
+      }
+    },
+    {
+      "state_code": "OK",
+      "state_name": "Oklahoma",
+      "slug": "oklahoma",
+      "url": "https://www.priceapool.com/oklahoma",
+      "labor_index": 0.8,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 1000,
+      "frost_state": false,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 70000,
+        "fiberglass": 53000,
+        "vinyl_liner": 42000
+      }
+    },
+    {
+      "state_code": "OR",
+      "state_name": "Oregon",
+      "slug": "oregon",
+      "url": "https://www.priceapool.com/oregon",
+      "labor_index": 1.12,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 1900,
+      "frost_state": true,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 80000,
+        "fiberglass": 62000,
+        "vinyl_liner": 51000
+      }
+    },
+    {
+      "state_code": "PA",
+      "state_name": "Pennsylvania",
+      "slug": "pennsylvania",
+      "url": "https://www.priceapool.com/pennsylvania",
+      "labor_index": 1.1,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 2000,
+      "frost_state": true,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 80000,
+        "fiberglass": 61000,
+        "vinyl_liner": 51000
+      }
+    },
+    {
+      "state_code": "RI",
+      "state_name": "Rhode Island",
+      "slug": "rhode-island",
+      "url": "https://www.priceapool.com/rhode-island",
+      "labor_index": 1.22,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 2300,
+      "frost_state": true,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 85000,
+        "fiberglass": 65000,
+        "vinyl_liner": 53000
+      }
+    },
+    {
+      "state_code": "SC",
+      "state_name": "South Carolina",
+      "slug": "south-carolina",
+      "url": "https://www.priceapool.com/south-carolina",
+      "labor_index": 0.85,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 1100,
+      "frost_state": false,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 71000,
+        "fiberglass": 54000,
+        "vinyl_liner": 43000
+      }
+    },
+    {
+      "state_code": "SD",
+      "state_name": "South Dakota",
+      "slug": "south-dakota",
+      "url": "https://www.priceapool.com/south-dakota",
+      "labor_index": 0.88,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 1200,
+      "frost_state": true,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 74000,
+        "fiberglass": 57000,
+        "vinyl_liner": 46000
+      }
+    },
+    {
+      "state_code": "TN",
+      "state_name": "Tennessee",
+      "slug": "tennessee",
+      "url": "https://www.priceapool.com/tennessee",
+      "labor_index": 0.83,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 1100,
+      "frost_state": false,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 70000,
+        "fiberglass": 53000,
+        "vinyl_liner": 42000
+      }
+    },
+    {
+      "state_code": "TX",
+      "state_name": "Texas",
+      "slug": "texas",
+      "url": "https://www.priceapool.com/texas",
+      "labor_index": 0.88,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 1100,
+      "frost_state": false,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 71000,
+        "fiberglass": 54000,
+        "vinyl_liner": 43000
+      }
+    },
+    {
+      "state_code": "UT",
+      "state_name": "Utah",
+      "slug": "utah",
+      "url": "https://www.priceapool.com/utah",
+      "labor_index": 1.05,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 1800,
+      "frost_state": true,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 78000,
+        "fiberglass": 60000,
+        "vinyl_liner": 49000
+      }
+    },
+    {
+      "state_code": "VT",
+      "state_name": "Vermont",
+      "slug": "vermont",
+      "url": "https://www.priceapool.com/vermont",
+      "labor_index": 1.15,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 2000,
+      "frost_state": true,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 81000,
+        "fiberglass": 62000,
+        "vinyl_liner": 51000
+      }
+    },
+    {
+      "state_code": "VA",
+      "state_name": "Virginia",
+      "slug": "virginia",
+      "url": "https://www.priceapool.com/virginia",
+      "labor_index": 1.02,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 1700,
+      "frost_state": true,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 78000,
+        "fiberglass": 60000,
+        "vinyl_liner": 49000
+      }
+    },
+    {
+      "state_code": "WA",
+      "state_name": "Washington",
+      "slug": "washington",
+      "url": "https://www.priceapool.com/washington",
+      "labor_index": 1.18,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 2100,
+      "frost_state": true,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 82000,
+        "fiberglass": 63000,
+        "vinyl_liner": 52000
+      }
+    },
+    {
+      "state_code": "WV",
+      "state_name": "West Virginia",
+      "slug": "west-virginia",
+      "url": "https://www.priceapool.com/west-virginia",
+      "labor_index": 0.82,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 1000,
+      "frost_state": true,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 73000,
+        "fiberglass": 55000,
+        "vinyl_liner": 45000
+      }
+    },
+    {
+      "state_code": "WI",
+      "state_name": "Wisconsin",
+      "slug": "wisconsin",
+      "url": "https://www.priceapool.com/wisconsin",
+      "labor_index": 0.95,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 1400,
+      "frost_state": true,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 76000,
+        "fiberglass": 58000,
+        "vinyl_liner": 47000
+      }
+    },
+    {
+      "state_code": "WY",
+      "state_name": "Wyoming",
+      "slug": "wyoming",
+      "url": "https://www.priceapool.com/wyoming",
+      "labor_index": 1,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 1400,
+      "frost_state": true,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 77000,
+        "fiberglass": 59000,
+        "vinyl_liner": 48000
+      }
+    },
+    {
+      "state_code": "DC",
+      "state_name": "Washington D.C.",
+      "slug": "washington-dc",
+      "url": "https://www.priceapool.com/washington-dc",
+      "labor_index": 1.3,
+      "labor_index_note": "1.00 = national median. >1 means above national average; <1 means below.",
+      "permit_cost_usd": 2800,
+      "frost_state": true,
+      "pool_costs_usd_2026": {
+        "assumptions": {
+          "size_sqft": 500,
+          "shape": "rectangle",
+          "avg_depth_ft": 4.75,
+          "site_conditions": "standard loam, no metro multiplier",
+          "includes": [
+            "shell",
+            "excavation",
+            "plumbing",
+            "equipment",
+            "electrical",
+            "interior finish (gunite only)",
+            "permits",
+            "frost protection where applicable",
+            "8% contingency"
+          ],
+          "excludes": [
+            "decking",
+            "spa",
+            "fence",
+            "features",
+            "heater",
+            "automation",
+            "metro premium"
+          ]
+        },
+        "gunite": 90000,
+        "fiberglass": 70000,
+        "vinyl_liner": 55000
+      }
+    }
+  ],
+  "methodology": {
+    "summary": "Each state's pool cost is computed from a base 500 sq ft rectangular pool with a 4.75 ft average depth and standard loam soil. The state's labor index multiplies shell, excavation, plumbing, electrical, and interior finish line items. Permit and frost-protection costs are added directly. A flat 8% contingency is applied to the subtotal. Metro and ZIP-level multipliers are NOT included in this dataset; see the interactive calculator at https://www.priceapool.com for those adjustments.",
+    "shell_price_per_sqft_2026_usd": {
+      "gunite": 82,
+      "fiberglass": 60,
+      "vinyl_liner": 35
+    },
+    "shell_minimum_2026_usd": {
+      "gunite": 48000,
+      "fiberglass": 35000,
+      "vinyl_liner": 25000
+    },
+    "excavation_rate_per_cu_yd_usd": 35,
+    "plumbing_formula_usd": "7000 + sqft * 3.5",
+    "electrical_formula_usd": "3500 + sqft * 1.0",
+    "interior_finish_only_for": "gunite",
+    "frost_protection_usd": 2400,
+    "contingency_pct": 0.08
+  }
+}

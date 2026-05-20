@@ -970,7 +970,10 @@ export default function App({ initialState = "", hideNav = false }) {
     <div style={{ maxWidth: 1080, margin: "56px auto 8px", padding: "0 16px" }}>
       <figure style={{ margin: 0 }}>
         <div style={{ borderRadius: 20, overflow: "hidden", boxShadow: "0 1px 2px rgba(10,10,10,0.06), 0 24px 60px -20px rgba(10,10,10,0.22)", aspectRatio: "16 / 9", background: T.bg2 }}>
-          <img src="/hero-pool.jpg" alt="A family playing in a modern backyard swimming pool at golden hour" loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+          <picture>
+            <source type="image/avif" srcSet="/hero-pool-800.avif 800w, /hero-pool-1600.avif 1600w" sizes="(max-width: 768px) 800px, 1600px" />
+            <img src="/hero-pool.jpg" alt="A family playing in a modern backyard swimming pool at golden hour" loading="lazy" decoding="async" width="1600" height="893" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+          </picture>
         </div>
         <figcaption style={{ fontSize: 12, color: T.textDim, marginTop: 10, textAlign: "center", fontStyle: "italic" }}>An honest estimate now. A real pool, later.</figcaption>
       </figure>
