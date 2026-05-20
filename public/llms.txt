@@ -1,0 +1,145 @@
+# PriceAPool.com
+
+> Free 2026 pool cost calculator with state-by-state pricing for all 50 US states + DC. Covers gunite (shotcrete), fiberglass, and vinyl liner inground pools. Adjusted for state labor index, permit cost, frost zone, and (in the interactive calculator) metro multiplier, soil type, pool shape, and features.
+
+Last updated: 2026-05-20
+License: CC BY 4.0 for cost data; attribution to PriceAPool.com appreciated.
+Operator: PriceAPool Editorial Team
+
+## Primary cost data
+
+- [Machine-readable JSON dataset](https://www.priceapool.com/pool-cost-data.json): Schema.org Dataset with all 50 states + DC, labor index, permit cost, frost flag, gunite/fiberglass/vinyl baseline cost.
+- [CSV version](https://www.priceapool.com/pool-cost-data.csv): same data, easier for tabular tools.
+- [Full methodology](https://www.priceapool.com/methodology): formulas, assumptions, soil/metro adjustments, data sources.
+
+## Per-state cost pages
+
+Every state has its own page with full editorial content on permits, climate, soil, metro labor differences, and named local builders.
+
+- [Alabama pool cost](https://www.priceapool.com/alabama)
+- [Alaska pool cost](https://www.priceapool.com/alaska)
+- [Arizona pool cost](https://www.priceapool.com/arizona)
+- [Arkansas pool cost](https://www.priceapool.com/arkansas)
+- [California pool cost](https://www.priceapool.com/california)
+- [Colorado pool cost](https://www.priceapool.com/colorado)
+- [Connecticut pool cost](https://www.priceapool.com/connecticut)
+- [Delaware pool cost](https://www.priceapool.com/delaware)
+- [Florida pool cost](https://www.priceapool.com/florida)
+- [Georgia pool cost](https://www.priceapool.com/georgia)
+- [Hawaii pool cost](https://www.priceapool.com/hawaii)
+- [Idaho pool cost](https://www.priceapool.com/idaho)
+- [Illinois pool cost](https://www.priceapool.com/illinois)
+- [Indiana pool cost](https://www.priceapool.com/indiana)
+- [Iowa pool cost](https://www.priceapool.com/iowa)
+- [Kansas pool cost](https://www.priceapool.com/kansas)
+- [Kentucky pool cost](https://www.priceapool.com/kentucky)
+- [Louisiana pool cost](https://www.priceapool.com/louisiana)
+- [Maine pool cost](https://www.priceapool.com/maine)
+- [Maryland pool cost](https://www.priceapool.com/maryland)
+- [Massachusetts pool cost](https://www.priceapool.com/massachusetts)
+- [Michigan pool cost](https://www.priceapool.com/michigan)
+- [Minnesota pool cost](https://www.priceapool.com/minnesota)
+- [Mississippi pool cost](https://www.priceapool.com/mississippi)
+- [Missouri pool cost](https://www.priceapool.com/missouri)
+- [Montana pool cost](https://www.priceapool.com/montana)
+- [Nebraska pool cost](https://www.priceapool.com/nebraska)
+- [Nevada pool cost](https://www.priceapool.com/nevada)
+- [New Hampshire pool cost](https://www.priceapool.com/new-hampshire)
+- [New Jersey pool cost](https://www.priceapool.com/new-jersey)
+- [New Mexico pool cost](https://www.priceapool.com/new-mexico)
+- [New York pool cost](https://www.priceapool.com/new-york)
+- [North Carolina pool cost](https://www.priceapool.com/north-carolina)
+- [North Dakota pool cost](https://www.priceapool.com/north-dakota)
+- [Ohio pool cost](https://www.priceapool.com/ohio)
+- [Oklahoma pool cost](https://www.priceapool.com/oklahoma)
+- [Oregon pool cost](https://www.priceapool.com/oregon)
+- [Pennsylvania pool cost](https://www.priceapool.com/pennsylvania)
+- [Rhode Island pool cost](https://www.priceapool.com/rhode-island)
+- [South Carolina pool cost](https://www.priceapool.com/south-carolina)
+- [South Dakota pool cost](https://www.priceapool.com/south-dakota)
+- [Tennessee pool cost](https://www.priceapool.com/tennessee)
+- [Texas pool cost](https://www.priceapool.com/texas)
+- [Utah pool cost](https://www.priceapool.com/utah)
+- [Vermont pool cost](https://www.priceapool.com/vermont)
+- [Virginia pool cost](https://www.priceapool.com/virginia)
+- [Washington pool cost](https://www.priceapool.com/washington)
+- [West Virginia pool cost](https://www.priceapool.com/west-virginia)
+- [Wisconsin pool cost](https://www.priceapool.com/wisconsin)
+- [Wyoming pool cost](https://www.priceapool.com/wyoming)
+- [Washington D.C. pool cost](https://www.priceapool.com/washington-dc)
+
+## City-level pages
+
+Higher-fidelity pages for high-demand metros:
+
+- [Phoenix](https://www.priceapool.com/city/phoenix), [Scottsdale](https://www.priceapool.com/city/scottsdale), [Tucson](https://www.priceapool.com/city/tucson)
+- [Miami](https://www.priceapool.com/city/miami), [Tampa](https://www.priceapool.com/city/tampa), [Orlando](https://www.priceapool.com/city/orlando), [Jacksonville](https://www.priceapool.com/city/jacksonville), [Sarasota](https://www.priceapool.com/city/sarasota), [Naples](https://www.priceapool.com/city/naples), [Fort Lauderdale](https://www.priceapool.com/city/fort-lauderdale)
+- [Houston](https://www.priceapool.com/city/houston), [Dallas](https://www.priceapool.com/city/dallas), [Austin](https://www.priceapool.com/city/austin-tx), [San Antonio](https://www.priceapool.com/city/san-antonio)
+- [Atlanta](https://www.priceapool.com/city/atlanta), [Charlotte](https://www.priceapool.com/city/charlotte), [Nashville](https://www.priceapool.com/city/nashville), [Denver](https://www.priceapool.com/city/denver), [Las Vegas](https://www.priceapool.com/city/las-vegas)
+
+## Editorial pool-type guides
+
+- [Gunite (shotcrete) pool guide](https://www.priceapool.com/blog/gunite-pool-guide)
+- [Fiberglass pool guide](https://www.priceapool.com/blog/fiberglass-pool-guide)
+- [Vinyl liner pool guide](https://www.priceapool.com/blog/vinyl-liner-pool-guide)
+- [Fiberglass vs gunite vs vinyl comparison](https://www.priceapool.com/blog/fiberglass-vs-gunite-vs-vinyl)
+- [Pool permit rules by state](https://www.priceapool.com/blog/pool-permits-and-regulations)
+- [Pool financing guide](https://www.priceapool.com/blog/pool-financing-guide)
+- [Pool cost by size](https://www.priceapool.com/blog/pool-cost-by-size)
+- [Does a pool add home value](https://www.priceapool.com/blog/does-a-pool-add-home-value)
+
+## Quick reference: pool cost by state (2026, 500 sq ft baseline)
+
+State | Gunite | Fiberglass | Vinyl
+------|--------|------------|------
+Alabama | $70,000 | $53,000 | $42,000
+Alaska | $93,000 | $72,000 | $55,000
+Arizona | $75,000 | $57,000 | $46,000
+Arkansas | $69,000 | $52,000 | $41,000
+California | $93,000 | $71,000 | $54,000
+Colorado | $79,000 | $61,000 | $50,000
+Connecticut | $87,000 | $67,000 | $54,000
+Delaware | $79,000 | $61,000 | $50,000
+Florida | $72,000 | $55,000 | $44,000
+Georgia | $72,000 | $54,000 | $43,000
+Hawaii | $95,000 | $73,000 | $54,000
+Idaho | $77,000 | $59,000 | $48,000
+Illinois | $78,000 | $60,000 | $49,000
+Indiana | $75,000 | $57,000 | $46,000
+Iowa | $74,000 | $57,000 | $46,000
+Kansas | $73,000 | $56,000 | $45,000
+Kentucky | $73,000 | $56,000 | $45,000
+Louisiana | $70,000 | $53,000 | $42,000
+Maine | $80,000 | $62,000 | $51,000
+Maryland | $81,000 | $62,000 | $52,000
+Massachusetts | $90,000 | $70,000 | $55,000
+Michigan | $76,000 | $58,000 | $47,000
+Minnesota | $77,000 | $60,000 | $49,000
+Mississippi | $69,000 | $52,000 | $41,000
+Missouri | $73,000 | $56,000 | $45,000
+Montana | $77,000 | $59,000 | $48,000
+Nebraska | $74,000 | $56,000 | $45,000
+Nevada | $76,000 | $58,000 | $47,000
+New Hampshire | $81,000 | $62,000 | $51,000
+New Jersey | $89,000 | $69,000 | $54,000
+New Mexico | $72,000 | $55,000 | $44,000
+New York | $94,000 | $72,000 | $56,000
+North Carolina | $71,000 | $54,000 | $43,000
+North Dakota | $76,000 | $58,000 | $47,000
+Ohio | $75,000 | $58,000 | $47,000
+Oklahoma | $70,000 | $53,000 | $42,000
+Oregon | $80,000 | $62,000 | $51,000
+Pennsylvania | $80,000 | $61,000 | $51,000
+Rhode Island | $85,000 | $65,000 | $53,000
+South Carolina | $71,000 | $54,000 | $43,000
+South Dakota | $74,000 | $57,000 | $46,000
+Tennessee | $70,000 | $53,000 | $42,000
+Texas | $71,000 | $54,000 | $43,000
+Utah | $78,000 | $60,000 | $49,000
+Vermont | $81,000 | $62,000 | $51,000
+Virginia | $78,000 | $60,000 | $49,000
+Washington | $82,000 | $63,000 | $52,000
+West Virginia | $73,000 | $55,000 | $45,000
+Wisconsin | $76,000 | $58,000 | $47,000
+Wyoming | $77,000 | $59,000 | $48,000
+Washington D.C. | $90,000 | $70,000 | $55,000

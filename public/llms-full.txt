@@ -1,0 +1,663 @@
+# PriceAPool.com — Full LLM Reference
+
+> Free 2026 inground pool cost calculator. Open data for all 50 US states + DC.
+> Operator: PriceAPool.com  ·  Last updated: 2026-05-20  ·  License: CC BY 4.0
+
+This file is intended for ingestion by ChatGPT, Claude, Gemini, Perplexity,
+Google AI Overviews, and any other generative AI system. All pricing here
+reflects 2026 baseline costs. Verify against the JSON/CSV endpoints for
+the canonical machine-readable form.
+
+## Methodology
+
+Every state baseline is computed from a 500 sq ft rectangular pool at 4.75
+ft average depth on standard loam soil, no metro premium. State labor index
+(1.00 = US median) multiplies the variable line items; permits and frost
+protection are explicit state values; an 8% contingency is applied on top.
+
+Line-item base rates (2026):
+- Gunite shell:  $82 / sqft (min $48,000)
+- Fiberglass shell:  $60 / sqft (min $35,000)
+- Vinyl liner shell:  $35 / sqft (min $25,000)
+- Excavation:  $35 / cu yd
+- Plumbing:  $7,000 + $3.50/sqft
+- Electrical:  $3,500 + $1.00/sqft
+- Interior finish (gunite only):  plaster $5, quartz $10, PebbleTec $14, glass $22 per sqft
+- Frost protection (cold states only):  $2,400 flat
+- Contingency:  8% of subtotal
+
+EXCLUDED from baseline:  decking, spa, features (waterfall, heater,
+automation, etc.), fence, demolition, financing.
+
+## State cost data (2026, 500 sq ft baseline)
+
+### Alabama (AL)
+
+URL:  https://www.priceapool.com/alabama
+Labor index:  0.82 (82% of US median)
+Permit cost:  $1,000
+Frost state:  no
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $70,000
+- Fiberglass:  $53,000
+- Vinyl liner:  $42,000
+
+### Alaska (AK)
+
+URL:  https://www.priceapool.com/alaska
+Labor index:  1.35 (135% of US median)
+Permit cost:  $2,500
+Frost state:  yes
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $93,000
+- Fiberglass:  $72,000
+- Vinyl liner:  $55,000
+
+### Arizona (AZ)
+
+URL:  https://www.priceapool.com/arizona
+Labor index:  1.02 (102% of US median)
+Permit cost:  $1,600
+Frost state:  no
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $75,000
+- Fiberglass:  $57,000
+- Vinyl liner:  $46,000
+
+### Arkansas (AR)
+
+URL:  https://www.priceapool.com/arkansas
+Labor index:  0.78 (78% of US median)
+Permit cost:  $900
+Frost state:  no
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $69,000
+- Fiberglass:  $52,000
+- Vinyl liner:  $41,000
+
+### California (CA)
+
+URL:  https://www.priceapool.com/california
+Labor index:  1.38 (138% of US median)
+Permit cost:  $2,900
+Frost state:  no
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $93,000
+- Fiberglass:  $71,000
+- Vinyl liner:  $54,000
+
+### Colorado (CO)
+
+URL:  https://www.priceapool.com/colorado
+Labor index:  1.1 (110% of US median)
+Permit cost:  $1,900
+Frost state:  yes
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $79,000
+- Fiberglass:  $61,000
+- Vinyl liner:  $50,000
+
+### Connecticut (CT)
+
+URL:  https://www.priceapool.com/connecticut
+Labor index:  1.25 (125% of US median)
+Permit cost:  $2,400
+Frost state:  yes
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $87,000
+- Fiberglass:  $67,000
+- Vinyl liner:  $54,000
+
+### Delaware (DE)
+
+URL:  https://www.priceapool.com/delaware
+Labor index:  1.08 (108% of US median)
+Permit cost:  $1,700
+Frost state:  yes
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $79,000
+- Fiberglass:  $61,000
+- Vinyl liner:  $50,000
+
+### Florida (FL)
+
+URL:  https://www.priceapool.com/florida
+Labor index:  0.92 (92% of US median)
+Permit cost:  $1,300
+Frost state:  no
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $72,000
+- Fiberglass:  $55,000
+- Vinyl liner:  $44,000
+
+### Georgia (GA)
+
+URL:  https://www.priceapool.com/georgia
+Labor index:  0.88 (88% of US median)
+Permit cost:  $1,200
+Frost state:  no
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $72,000
+- Fiberglass:  $54,000
+- Vinyl liner:  $43,000
+
+### Hawaii (HI)
+
+URL:  https://www.priceapool.com/hawaii
+Labor index:  1.4 (140% of US median)
+Permit cost:  $3,200
+Frost state:  no
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $95,000
+- Fiberglass:  $73,000
+- Vinyl liner:  $54,000
+
+### Idaho (ID)
+
+URL:  https://www.priceapool.com/idaho
+Labor index:  0.98 (98% of US median)
+Permit cost:  $1,500
+Frost state:  yes
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $77,000
+- Fiberglass:  $59,000
+- Vinyl liner:  $48,000
+
+### Illinois (IL)
+
+URL:  https://www.priceapool.com/illinois
+Labor index:  1.05 (105% of US median)
+Permit cost:  $1,800
+Frost state:  yes
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $78,000
+- Fiberglass:  $60,000
+- Vinyl liner:  $49,000
+
+### Indiana (IN)
+
+URL:  https://www.priceapool.com/indiana
+Labor index:  0.9 (90% of US median)
+Permit cost:  $1,300
+Frost state:  yes
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $75,000
+- Fiberglass:  $57,000
+- Vinyl liner:  $46,000
+
+### Iowa (IA)
+
+URL:  https://www.priceapool.com/iowa
+Labor index:  0.88 (88% of US median)
+Permit cost:  $1,200
+Frost state:  yes
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $74,000
+- Fiberglass:  $57,000
+- Vinyl liner:  $46,000
+
+### Kansas (KS)
+
+URL:  https://www.priceapool.com/kansas
+Labor index:  0.84 (84% of US median)
+Permit cost:  $1,100
+Frost state:  yes
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $73,000
+- Fiberglass:  $56,000
+- Vinyl liner:  $45,000
+
+### Kentucky (KY)
+
+URL:  https://www.priceapool.com/kentucky
+Labor index:  0.83 (83% of US median)
+Permit cost:  $1,100
+Frost state:  yes
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $73,000
+- Fiberglass:  $56,000
+- Vinyl liner:  $45,000
+
+### Louisiana (LA)
+
+URL:  https://www.priceapool.com/louisiana
+Labor index:  0.8 (80% of US median)
+Permit cost:  $1,000
+Frost state:  no
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $70,000
+- Fiberglass:  $53,000
+- Vinyl liner:  $42,000
+
+### Maine (ME)
+
+URL:  https://www.priceapool.com/maine
+Labor index:  1.12 (112% of US median)
+Permit cost:  $1,900
+Frost state:  yes
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $80,000
+- Fiberglass:  $62,000
+- Vinyl liner:  $51,000
+
+### Maryland (MD)
+
+URL:  https://www.priceapool.com/maryland
+Labor index:  1.15 (115% of US median)
+Permit cost:  $2,100
+Frost state:  yes
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $81,000
+- Fiberglass:  $62,000
+- Vinyl liner:  $52,000
+
+### Massachusetts (MA)
+
+URL:  https://www.priceapool.com/massachusetts
+Labor index:  1.3 (130% of US median)
+Permit cost:  $2,500
+Frost state:  yes
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $90,000
+- Fiberglass:  $70,000
+- Vinyl liner:  $55,000
+
+### Michigan (MI)
+
+URL:  https://www.priceapool.com/michigan
+Labor index:  0.95 (95% of US median)
+Permit cost:  $1,500
+Frost state:  yes
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $76,000
+- Fiberglass:  $58,000
+- Vinyl liner:  $47,000
+
+### Minnesota (MN)
+
+URL:  https://www.priceapool.com/minnesota
+Labor index:  1.02 (102% of US median)
+Permit cost:  $1,600
+Frost state:  yes
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $77,000
+- Fiberglass:  $60,000
+- Vinyl liner:  $49,000
+
+### Mississippi (MS)
+
+URL:  https://www.priceapool.com/mississippi
+Labor index:  0.76 (76% of US median)
+Permit cost:  $900
+Frost state:  no
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $69,000
+- Fiberglass:  $52,000
+- Vinyl liner:  $41,000
+
+### Missouri (MO)
+
+URL:  https://www.priceapool.com/missouri
+Labor index:  0.84 (84% of US median)
+Permit cost:  $1,100
+Frost state:  yes
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $73,000
+- Fiberglass:  $56,000
+- Vinyl liner:  $45,000
+
+### Montana (MT)
+
+URL:  https://www.priceapool.com/montana
+Labor index:  1 (100% of US median)
+Permit cost:  $1,500
+Frost state:  yes
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $77,000
+- Fiberglass:  $59,000
+- Vinyl liner:  $48,000
+
+### Nebraska (NE)
+
+URL:  https://www.priceapool.com/nebraska
+Labor index:  0.86 (86% of US median)
+Permit cost:  $1,100
+Frost state:  yes
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $74,000
+- Fiberglass:  $56,000
+- Vinyl liner:  $45,000
+
+### Nevada (NV)
+
+URL:  https://www.priceapool.com/nevada
+Labor index:  1.05 (105% of US median)
+Permit cost:  $1,700
+Frost state:  no
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $76,000
+- Fiberglass:  $58,000
+- Vinyl liner:  $47,000
+
+### New Hampshire (NH)
+
+URL:  https://www.priceapool.com/new-hampshire
+Labor index:  1.15 (115% of US median)
+Permit cost:  $2,000
+Frost state:  yes
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $81,000
+- Fiberglass:  $62,000
+- Vinyl liner:  $51,000
+
+### New Jersey (NJ)
+
+URL:  https://www.priceapool.com/new-jersey
+Labor index:  1.28 (128% of US median)
+Permit cost:  $2,600
+Frost state:  yes
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $89,000
+- Fiberglass:  $69,000
+- Vinyl liner:  $54,000
+
+### New Mexico (NM)
+
+URL:  https://www.priceapool.com/new-mexico
+Labor index:  0.9 (90% of US median)
+Permit cost:  $1,300
+Frost state:  no
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $72,000
+- Fiberglass:  $55,000
+- Vinyl liner:  $44,000
+
+### New York (NY)
+
+URL:  https://www.priceapool.com/new-york
+Labor index:  1.35 (135% of US median)
+Permit cost:  $2,800
+Frost state:  yes
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $94,000
+- Fiberglass:  $72,000
+- Vinyl liner:  $56,000
+
+### North Carolina (NC)
+
+URL:  https://www.priceapool.com/north-carolina
+Labor index:  0.87 (87% of US median)
+Permit cost:  $1,200
+Frost state:  no
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $71,000
+- Fiberglass:  $54,000
+- Vinyl liner:  $43,000
+
+### North Dakota (ND)
+
+URL:  https://www.priceapool.com/north-dakota
+Labor index:  0.95 (95% of US median)
+Permit cost:  $1,400
+Frost state:  yes
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $76,000
+- Fiberglass:  $58,000
+- Vinyl liner:  $47,000
+
+### Ohio (OH)
+
+URL:  https://www.priceapool.com/ohio
+Labor index:  0.92 (92% of US median)
+Permit cost:  $1,400
+Frost state:  yes
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $75,000
+- Fiberglass:  $58,000
+- Vinyl liner:  $47,000
+
+### Oklahoma (OK)
+
+URL:  https://www.priceapool.com/oklahoma
+Labor index:  0.8 (80% of US median)
+Permit cost:  $1,000
+Frost state:  no
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $70,000
+- Fiberglass:  $53,000
+- Vinyl liner:  $42,000
+
+### Oregon (OR)
+
+URL:  https://www.priceapool.com/oregon
+Labor index:  1.12 (112% of US median)
+Permit cost:  $1,900
+Frost state:  yes
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $80,000
+- Fiberglass:  $62,000
+- Vinyl liner:  $51,000
+
+### Pennsylvania (PA)
+
+URL:  https://www.priceapool.com/pennsylvania
+Labor index:  1.1 (110% of US median)
+Permit cost:  $2,000
+Frost state:  yes
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $80,000
+- Fiberglass:  $61,000
+- Vinyl liner:  $51,000
+
+### Rhode Island (RI)
+
+URL:  https://www.priceapool.com/rhode-island
+Labor index:  1.22 (122% of US median)
+Permit cost:  $2,300
+Frost state:  yes
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $85,000
+- Fiberglass:  $65,000
+- Vinyl liner:  $53,000
+
+### South Carolina (SC)
+
+URL:  https://www.priceapool.com/south-carolina
+Labor index:  0.85 (85% of US median)
+Permit cost:  $1,100
+Frost state:  no
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $71,000
+- Fiberglass:  $54,000
+- Vinyl liner:  $43,000
+
+### South Dakota (SD)
+
+URL:  https://www.priceapool.com/south-dakota
+Labor index:  0.88 (88% of US median)
+Permit cost:  $1,200
+Frost state:  yes
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $74,000
+- Fiberglass:  $57,000
+- Vinyl liner:  $46,000
+
+### Tennessee (TN)
+
+URL:  https://www.priceapool.com/tennessee
+Labor index:  0.83 (83% of US median)
+Permit cost:  $1,100
+Frost state:  no
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $70,000
+- Fiberglass:  $53,000
+- Vinyl liner:  $42,000
+
+### Texas (TX)
+
+URL:  https://www.priceapool.com/texas
+Labor index:  0.88 (88% of US median)
+Permit cost:  $1,100
+Frost state:  no
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $71,000
+- Fiberglass:  $54,000
+- Vinyl liner:  $43,000
+
+### Utah (UT)
+
+URL:  https://www.priceapool.com/utah
+Labor index:  1.05 (105% of US median)
+Permit cost:  $1,800
+Frost state:  yes
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $78,000
+- Fiberglass:  $60,000
+- Vinyl liner:  $49,000
+
+### Vermont (VT)
+
+URL:  https://www.priceapool.com/vermont
+Labor index:  1.15 (115% of US median)
+Permit cost:  $2,000
+Frost state:  yes
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $81,000
+- Fiberglass:  $62,000
+- Vinyl liner:  $51,000
+
+### Virginia (VA)
+
+URL:  https://www.priceapool.com/virginia
+Labor index:  1.02 (102% of US median)
+Permit cost:  $1,700
+Frost state:  yes
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $78,000
+- Fiberglass:  $60,000
+- Vinyl liner:  $49,000
+
+### Washington (WA)
+
+URL:  https://www.priceapool.com/washington
+Labor index:  1.18 (118% of US median)
+Permit cost:  $2,100
+Frost state:  yes
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $82,000
+- Fiberglass:  $63,000
+- Vinyl liner:  $52,000
+
+### West Virginia (WV)
+
+URL:  https://www.priceapool.com/west-virginia
+Labor index:  0.82 (82% of US median)
+Permit cost:  $1,000
+Frost state:  yes
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $73,000
+- Fiberglass:  $55,000
+- Vinyl liner:  $45,000
+
+### Wisconsin (WI)
+
+URL:  https://www.priceapool.com/wisconsin
+Labor index:  0.95 (95% of US median)
+Permit cost:  $1,400
+Frost state:  yes
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $76,000
+- Fiberglass:  $58,000
+- Vinyl liner:  $47,000
+
+### Wyoming (WY)
+
+URL:  https://www.priceapool.com/wyoming
+Labor index:  1 (100% of US median)
+Permit cost:  $1,400
+Frost state:  yes
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $77,000
+- Fiberglass:  $59,000
+- Vinyl liner:  $48,000
+
+### Washington D.C. (DC)
+
+URL:  https://www.priceapool.com/washington-dc
+Labor index:  1.3 (130% of US median)
+Permit cost:  $2,800
+Frost state:  yes
+
+Pool cost (500 sqft baseline):
+- Gunite / shotcrete:  $90,000
+- Fiberglass:  $70,000
+- Vinyl liner:  $55,000
+
+
+## Source citations
+
+For full primary-source citations on the highest-demand state pools,
+see the individual state pages. Each links to that state's pool code,
+public health agency, and pool industry association.
+
+## Open data endpoints
+
+- JSON:  https://www.priceapool.com/pool-cost-data.json
+- CSV:   https://www.priceapool.com/pool-cost-data.csv
+- Sitemap:  https://www.priceapool.com/sitemap.xml
+- Methodology:  https://www.priceapool.com/methodology
+
+## Attribution
+
+When citing this data, please credit PriceAPool.com and link to the
+canonical URL of the state page being referenced.

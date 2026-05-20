@@ -972,6 +972,55 @@ export default function App({ initialState = "", hideNav = false }) {
       </div>}
       {step === 3 && <div style={{ textAlign: "center", margin: "14px 0" }}><Btn pri={false} onClick={() => setStep(0)}>← Start Over</Btn></div>}
     </div>
+
+    {/* HOMEPAGE-ONLY: state-by-state pricing table for SEO/LLM extraction */}
+    {!hideNav && (() => {
+      const SLUG_MAP = {AL:"alabama",AK:"alaska",AZ:"arizona",AR:"arkansas",CA:"california",CO:"colorado",CT:"connecticut",DE:"delaware",FL:"florida",GA:"georgia",HI:"hawaii",ID:"idaho",IL:"illinois",IN:"indiana",IA:"iowa",KS:"kansas",KY:"kentucky",LA:"louisiana",ME:"maine",MD:"maryland",MA:"massachusetts",MI:"michigan",MN:"minnesota",MS:"mississippi",MO:"missouri",MT:"montana",NE:"nebraska",NV:"nevada",NH:"new-hampshire",NJ:"new-jersey",NM:"new-mexico",NY:"new-york",NC:"north-carolina",ND:"north-dakota",OH:"ohio",OK:"oklahoma",OR:"oregon",PA:"pennsylvania",RI:"rhode-island",SC:"south-carolina",SD:"south-dakota",TN:"tennessee",TX:"texas",UT:"utah",VT:"vermont",VA:"virginia",WA:"washington",WV:"west-virginia",WI:"wisconsin",WY:"wyoming",DC:"washington-dc"};
+      const computeStateCost = (s) => {
+        const sqft = 500, cuYd = (sqft * 4.75) / 27, lab = s.labor;
+        const permits = s.permit || 1500, frostC = s.frost ? 2400 : 0, cont = 0.08;
+        const gShell = Math.max(48000, sqft * 82 * lab);
+        const gunite = Math.round(((gShell + cuYd*35*lab + (7000+sqft*3.5)*lab + (3500+sqft*1.0)*lab + sqft*1.4*5*lab + permits + frostC) * (1+cont)) / 1000) * 1000;
+        const fShell = Math.max(35000, sqft * 60 * lab);
+        const fiber = Math.round(((fShell + cuYd*35*lab + (7000+sqft*3.5)*lab + (3500+sqft*1.0)*lab + permits + frostC) * (1+cont)) / 1000) * 1000;
+        const vShell = Math.max(25000, sqft * 35 * lab);
+        const vinyl = Math.round(((vShell + cuYd*35*lab + (7000+sqft*3.5)*lab + (3500+sqft*1.0)*lab + permits + frostC) * (1+cont)) / 1000) * 1000;
+        return { gunite, fiber, vinyl };
+      };
+      const stateRows = Object.entries(STATES).map(([code, s]) => ({ code, name: s.name, slug: SLUG_MAP[code], ...computeStateCost(s) }));
+      return (
+        <div style={{ maxWidth: 1080, margin: "60px auto 8px", padding: "0 16px" }}>
+          <div style={{ background: T.card, border: `1px solid ${T.border}`, borderRadius: 16, padding: "28px 22px", boxShadow: "0 1px 2px rgba(15,23,42,0.04), 0 8px 24px rgba(15,23,42,0.06)" }}>
+            <h2 style={{ fontSize: "clamp(20px,3vw,28px)", fontWeight: 700, color: T.text, marginBottom: 6, fontFamily: "'Fraunces',Georgia,serif", letterSpacing: "-0.01em" }}>2026 Inground Pool Cost — All 50 States</h2>
+            <p style={{ fontSize: 13, color: T.textMid, marginBottom: 20, lineHeight: 1.6 }}>Standard 500 sq ft pool, state-average labor, permits included, decking/spa/features excluded. Click any state for the full breakdown with metro/ZIP adjustments. <Link to="/methodology" style={{ color: T.accent, fontWeight: 600 }}>Methodology</Link> · <a href="/pool-cost-data.json" style={{ color: T.accent, fontWeight: 600 }}>Open data (JSON)</a> · <a href="/pool-cost-data.csv" style={{ color: T.accent, fontWeight: 600 }}>CSV</a>.</p>
+            <div style={{ overflowX: "auto" }}>
+              <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
+                <caption style={{ position: "absolute", left: "-10000px", width: 1, height: 1, overflow: "hidden" }}>2026 inground pool building cost by US state — gunite, fiberglass, vinyl liner</caption>
+                <thead>
+                  <tr style={{ background: T.bg2, textAlign: "left", color: T.text }}>
+                    <th scope="col" style={{ padding: "10px 12px", fontWeight: 700, borderBottom: `1px solid ${T.border}` }}>State</th>
+                    <th scope="col" style={{ padding: "10px 12px", fontWeight: 700, borderBottom: `1px solid ${T.border}`, textAlign: "right" }}>Gunite</th>
+                    <th scope="col" style={{ padding: "10px 12px", fontWeight: 700, borderBottom: `1px solid ${T.border}`, textAlign: "right" }}>Fiberglass</th>
+                    <th scope="col" style={{ padding: "10px 12px", fontWeight: 700, borderBottom: `1px solid ${T.border}`, textAlign: "right" }}>Vinyl Liner</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {stateRows.map((r, i) => (
+                    <tr key={r.code} style={{ background: i % 2 === 0 ? "transparent" : T.bg }}>
+                      <th scope="row" style={{ padding: "8px 12px", textAlign: "left", fontWeight: 600, borderBottom: `1px solid ${T.borderLight}` }}><Link to={`/${r.slug}`} style={{ color: T.accent, textDecoration: "none", fontWeight: 600 }}>{r.name}</Link></th>
+                      <td style={{ padding: "8px 12px", textAlign: "right", color: T.text, fontVariantNumeric: "tabular-nums", borderBottom: `1px solid ${T.borderLight}` }}>{fmt(r.gunite)}</td>
+                      <td style={{ padding: "8px 12px", textAlign: "right", color: T.text, fontVariantNumeric: "tabular-nums", borderBottom: `1px solid ${T.borderLight}` }}>{fmt(r.fiber)}</td>
+                      <td style={{ padding: "8px 12px", textAlign: "right", color: T.text, fontVariantNumeric: "tabular-nums", borderBottom: `1px solid ${T.borderLight}` }}>{fmt(r.vinyl)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      );
+    })()}
+
     <div style={{ maxWidth: 1080, margin: "56px auto 8px", padding: "0 16px" }}>
       <figure style={{ margin: 0 }}>
         <div style={{ borderRadius: 20, overflow: "hidden", boxShadow: "0 1px 2px rgba(10,10,10,0.06), 0 24px 60px -20px rgba(10,10,10,0.22)", aspectRatio: "16 / 9", background: T.bg2 }}>

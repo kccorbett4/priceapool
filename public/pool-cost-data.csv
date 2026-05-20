@@ -1,0 +1,57 @@
+# PriceAPool 2026 US Inground Pool Cost by State
+# Generated: 2026-05-20
+# Source: https://www.priceapool.com/pool-cost-data.json
+# License: CC BY 4.0 — attribution to PriceAPool.com
+# Assumptions: 500 sq ft pool, 4.75 ft avg depth, standard loam soil, state-average labor (no metro premium), permits + 8% contingency included; decking/spa/features/heater EXCLUDED.
+state_code,state_name,slug,url,labor_index,permit_cost_usd,frost_state,gunite_cost_usd,fiberglass_cost_usd,vinyl_liner_cost_usd
+AL,"Alabama",alabama,https://www.priceapool.com/alabama,0.82,1000,false,70000,53000,42000
+AK,"Alaska",alaska,https://www.priceapool.com/alaska,1.35,2500,true,93000,72000,55000
+AZ,"Arizona",arizona,https://www.priceapool.com/arizona,1.02,1600,false,75000,57000,46000
+AR,"Arkansas",arkansas,https://www.priceapool.com/arkansas,0.78,900,false,69000,52000,41000
+CA,"California",california,https://www.priceapool.com/california,1.38,2900,false,93000,71000,54000
+CO,"Colorado",colorado,https://www.priceapool.com/colorado,1.1,1900,true,79000,61000,50000
+CT,"Connecticut",connecticut,https://www.priceapool.com/connecticut,1.25,2400,true,87000,67000,54000
+DE,"Delaware",delaware,https://www.priceapool.com/delaware,1.08,1700,true,79000,61000,50000
+FL,"Florida",florida,https://www.priceapool.com/florida,0.92,1300,false,72000,55000,44000
+GA,"Georgia",georgia,https://www.priceapool.com/georgia,0.88,1200,false,72000,54000,43000
+HI,"Hawaii",hawaii,https://www.priceapool.com/hawaii,1.4,3200,false,95000,73000,54000
+ID,"Idaho",idaho,https://www.priceapool.com/idaho,0.98,1500,true,77000,59000,48000
+IL,"Illinois",illinois,https://www.priceapool.com/illinois,1.05,1800,true,78000,60000,49000
+IN,"Indiana",indiana,https://www.priceapool.com/indiana,0.9,1300,true,75000,57000,46000
+IA,"Iowa",iowa,https://www.priceapool.com/iowa,0.88,1200,true,74000,57000,46000
+KS,"Kansas",kansas,https://www.priceapool.com/kansas,0.84,1100,true,73000,56000,45000
+KY,"Kentucky",kentucky,https://www.priceapool.com/kentucky,0.83,1100,true,73000,56000,45000
+LA,"Louisiana",louisiana,https://www.priceapool.com/louisiana,0.8,1000,false,70000,53000,42000
+ME,"Maine",maine,https://www.priceapool.com/maine,1.12,1900,true,80000,62000,51000
+MD,"Maryland",maryland,https://www.priceapool.com/maryland,1.15,2100,true,81000,62000,52000
+MA,"Massachusetts",massachusetts,https://www.priceapool.com/massachusetts,1.3,2500,true,90000,70000,55000
+MI,"Michigan",michigan,https://www.priceapool.com/michigan,0.95,1500,true,76000,58000,47000
+MN,"Minnesota",minnesota,https://www.priceapool.com/minnesota,1.02,1600,true,77000,60000,49000
+MS,"Mississippi",mississippi,https://www.priceapool.com/mississippi,0.76,900,false,69000,52000,41000
+MO,"Missouri",missouri,https://www.priceapool.com/missouri,0.84,1100,true,73000,56000,45000
+MT,"Montana",montana,https://www.priceapool.com/montana,1,1500,true,77000,59000,48000
+NE,"Nebraska",nebraska,https://www.priceapool.com/nebraska,0.86,1100,true,74000,56000,45000
+NV,"Nevada",nevada,https://www.priceapool.com/nevada,1.05,1700,false,76000,58000,47000
+NH,"New Hampshire",new-hampshire,https://www.priceapool.com/new-hampshire,1.15,2000,true,81000,62000,51000
+NJ,"New Jersey",new-jersey,https://www.priceapool.com/new-jersey,1.28,2600,true,89000,69000,54000
+NM,"New Mexico",new-mexico,https://www.priceapool.com/new-mexico,0.9,1300,false,72000,55000,44000
+NY,"New York",new-york,https://www.priceapool.com/new-york,1.35,2800,true,94000,72000,56000
+NC,"North Carolina",north-carolina,https://www.priceapool.com/north-carolina,0.87,1200,false,71000,54000,43000
+ND,"North Dakota",north-dakota,https://www.priceapool.com/north-dakota,0.95,1400,true,76000,58000,47000
+OH,"Ohio",ohio,https://www.priceapool.com/ohio,0.92,1400,true,75000,58000,47000
+OK,"Oklahoma",oklahoma,https://www.priceapool.com/oklahoma,0.8,1000,false,70000,53000,42000
+OR,"Oregon",oregon,https://www.priceapool.com/oregon,1.12,1900,true,80000,62000,51000
+PA,"Pennsylvania",pennsylvania,https://www.priceapool.com/pennsylvania,1.1,2000,true,80000,61000,51000
+RI,"Rhode Island",rhode-island,https://www.priceapool.com/rhode-island,1.22,2300,true,85000,65000,53000
+SC,"South Carolina",south-carolina,https://www.priceapool.com/south-carolina,0.85,1100,false,71000,54000,43000
+SD,"South Dakota",south-dakota,https://www.priceapool.com/south-dakota,0.88,1200,true,74000,57000,46000
+TN,"Tennessee",tennessee,https://www.priceapool.com/tennessee,0.83,1100,false,70000,53000,42000
+TX,"Texas",texas,https://www.priceapool.com/texas,0.88,1100,false,71000,54000,43000
+UT,"Utah",utah,https://www.priceapool.com/utah,1.05,1800,true,78000,60000,49000
+VT,"Vermont",vermont,https://www.priceapool.com/vermont,1.15,2000,true,81000,62000,51000
+VA,"Virginia",virginia,https://www.priceapool.com/virginia,1.02,1700,true,78000,60000,49000
+WA,"Washington",washington,https://www.priceapool.com/washington,1.18,2100,true,82000,63000,52000
+WV,"West Virginia",west-virginia,https://www.priceapool.com/west-virginia,0.82,1000,true,73000,55000,45000
+WI,"Wisconsin",wisconsin,https://www.priceapool.com/wisconsin,0.95,1400,true,76000,58000,47000
+WY,"Wyoming",wyoming,https://www.priceapool.com/wyoming,1,1400,true,77000,59000,48000
+DC,"Washington D.C.",washington-dc,https://www.priceapool.com/washington-dc,1.3,2800,true,90000,70000,55000
