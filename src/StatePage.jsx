@@ -173,6 +173,54 @@ const STATE_HOOKS = {
       { label: "NC Department of Health & Human Services — Public Swimming Pools", url: "https://epi.dph.ncdhhs.gov/oee/pools/" },
     ],
   },
+  PA: {
+    hook: "Pittsburgh shale, Philly permits, frost",
+    descClickTrigger: "Includes Pittsburgh-area Marcellus shale excavation, Philadelphia permit timelines, and PA frost-line winterization.",
+    sources: [
+      { label: "PA Construction Code Act (Act 45 of 1999) — pool barrier rules", url: "https://www.dli.pa.gov/ucc/Pages/default.aspx" },
+      { label: "PA Department of Labor & Industry — Uniform Construction Code", url: "https://www.dli.pa.gov/" },
+    ],
+  },
+  IL: {
+    hook: "Cook County permits, expansive soils, frost",
+    descClickTrigger: "Includes Cook County (Chicago) permit timelines, expansive prairie-soil engineering, and IL frost-line winterization.",
+    sources: [
+      { label: "Illinois Swimming Pool & Bathing Beach Act (210 ILCS 125)", url: "https://www.ilga.gov/legislation/ilcs/ilcs3.asp?ActID=1267&ChapterID=21" },
+      { label: "Illinois Department of Public Health — Pools & Spas", url: "https://dph.illinois.gov/topics-services/environmental-health-protection/swimming-facilities.html" },
+    ],
+  },
+  OH: {
+    hook: "shale rock, Cleveland frost, OBC barrier",
+    descClickTrigger: "Includes northern-Ohio shale-rock excavation surcharges, severe winter winterization, and Ohio Building Code barrier rules.",
+    sources: [
+      { label: "Ohio Administrative Code 3701-31 — Swimming Pools", url: "https://codes.ohio.gov/ohio-administrative-code/chapter-3701-31" },
+      { label: "Ohio Department of Health — Pool Program", url: "https://odh.ohio.gov/wps/portal/gov/odh/" },
+    ],
+  },
+  MI: {
+    hook: "glacial till, Detroit permits, deep frost",
+    descClickTrigger: "Includes glacial-till rock excavation, Detroit/Oakland County permit timelines, and Michigan's deep-frost winterization.",
+    sources: [
+      { label: "Michigan Public Act 368 of 1978 — Public Health Code, Part 125 (Pools)", url: "http://www.legislature.mi.gov/(S(0))/mileg.aspx?page=GetObject&objectname=mcl-Act-368-of-1978" },
+      { label: "Michigan EGLE — Drinking Water & Environmental Health", url: "https://www.michigan.gov/egle" },
+    ],
+  },
+  VA: {
+    hook: "NoVA permits, red clay, mild frost",
+    descClickTrigger: "Includes Fairfax/Arlington/Loudoun permit timelines, red-clay engineering, and Virginia mild-frost winterization rules.",
+    sources: [
+      { label: "Virginia Uniform Statewide Building Code (USBC) — pool barrier rules", url: "https://www.dhcd.virginia.gov/sbcca" },
+      { label: "Virginia Department of Health — Pool & Spa", url: "https://www.vdh.virginia.gov/" },
+    ],
+  },
+  WA: {
+    hook: "Seattle permits, glacial till, mild winters",
+    descClickTrigger: "Includes Seattle/King County permit timelines, glacial-till rock excavation, and Pacific Northwest mild-winter pool care.",
+    sources: [
+      { label: "WAC 246-260 — Water Recreation Facilities", url: "https://app.leg.wa.gov/wac/default.aspx?cite=246-260" },
+      { label: "Washington Department of Health — Pool Safety", url: "https://doh.wa.gov/community-and-environment/pool-and-spa" },
+    ],
+  },
 };
 
 function getStateCosts(d) {

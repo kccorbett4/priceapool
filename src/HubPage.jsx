@@ -108,7 +108,27 @@ export default function HubPage() {
         <link rel="canonical" href="https://www.priceapool.com/pool-cost-by-state" />
         <meta property="og:title" content="Pool Cost by State 2026 — All 50 States Compared" />
         <meta property="og:url" content="https://www.priceapool.com/pool-cost-by-state" />
+        <meta property="article:modified_time" content="2026-05-19T00:00:00Z" />
         <script type="application/ld+json">{JSON.stringify(hubSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": "Pool Cost by State 2026 — All 50 States Compared",
+          "description": "Side-by-side comparison of 2026 inground pool building costs in all 50 US states + DC.",
+          "datePublished": "2026-04-03",
+          "dateModified": "2026-05-19",
+          "author": { "@type": "Organization", "name": "PriceAPool Editorial Team", "url": "https://www.priceapool.com" },
+          "publisher": { "@type": "Organization", "name": "PriceAPool.com", "url": "https://www.priceapool.com" },
+          "mainEntityOfPage": "https://www.priceapool.com/pool-cost-by-state"
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Pool Cost Calculator", "item": "https://www.priceapool.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Pool Cost by State", "item": "https://www.priceapool.com/pool-cost-by-state" }
+          ]
+        })}</script>
       </Helmet>
       <nav style={{ position: "sticky", top: 0, zIndex: 100, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 24px", height: 64, background: "rgba(250,248,243,0.85)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", borderBottom: `1px solid ${T.border}` }}>
         <Link to="/" style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none" }}>
