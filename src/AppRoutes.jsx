@@ -5,6 +5,7 @@ import BlogPage from './BlogPage.jsx'
 import HubPage from './HubPage.jsx'
 import CityPage from './CityPage.jsx'
 import DataPage from './DataPage.jsx'
+import MethodologyPage from './MethodologyPage.jsx'
 import BuildPage, { BuildsIndex } from './BuildPage.jsx'
 
 export default function AppRoutes() {
@@ -14,6 +15,7 @@ export default function AppRoutes() {
       <Route path="/blog/:slug" element={<BlogPage />} />
       <Route path="/pool-cost-by-state" element={<HubPage />} />
       <Route path="/pool-cost-data" element={<DataPage />} />
+      <Route path="/methodology" element={<MethodologyPage />} />
       <Route path="/builds" element={<BuildsIndex />} />
       <Route path="/builds/:buildSlug" element={<BuildPage />} />
       <Route path="/city/:citySlug" element={<CityPage />} />

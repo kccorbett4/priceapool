@@ -152,6 +152,62 @@ const CITIES = {
     ],
     intro: "Denver has a shorter swim season (5–6 months) but the metro's high income levels and strong real estate market support solid pool ROI. Above-average labor costs (combined state and metro: 17% above national average) and annual winterization requirements should be factored into your budget.",
   },
+  "tampa": {
+    name: "Tampa", state: "Florida", stateSlug: "florida", code: "FL",
+    stateLaborMult: 0.92, metroMult: 0.97,
+    season: "Year-round", frost: false,
+    permit: "$1,000–$2,000",
+    nearby: ["orlando","jacksonville","miami"],
+    facts: [
+      "Tampa Bay sits on Florida's Gulf Coast — high water table in many neighborhoods means $4,000–$10,000 in dewatering costs is common.",
+      "Hillsborough and Pinellas counties typically process pool permits in 3–6 weeks.",
+      "Tampa pools can be used year-round with no winterization, though heating extends comfort October–April.",
+      "Hurricane season (June–November) influences construction scheduling and pool cage (screen enclosure) specifications — wind-rated cages add $8,000–$15,000.",
+    ],
+    intro: "Tampa is one of Florida's most active pool markets, with year-round use, competitive contractor pricing, and a deep bench of established builders. The main wildcards are a high water table near the coast (driving dewatering costs) and hurricane-resistant pool cage requirements that are standard in the Tampa Bay region.",
+  },
+  "jacksonville": {
+    name: "Jacksonville", state: "Florida", stateSlug: "florida", code: "FL",
+    stateLaborMult: 0.92, metroMult: 0.93,
+    season: "10–11 months", frost: false,
+    permit: "$900–$1,800",
+    nearby: ["orlando","tampa","miami"],
+    facts: [
+      "Jacksonville's sandy coastal soils are generally favorable for pool construction — fewer soil-engineering surprises than other Florida markets.",
+      "Duval County permit processing averages 3–6 weeks.",
+      "Jacksonville has a 10–11 month swim season with rare frost events — no traditional winterization required.",
+      "Labor costs in Jacksonville run 7–10% below the Florida state average, making it one of the more affordable major Florida pool markets.",
+    ],
+    intro: "Jacksonville is one of Florida's best-value pool markets — below-Florida-average labor costs, generally favorable sandy soils, and a 10–11 month swim season. The Jacksonville metro has seen strong growth in the pool-builder market without the price premium seen in Miami or Tampa.",
+  },
+  "tucson": {
+    name: "Tucson", state: "Arizona", stateSlug: "arizona", code: "AZ",
+    stateLaborMult: 1.02, metroMult: 0.93,
+    season: "10–11 months", frost: false,
+    permit: "$1,200–$2,200",
+    nearby: ["phoenix","las-vegas","albuquerque"],
+    facts: [
+      "Tucson typically prices 5–10% below the Phoenix metro for comparable pool builds — both labor and contractor competition help.",
+      "Pima County permit processing averages 4–7 weeks for standard residential pool permits.",
+      "Caliche soil is less concentrated than in Phoenix but still common — budget $2,000–$8,000 for potential excavation surcharges.",
+      "Tucson's elevation (~2,400 ft) brings cooler nights than Phoenix — pool heaters extend the comfortable swim season meaningfully here.",
+    ],
+    intro: "Tucson is one of Arizona's best-value pool markets — comparable swim season to Phoenix at 5–10% lower cost. Cooler nights at elevation mean a heater makes a real difference for shoulder-season comfort, and caliche-soil surprises are less frequent than in the Phoenix valley.",
+  },
+  "scottsdale": {
+    name: "Scottsdale", state: "Arizona", stateSlug: "arizona", code: "AZ",
+    stateLaborMult: 1.02, metroMult: 1.18,
+    season: "Year-round", frost: false,
+    permit: "$1,800–$3,200",
+    nearby: ["phoenix","las-vegas","tucson"],
+    facts: [
+      "Scottsdale pools price 15–25% above the Phoenix metro due to HOA design review, premium finishes, and hillside-lot access constraints.",
+      "City of Scottsdale and Paradise Valley HOAs typically dictate decking color palette, equipment-pad screening, and visible-from-street rules.",
+      "Scottsdale permit processing averages 4–8 weeks; design-review boards in DC Ranch, Silverleaf, and Troon can add 4–6 weeks.",
+      "Hillside lots in north Scottsdale and Paradise Valley often require engineered shoring and access surcharges of $15,000–$40,000.",
+    ],
+    intro: "Scottsdale is Arizona's premium pool market — luxury finishes, HOA design oversight, and hillside-lot complexity push the average pool cost 15–25% above the Phoenix metro. Year-round swim season and a deep bench of high-end custom builders make it one of the most active luxury pool markets in the US.",
+  },
 };
 
 export default function CityPage() {

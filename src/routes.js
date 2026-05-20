@@ -18,7 +18,8 @@ export const BLOG_SLUGS = [
 
 export const CITY_SLUGS = [
   "houston","dallas","phoenix","miami","orlando",
-  "atlanta","charlotte","denver","las-vegas","nashville"
+  "atlanta","charlotte","denver","las-vegas","nashville",
+  "tampa","jacksonville","tucson","scottsdale"
 ];
 
 export const BUILD_SLUGS = [
@@ -31,6 +32,7 @@ export function getAllPaths() {
     '/',
     '/pool-cost-by-state',
     '/pool-cost-data',
+    '/methodology',
     '/builds',
     ...STATE_SLUGS.map(s => `/${s}`),
     ...BLOG_SLUGS.map(s => `/blog/${s}`),
