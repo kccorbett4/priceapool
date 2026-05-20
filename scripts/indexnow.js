@@ -9,7 +9,7 @@
 
 import { getAllPaths } from '../src/routes.js';
 
-const HOST = 'priceapool.com';
+const HOST = 'www.priceapool.com';
 const KEY = '276f7a010067c3740b9143658b24cd70';
 const KEY_LOCATION = `https://${HOST}/${KEY}.txt`;
 const ENDPOINT = 'https://api.indexnow.org/IndexNow';
