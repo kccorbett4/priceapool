@@ -817,11 +817,11 @@ export default function App({ initialState = "", hideNav = false }) {
       </div>
     </div>
 
-    {/* #12: Lead capture CTA */}
+    {/* #12: Lead capture CTA — microcopy + trust signals tightened per Gemini's review */}
     <Card style={{ borderColor: T.accent, background: `linear-gradient(135deg, ${T.accentLight}, #f0f9ff)` }}>
-      <div style={{ fontSize: 16, fontWeight: 700, color: T.text, marginBottom: 4 }}>🏗️ Get 3 Free Quotes from {STATES[st]?.name || "Local"} Pool Builders</div>
-      <div style={{ fontSize: 11, color: T.textMid, lineHeight: 1.6, marginBottom: 12 }}>We'll match you with top-rated contractors in your area who build {td.label.toLowerCase()} pools. No obligation, no spam.</div>
-      {!leadSubmitted ? <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+      <div style={{ fontSize: 16, fontWeight: 700, color: T.text, marginBottom: 4 }}>🏗️ Match Me With 3 {STATES[st]?.name || "Local"} Pool Builders</div>
+      <div style={{ fontSize: 11, color: T.textMid, lineHeight: 1.6, marginBottom: 12 }}>We share your build specs with 3 top-rated contractors in your area who build {td.label.toLowerCase()} pools — they bid against each other. No phone calls until you say so. Your email is never sold.</div>
+      {!leadSubmitted ? <><div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
         <input value={leadEmail} onChange={e => setLeadEmail(e.target.value)} placeholder="your@email.com" type="email" style={{ flex: "1 1 200px", padding: "11px 14px", borderRadius: 9, border: `1px solid ${T.border}`, background: T.card, color: T.text, fontSize: 14, outline: "none", boxSizing: "border-box" }} />
         <button onClick={() => {
           if (!leadEmail.includes("@")) return;
@@ -855,8 +855,13 @@ export default function App({ initialState = "", hideNav = false }) {
               perSqft: fmt(total / sqft),
             }),
           }).catch(() => {});
-        }} style={{ padding: "13px 24px", borderRadius: 10, border: "none", fontWeight: 600, fontSize: 14, letterSpacing: "-0.005em", background: T.text, color: "#fff", cursor: "pointer", boxShadow: "0 1px 2px rgba(10,10,10,0.08), 0 4px 16px rgba(10,10,10,0.08)", whiteSpace: "nowrap" }}>Get Free Quotes →</button>
-      </div> : <div style={{ padding: "12px 16px", background: T.successBg, border: `1px solid ${T.successBorder}`, borderRadius: 9, fontSize: 13, fontWeight: 700, color: T.success }}>✓ We'll be in touch within 24 hours with quotes from {STATES[st]?.name} builders.</div>}
+        }} style={{ padding: "13px 24px", borderRadius: 10, border: "none", fontWeight: 600, fontSize: 14, letterSpacing: "-0.005em", background: T.text, color: "#fff", cursor: "pointer", boxShadow: "0 1px 2px rgba(10,10,10,0.08), 0 4px 16px rgba(10,10,10,0.08)", whiteSpace: "nowrap" }}>Send My Itemized Quote →</button>
+      </div>
+      <div style={{ display: "flex", gap: 14, flexWrap: "wrap", marginTop: 10, fontSize: 10, color: T.textDim, fontWeight: 600 }}>
+        <span>🔒 Email never sold</span>
+        <span>📞 No calls until you ask</span>
+        <span>✓ Free forever</span>
+      </div></> : <div style={{ padding: "12px 16px", background: T.successBg, border: `1px solid ${T.successBorder}`, borderRadius: 9, fontSize: 13, fontWeight: 700, color: T.success }}>✓ We'll be in touch within 24 hours with quotes from {STATES[st]?.name} builders.</div>}
     </Card>
 
     {/* Quick Summary */}

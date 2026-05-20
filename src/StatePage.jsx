@@ -264,6 +264,56 @@ export default function StatePage() {
           ))}
         </div>
 
+        {/* COMPARISON TABLE — semantic HTML for AI search/LLM extraction (Gemini's GEO Fix 1) */}
+        <div style={card}>
+          <h2 style={{ fontSize: 18, fontWeight: 700, color: T.text, marginBottom: 8 }}>{d.name} Pool Cost Comparison Table (2026)</h2>
+          <p style={{ fontSize: 12, color: T.textMid, marginBottom: 14, lineHeight: 1.55 }}>Standard 500 sq ft pool, {d.name} labor index ({Math.round(d.labor * 100)}% of US average), permits included, decking/spa/features excluded.</p>
+          <div style={{ overflowX: "auto" }}>
+            <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
+              <caption style={{ position: "absolute", left: "-10000px", width: 1, height: 1, overflow: "hidden" }}>2026 {d.name} inground pool cost comparison by pool type</caption>
+              <thead>
+                <tr style={{ background: T.bg, textAlign: "left", color: T.text }}>
+                  <th style={{ padding: "10px 12px", fontWeight: 700, borderBottom: `1px solid ${T.border}` }} scope="col">Pool Type</th>
+                  <th style={{ padding: "10px 12px", fontWeight: 700, borderBottom: `1px solid ${T.border}`, textAlign: "right" }} scope="col">Avg Cost ({d.name})</th>
+                  <th style={{ padding: "10px 12px", fontWeight: 700, borderBottom: `1px solid ${T.border}`, textAlign: "right" }} scope="col">$/sqft</th>
+                  <th style={{ padding: "10px 12px", fontWeight: 700, borderBottom: `1px solid ${T.border}` }} scope="col">Build Time</th>
+                  <th style={{ padding: "10px 12px", fontWeight: 700, borderBottom: `1px solid ${T.border}` }} scope="col">Lifespan</th>
+                  <th style={{ padding: "10px 12px", fontWeight: 700, borderBottom: `1px solid ${T.border}` }} scope="col">Best For</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row" style={{ padding: "10px 12px", textAlign: "left", fontWeight: 600, color: T.accent, borderBottom: `1px solid ${T.borderLight}` }}>Gunite / Shotcrete</th>
+                  <td style={{ padding: "10px 12px", textAlign: "right", fontWeight: 700, fontVariantNumeric: "tabular-nums", color: T.text, borderBottom: `1px solid ${T.borderLight}` }}>{fmt(costs.gunite)}</td>
+                  <td style={{ padding: "10px 12px", textAlign: "right", color: T.textMid, borderBottom: `1px solid ${T.borderLight}`, fontVariantNumeric: "tabular-nums" }}>${Math.round(82 * d.labor)}</td>
+                  <td style={{ padding: "10px 12px", color: T.textMid, borderBottom: `1px solid ${T.borderLight}` }}>12-22 weeks</td>
+                  <td style={{ padding: "10px 12px", color: T.textMid, borderBottom: `1px solid ${T.borderLight}` }}>50+ years</td>
+                  <td style={{ padding: "10px 12px", color: T.textMid, borderBottom: `1px solid ${T.borderLight}` }}>Fully custom shape, premium finishes</td>
+                </tr>
+                <tr>
+                  <th scope="row" style={{ padding: "10px 12px", textAlign: "left", fontWeight: 600, color: T.accentDark, borderBottom: `1px solid ${T.borderLight}` }}>Fiberglass</th>
+                  <td style={{ padding: "10px 12px", textAlign: "right", fontWeight: 700, fontVariantNumeric: "tabular-nums", color: T.text, borderBottom: `1px solid ${T.borderLight}` }}>{fmt(costs.fiber)}</td>
+                  <td style={{ padding: "10px 12px", textAlign: "right", color: T.textMid, borderBottom: `1px solid ${T.borderLight}`, fontVariantNumeric: "tabular-nums" }}>${Math.round(60 * d.labor)}</td>
+                  <td style={{ padding: "10px 12px", color: T.textMid, borderBottom: `1px solid ${T.borderLight}` }}>3-6 weeks</td>
+                  <td style={{ padding: "10px 12px", color: T.textMid, borderBottom: `1px solid ${T.borderLight}` }}>25-30 years</td>
+                  <td style={{ padding: "10px 12px", color: T.textMid, borderBottom: `1px solid ${T.borderLight}` }}>Fast install, low maintenance, freeze-thaw</td>
+                </tr>
+                <tr>
+                  <th scope="row" style={{ padding: "10px 12px", textAlign: "left", fontWeight: 600, color: T.success }}>Vinyl Liner</th>
+                  <td style={{ padding: "10px 12px", textAlign: "right", fontWeight: 700, fontVariantNumeric: "tabular-nums", color: T.text }}>{fmt(costs.vinyl)}</td>
+                  <td style={{ padding: "10px 12px", textAlign: "right", color: T.textMid, fontVariantNumeric: "tabular-nums" }}>${Math.round(35 * d.labor)}</td>
+                  <td style={{ padding: "10px 12px", color: T.textMid }}>4-8 weeks</td>
+                  <td style={{ padding: "10px 12px", color: T.textMid }}>Liner 7-10 yr, frame 20+</td>
+                  <td style={{ padding: "10px 12px", color: T.textMid }}>Lowest upfront cost, simple design</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p style={{ fontSize: 11, color: T.textDim, marginTop: 12, lineHeight: 1.55 }}>
+            Pricing methodology: see <Link to="/methodology" style={{ color: T.accent, fontWeight: 600 }}>how we calculate these costs</Link>. Machine-readable data: <a href="/pool-cost-data.json" style={{ color: T.accent, fontWeight: 600 }}>/pool-cost-data.json</a>.
+          </p>
+        </div>
+
         {/* ABOUT THIS STATE — intro paragraph */}
         <div style={card}>
           <h2 style={{ fontSize: 18, fontWeight: 700, color: T.text, marginBottom: 14 }}>Pool Costs in {d.name}: What You Need to Know</h2>
