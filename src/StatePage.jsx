@@ -267,6 +267,24 @@ function permitSentence(d) {
   return `Building permits in ${d.name} typically run ${fmt(low)}–${fmt(high)} depending on your county, pool type, and local requirements. Most municipalities also require a fence or barrier around the pool.`;
 }
 
+// Metro labor premium over the state average. Big/coastal metros cost more to
+// build in; the state's primary metro carries a small premium over rural areas.
+function cityMultiplier(city, d) {
+  const c = city.toLowerCase();
+  if (c.includes("new york") || c.includes("san francisco")) return 1.15;
+  if (c.includes("los angeles") || c.includes("chicago") || c.includes("miami") || c.includes("seattle") || c.includes("boston") || c.includes("washington")) return 1.08;
+  return city === d.cities[0] ? 1.04 : 1.0;
+}
+
+function getCityCosts(city, costs, d) {
+  const m = cityMultiplier(city, d);
+  return {
+    gunite: Math.round((costs.gunite * m) / 1000) * 1000,
+    fiber: Math.round((costs.fiber * m) / 1000) * 1000,
+    vinyl: Math.round((costs.vinyl * m) / 1000) * 1000,
+  };
+}
+
 export default function StatePage() {
   const { stateSlug } = useParams();
   const code = SLUG_TO_CODE[stateSlug?.toLowerCase()];
@@ -279,50 +297,49 @@ export default function StatePage() {
 
   const dateModified = "2026-05-19";
 
+  const primaryCity = d.cities[0];
+  const primaryCityCosts = getCityCosts(primaryCity, costs, d);
+  const primaryAbove = cityMultiplier(primaryCity, d) > 1;
+
+  // Single source of truth for FAQs — rendered visibly AND emitted as FAQPage
+  // schema below, so the two never drift (Google requires them to match).
+  const faqs = [
+    {
+      q: `How much does an inground pool cost in ${d.name}?`,
+      a: `In ${d.name}, a gunite (concrete) pool averages ${fmt(costs.gunite)}, fiberglass pools average ${fmt(costs.fiber)}, and vinyl liner pools average ${fmt(costs.vinyl)} for a standard-size pool. These are base estimates — your final cost depends on size, soil conditions, features like spas or water features, and decking.`,
+    },
+    {
+      q: `How much does it cost to build a pool in ${primaryCity}?`,
+      a: `In ${primaryCity}, expect roughly ${fmt(primaryCityCosts.vinyl)} for a vinyl liner pool, ${fmt(primaryCityCosts.fiber)} for fiberglass, and ${fmt(primaryCityCosts.gunite)} for gunite. ${primaryCity} runs ${primaryAbove ? "slightly above" : "close to"} the ${d.name} state average because of local labor rates and permitting. Enter your ZIP in the calculator above for a build-specific number.`,
+    },
+    {
+      q: `What is the cheapest inground pool in ${d.name}?`,
+      a: `Vinyl liner pools are the most affordable option in ${d.name}, starting around ${fmt(costs.vinyl)}. The liner will need replacement every 7–10 years at a cost of $3,500–$6,000. Fiberglass pools offer a middle ground — faster to install and lower long-term maintenance than vinyl.`,
+    },
+    {
+      q: `How much do pool permits cost in ${d.name}?`,
+      a: permitSentence(d),
+    },
+    {
+      q: `How long does it take to build a pool in ${d.name}?`,
+      a: `Gunite pools in ${d.name} typically take 8–14 weeks from permit approval to completion. Fiberglass pools can be installed in 3–6 weeks. Vinyl liner pools fall in between at 4–8 weeks. Delays can occur due to weather, permit processing times, or contractor availability — especially during peak season (spring and summer).`,
+    },
+    {
+      q: `Do I need to winterize my pool in ${d.name}?`,
+      a: d.frost
+        ? `Yes — ${d.name} winters require proper pool winterization to prevent freeze damage to pipes and equipment. Professional closing and opening typically costs $300–$600 combined. Plan for this as an annual operating cost.`
+        : `Most of ${d.name} does not require traditional pool winterization. In rare cold snaps, running equipment overnight is usually sufficient to protect your pool. This is one of the advantages of building a pool in ${d.name}.`,
+    },
+  ];
+
   const stateFaqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": `How much does an inground pool cost in ${d.name}?`,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": `In ${d.name}, a gunite (concrete) pool averages ${fmt(costs.gunite)}, fiberglass pools average ${fmt(costs.fiber)}, and vinyl liner pools average ${fmt(costs.vinyl)} for a standard-size pool. These are base estimates — your final cost depends on size, soil conditions, features like spas or water features, and decking.`
-        }
-      },
-      {
-        "@type": "Question",
-        "name": `What is the cheapest inground pool in ${d.name}?`,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": `Vinyl liner pools are the most affordable option in ${d.name}, starting around ${fmt(costs.vinyl)}. The liner will need replacement every 7-10 years at a cost of $3,500-$6,000. Fiberglass pools offer a middle ground - faster to install and lower long-term maintenance than vinyl.`
-        }
-      },
-      {
-        "@type": "Question",
-        "name": `How much do pool permits cost in ${d.name}?`,
-        "acceptedAnswer": { "@type": "Answer", "text": permitSentence(d) }
-      },
-      {
-        "@type": "Question",
-        "name": `How long does it take to build a pool in ${d.name}?`,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": `Gunite pools in ${d.name} typically take 8-14 weeks from permit approval to completion. Fiberglass pools can be installed in 3-6 weeks. Vinyl liner pools fall in between at 4-8 weeks. Delays can occur due to weather, permit processing times, or contractor availability - especially during peak season (spring and summer).`
-        }
-      },
-      {
-        "@type": "Question",
-        "name": `Do I need to winterize my pool in ${d.name}?`,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": d.frost
-            ? `Yes - ${d.name} winters require proper pool winterization to prevent freeze damage to pipes and equipment. Professional closing and opening typically costs $300-$600 combined. Plan for this as an annual operating cost.`
-            : `Most of ${d.name} does not require traditional pool winterization. In rare cold snaps, running equipment overnight is usually sufficient to protect your pool. This is one of the advantages of building a pool in ${d.name}.`
-        }
-      }
-    ]
+    "mainEntity": faqs.map((f) => ({
+      "@type": "Question",
+      "name": f.q,
+      "acceptedAnswer": { "@type": "Answer", "text": f.a },
+    })),
   };
 
   const breadcrumbSchema = {
@@ -384,6 +401,10 @@ export default function StatePage() {
           In {d.name}, a gunite pool averages <strong>{fmt(costs.gunite)}</strong>, fiberglass averages <strong>{fmt(costs.fiber)}</strong>, and vinyl liner pools average <strong>{fmt(costs.vinyl)}</strong> — before features, decking, and site conditions.
           Use the free calculator below to get a personalized estimate.
         </p>
+        {/* DIRECT-ANSWER BOX — snippet-optimized for "cost to build a pool in <state>" query cluster */}
+        <div style={{ maxWidth: 560, margin: "0 auto", padding: "14px 18px", background: T.card, border: `1px solid ${T.border}`, borderRadius: 12, textAlign: "left", fontSize: 14, color: T.textMid, lineHeight: 1.7, boxShadow: "0 1px 2px rgba(15,23,42,0.04)" }}>
+          <strong style={{ color: T.text }}>How much does it cost to build a pool in {d.name}?</strong> A typical inground pool in {d.name} costs between {fmt(costs.vinyl)} and {fmt(costs.gunite)}, with a mid-range fiberglass build running about {fmt(costs.fiber)}. Final price depends on pool type, size, decking, and site conditions like {d.frost ? "frost-line depth and winterization" : "soil type and water table"}.
+        </div>
       </div>
 
       <div style={inner}>
@@ -535,23 +556,37 @@ export default function StatePage() {
         {/* CITIES */}
         {d.cities.length > 1 && (
           <div style={card}>
-            <h2 style={{ fontSize: 18, fontWeight: 700, color: T.text, marginBottom: 6 }}>Pool Costs by City in {d.name}</h2>
+            <h2 style={{ fontSize: 18, fontWeight: 700, color: T.text, marginBottom: 6 }}>Cost to Build a Pool by City in {d.name} (2026)</h2>
             <p style={{ fontSize: 13, color: T.textMid, marginBottom: 14, lineHeight: 1.6 }}>
-              Costs vary within {d.name} based on metro vs. rural labor markets. Enter your ZIP code in the calculator below for the most accurate estimate.
+              Pool costs vary within {d.name} by metro labor market. Estimates below are for a standard 500 sq ft inground pool, permits included. Enter your ZIP in the calculator for a build-specific number.
             </p>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(160px,1fr))", gap: 8 }}>
-              {d.cities.map(city => {
-                const cityMult = city.toLowerCase().includes("new york") || city.toLowerCase().includes("san francisco") ? 1.15
-                  : city.toLowerCase().includes("los angeles") || city.toLowerCase().includes("chicago") || city.toLowerCase().includes("miami") ? 1.08
-                  : city === d.cities[0] ? 1.04 : 1.0;
-                const cityGunite = Math.round(costs.gunite * cityMult / 1000) * 1000;
-                return (
-                  <div key={city} style={{ background: T.bg, borderRadius: 9, padding: "11px 14px" }}>
-                    <div style={{ fontSize: 12, fontWeight: 700, color: T.text }}>{city}</div>
-                    <div style={{ fontSize: 11, color: T.textMid, marginTop: 2 }}>Gunite from <span style={{ color: T.accent, fontWeight: 700 }}>{fmt(cityGunite)}</span></div>
-                  </div>
-                );
-              })}
+            <div style={{ overflowX: "auto" }}>
+              <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
+                <caption style={{ position: "absolute", left: "-10000px", width: 1, height: 1, overflow: "hidden" }}>2026 cost to build an inground pool by city in {d.name}, by pool type</caption>
+                <thead>
+                  <tr style={{ background: T.bg, textAlign: "left", color: T.text }}>
+                    <th style={{ padding: "10px 12px", fontWeight: 700, borderBottom: `1px solid ${T.border}` }} scope="col">City</th>
+                    <th style={{ padding: "10px 12px", fontWeight: 700, borderBottom: `1px solid ${T.border}`, textAlign: "right" }} scope="col">Gunite</th>
+                    <th style={{ padding: "10px 12px", fontWeight: 700, borderBottom: `1px solid ${T.border}`, textAlign: "right" }} scope="col">Fiberglass</th>
+                    <th style={{ padding: "10px 12px", fontWeight: 700, borderBottom: `1px solid ${T.border}`, textAlign: "right" }} scope="col">Vinyl</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {d.cities.map((city, i) => {
+                    const cc = getCityCosts(city, costs, d);
+                    const last = i === d.cities.length - 1;
+                    const bb = last ? "none" : `1px solid ${T.borderLight}`;
+                    return (
+                      <tr key={city}>
+                        <th scope="row" style={{ padding: "10px 12px", textAlign: "left", fontWeight: 600, color: T.text, borderBottom: bb }}>{city}</th>
+                        <td style={{ padding: "10px 12px", textAlign: "right", fontWeight: 700, color: T.accent, fontVariantNumeric: "tabular-nums", borderBottom: bb }}>{fmt(cc.gunite)}</td>
+                        <td style={{ padding: "10px 12px", textAlign: "right", color: T.textMid, fontVariantNumeric: "tabular-nums", borderBottom: bb }}>{fmt(cc.fiber)}</td>
+                        <td style={{ padding: "10px 12px", textAlign: "right", color: T.textMid, fontVariantNumeric: "tabular-nums", borderBottom: bb }}>{fmt(cc.vinyl)}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
             </div>
           </div>
         )}
@@ -570,30 +605,7 @@ export default function StatePage() {
       <div style={inner}>
         <div style={{ ...card, marginTop: 16 }}>
           <h2 style={{ fontSize: 18, fontWeight: 700, color: T.text, marginBottom: 16 }}>Frequently Asked Questions — Pool Costs in {d.name}</h2>
-          {[
-            {
-              q: `How much does an inground pool cost in ${d.name}?`,
-              a: `In ${d.name}, a gunite (concrete) pool averages ${fmt(costs.gunite)}, fiberglass pools average ${fmt(costs.fiber)}, and vinyl liner pools average ${fmt(costs.vinyl)} for a standard-size pool. These are base estimates — your final cost depends on size, soil conditions, features like spas or water features, and decking.`
-            },
-            {
-              q: `What is the cheapest inground pool in ${d.name}?`,
-              a: `Vinyl liner pools are the most affordable option in ${d.name}, starting around ${fmt(costs.vinyl)}. The liner will need replacement every 7–10 years at a cost of $3,500–$6,000. Fiberglass pools offer a middle ground — faster to install and lower long-term maintenance than vinyl.`
-            },
-            {
-              q: `How much do pool permits cost in ${d.name}?`,
-              a: permitSentence(d)
-            },
-            {
-              q: `How long does it take to build a pool in ${d.name}?`,
-              a: `Gunite pools in ${d.name} typically take 8–14 weeks from permit approval to completion. Fiberglass pools can be installed in 3–6 weeks. Vinyl liner pools fall in between at 4–8 weeks. Delays can occur due to weather, permit processing times, or contractor availability — especially during peak season (spring and summer).`
-            },
-            {
-              q: `Do I need to winterize my pool in ${d.name}?`,
-              a: d.frost
-                ? `Yes — ${d.name} winters require proper pool winterization to prevent freeze damage to pipes and equipment. Professional closing and opening typically costs $300–$600 combined. Plan for this as an annual operating cost.`
-                : `Most of ${d.name} does not require traditional pool winterization. In rare cold snaps, running equipment overnight is usually sufficient to protect your pool. This is one of the advantages of building a pool in ${d.name}.`
-            },
-          ].map(({ q, a }, i) => (
+          {faqs.map(({ q, a }, i) => (
             <div key={i} style={{ borderTop: i === 0 ? "none" : `1px solid ${T.border}`, paddingTop: i === 0 ? 0 : 14, marginTop: i === 0 ? 0 : 14 }}>
               <div style={{ fontSize: 14, fontWeight: 700, color: T.text, marginBottom: 6 }}>{q}</div>
               <div style={{ fontSize: 13, color: T.textMid, lineHeight: 1.7 }}>{a}</div>

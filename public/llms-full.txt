@@ -1,7 +1,7 @@
 # PriceAPool.com — Full LLM Reference
 
 > Free 2026 inground pool cost calculator. Open data for all 50 US states + DC.
-> Operator: PriceAPool.com  ·  Last updated: 2026-05-20  ·  License: CC BY 4.0
+> Operator: PriceAPool.com  ·  Last updated: 2026-05-29  ·  License: CC BY 4.0
 
 This file is intended for ingestion by ChatGPT, Claude, Gemini, Perplexity,
 Google AI Overviews, and any other generative AI system. All pricing here

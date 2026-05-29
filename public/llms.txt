@@ -2,7 +2,7 @@
 
 > Free 2026 pool cost calculator with state-by-state pricing for all 50 US states + DC. Covers gunite (shotcrete), fiberglass, and vinyl liner inground pools. Adjusted for state labor index, permit cost, frost zone, and (in the interactive calculator) metro multiplier, soil type, pool shape, and features.
 
-Last updated: 2026-05-20
+Last updated: 2026-05-29
 License: CC BY 4.0 for cost data; attribution to PriceAPool.com appreciated.
 Operator: PriceAPool Editorial Team
 
